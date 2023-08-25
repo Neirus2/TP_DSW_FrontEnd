@@ -1,0 +1,56 @@
+<!-- CAROUSEL -->
+<app-carousel></app-carousel>
+
+<!-- PRODUCTOS DESTACADOS -->
+
+
+<h2 class="text-center my-4">Productos Destacados</h2>
+<div style="height: 20px;"></div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let product of featuredProducts">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <img src="imagen1.jpg" class="card-img-top" alt="Imagen 1">
+          <div class="card-body">
+            <h5 class="card-title">Tarjeta 1</h5>
+            <p class="card-text">Contenido de la tarjeta 1.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="imagen2.jpg" class="card-img-top" alt="Imagen 2">
+          <div class="card-body">
+            <h5 class="card-title">Tarjeta 2</h5>
+            <p class="card-text">Contenido de la tarjeta 2.</p>
+          </div>    
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="imagen3.jpg" class="card-img-top" alt="Imagen 3">
+          <div class="card-body">
+            <h5 class="card-title">Tarjeta 3</h5>
+            <p class="card-text">Contenido de la tarjeta 3.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="imagen4.jpg" class="card-img-top" alt="Imagen 4">
+          <div class="card-body">
+            <h5 class="card-title">Tarjeta 4</h5>
+            <p class="card-text">Contenido de la tarjeta 4.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
