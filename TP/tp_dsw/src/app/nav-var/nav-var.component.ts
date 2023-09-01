@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-var',
@@ -8,4 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavVarComponent {
 
+  constructor(
+    public authService: AuthService,
+  ) {}
 }

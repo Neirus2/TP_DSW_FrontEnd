@@ -36,9 +36,18 @@
         <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
     </button>
 </form>
-<button class="btn btn-ligth" routerLink="/login">
-    <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-</button>
+<ul class="navbar-nav mb-2 mb-lg-0">
+<ng-container *ngIf="!authService.loggedIn(), else loggedIn">
+    <button class="btn btn-ligth" routerLink="/login">
+        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
+    </button>
+</ng-container>
+<ng-template #loggedIn>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" (click)="authService.logOut()">Salir</a> 
+    </li>
+</ng-template>
+</ul>
         </div>
         </div>
     </nav>
