@@ -12,8 +12,7 @@ import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/tasks', pathMatch: 'full'  },
-  { path: 'home', component: HomeComponent },
+ { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
   { path: 'productos', component: ProductosComponent },
   { path: 'quienes-somos', component: QuienesSomosComponent },
   { path: 'contacto', component: ContactoComponent },

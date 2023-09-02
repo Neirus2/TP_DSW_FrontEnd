@@ -19,6 +19,9 @@ import { TasksComponent } from './tasks/tasks.component';
 import { PrivateTasksComponent } from './private-tasks/private-tasks.component';
 import { AuthGuard } from "./auth.guard";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { ContactFormComponent } from './contacto/contact-form/contact-form.component';
+import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     SignupComponent,
     TasksComponent,
     PrivateTasksComponent,
+    BottomNavbarComponent,
+    ContactFormComponent,
+    DownCompComponent,
   ],
 
   imports: [

@@ -1,0 +1,23 @@
+.pic-banner {
+  width: 100%;
+  /* Ajustar el ancho según tu diseño */
+  max-height: 100px;
+  /* Ajustar la altura según tu diseño */
+  display: block;
+  margin: 0 auto;
+  /* Centrar horizontalmente */
+}
+
+.cont-info {
+  color: rgb(23, 20, 51);
+  font-size: 18px;
+  align-items: center;
+
+  justify-content: center;
+  display: flex;
+
+}
+
+.mi-parrafo {
+  line-height: 1.5;
+}
