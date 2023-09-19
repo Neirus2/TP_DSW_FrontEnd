@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -11,6 +12,10 @@ import { Router } from "@angular/router";
 export class SignupComponent implements OnInit {
 
   user = {
+    businessName: '',
+    cuit: '',
+    address: '',
+    phoneNumber: '',
     email: '',
     password:   ''
   }
@@ -30,9 +35,18 @@ export class SignupComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/private-task'])
+          this.router.navigate(['/login'])
         },
-        err => console.log(err)
+        (err) => {
+          console.log(err);
+  
+          // Muestra la alerta de error con el mensaje personalizado
+          Swal.fire({
+            icon: 'error',
+            title: 'Registro fallido',
+            text: err.error,
+          });
+        }
         )
   }
 

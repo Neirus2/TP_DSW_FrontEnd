@@ -20,52 +20,42 @@
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <form (submit)="signUp()">
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-                <!-- <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input type="text"   id="form3Example1" class="form-control" />
-                      <label class="form-label" for="form3Example1">First name</label>
+
+                <!-- RazonSocial input -->
+                <div class="form-outline mb-4">
+                  <input type="businessName" [(ngModel)]="user.businessName" [ngModelOptions]="{ standalone: true }" id="form3Example1" class="form-control" />
+                  <label class="form-label" for="form3Example1">Razon Social</label>
+                  
+                  <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example2" class="form-control" />
+                  <label class="form-label" for="form3Example2">Email address</label>
+                  
+                  <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example3" class="form-control" />
+                  <label class="form-label" for="form3Example3">Password</label>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" [(ngModel)]="user.cuit" [ngModelOptions]="{ standalone: true }"  id="form3Example4" class="form-control" />
+                        <label class="form-label" for="form3Example4">Cuit</label>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input type="text" id="form3Example2" class="form-control" />
-                      <label class="form-label" for="form3Example2">Last name</label>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" [(ngModel)]="user.phoneNumber" [ngModelOptions]="{ standalone: true }" id="form3Example5" class="form-control" />
+                        <label class="form-label" for="form3Example5">Telefono</label>
+                      </div>
                     </div>
+
                   </div>
-                </div> -->
-  
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example3" class="form-control" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                    <input type="adress" [(ngModel)]="user.address" [ngModelOptions]="{ standalone: true }" id="form3Example6" class="form-control" />
+                    <label class="form-label" for="form3Example6">Adress</label>
                 </div>
-  
-                <!-- Password input --> 
-                <div class="form-outline mb-4">
-                  <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example4" class="form-control" />
-                  <label class="form-label" for="form3Example4">Password</label>
-                </div>
-                <!-- Password input -->
-                  <div class="form-outline mb-4">
-                  <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example4"
-                    class="form-control" />
-                  <label class="form-label" for="form3Example4">Password</label>
-                  </div>
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example4"
-                  class="form-control" />
-                <label class="form-label" for="form3Example4">Password</label>
-                </div>
-  
+
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Sign up
+                <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block  ">
+                  Registrarse
                 </button>
-  
-     
+                <p class="text-center">¿Desea volver a la <a routerLink="/login">página de inicio de sesión</a>?</p>
               </form>
             </div>
           </div>

@@ -24,31 +24,24 @@
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example3" class="form-control" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                  <label class="form-label" for="form3Example3">Email</label>
                 </div>
 
                 <!-- Password input --> 
                 <div class="form-outline mb-4">
                   <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example4" class="form-control" />
-                  <label class="form-label" for="form3Example4">Password</label>
+                  <label class="form-label" for="form3Example4">Contraseña</label>
                 </div>
-  
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Subscribe to our newsletter
-                  </label>
-                </div>
+
   
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4" routerLink="/signup">
-                  Sign up
+                <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block" >
+                  Entrar
                 </button>
   
                 <!-- Register buttons -->
                 <div class="text-center">
-                  <p>or sign up with:</p>
+                  <p>o entrar con:</p>
                   <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
                     <i class="fab fa-facebook-f"></i>
                   </button>
@@ -64,6 +57,9 @@
                   <button type="button" class="btn btn-link btn-floating mx-1"routerLink="">
                     <i class="fab fa-github"></i>
                   </button>
+                  <div class="container text-center"> 
+                    <p>¿No tienes una cuenta?  <a routerLink="/signup">Registrarse</a></p>
+                  </div>
                 </div>
               </form>
             </div>
