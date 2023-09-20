@@ -22,6 +22,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { ContactFormComponent } from './contacto/contact-form/contact-form.component';
 import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
+import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
     BottomNavbarComponent,
     ContactFormComponent,
     DownCompComponent,
+    NuevoProductoComponent,
   ],
 
   imports: [
