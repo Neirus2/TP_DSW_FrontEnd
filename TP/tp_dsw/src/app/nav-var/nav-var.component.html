@@ -1,45 +1,54 @@
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">MPS S.A</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/productos">Productos</a>
-            </li>
-            <li class="nav-item">   
-                <a class="nav-link active" aria-current="page" href="/quienes-somos" >¿Quienes Somos?</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/contacto">Contacto</a>
-            </li>
-             <li> <app-down-comp></app-down-comp></li>
-</ul>
-<form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-    <button class="btn btn-ligth" type="submit">
-        <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
-    </button>
-</form>
-<ul class="navbar-nav mb-2 mb-lg-0">
-<ng-container *ngIf="!authService.loggedIn(), else loggedIn">
-    <button class="btn btn-ligth" routerLink="/login">
-        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-    </button>
-</ng-container>
-<ng-template #loggedIn>
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" (click)="authService.logOut()">Salir</a> 
-    </li>
-</ng-template>
-</ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/productos">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/contacto">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <app-down-comp></app-down-comp>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-light" type="submit">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+                </button>
+            </form>
+            <form class="d-flex" >
+                <button class="btn btn-light">
+                    <i class="fa-solid fa-cart-shopping fa-bounce" style="color: #000000;"></i>
+                </button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+            <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/login">
+                        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
+                    </a>
+                </li>
+            </ng-container>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <ng-template #loggedIn>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/perfilUsuario">
+                        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
+                    </a>
+                </li>
+                </ng-template>
+            </ul>
         </div>
-        </div>
-    </nav>
-
-    
+    </div>
+</nav>

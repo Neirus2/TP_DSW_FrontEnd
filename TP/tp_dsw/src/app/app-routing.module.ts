@@ -10,7 +10,7 @@ import { PrivateTasksComponent } from './private-tasks/private-tasks.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
-
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'private-task', component: PrivateTasksComponent, canActivate: [ AuthGuard ] },
   { path: 'signup', component: SignupComponent },
   { path: 'nuevoProducto', component: NuevoProductoComponent },
+  { path: 'perfilUsuario', component: PerfilUsuarioComponent}
 ];
 
 @NgModule({
