@@ -10,6 +10,7 @@ import { PrivateTasksComponent } from './private-tasks/private-tasks.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
+import { SingleProductComponent } from './productos/single-product/single-product.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'private-task', component: PrivateTasksComponent, canActivate: [ AuthGuard ] },
   { path: 'signup', component: SignupComponent },
   { path: 'nuevoProducto', component: NuevoProductoComponent },
+  { path: 'singleProduct', component: SingleProductComponent },
+
 ];
 
 @NgModule({

@@ -23,6 +23,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { ContactFormComponent } from './contacto/contact-form/contact-form.component';
 import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
+import { SingleProductComponent } from './productos/single-product/single-product.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.componen
     ContactFormComponent,
     DownCompComponent,
     NuevoProductoComponent,
+    SingleProductComponent,
+    FooterComponent,
   ],
 
   imports: [

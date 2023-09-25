@@ -1,0 +1,38 @@
+.section-p1 {
+    padding: 40px 80px;
+}
+
+#productDetails {
+    display: flex;
+    margin-top: 20px;
+}
+
+#productDetails .single-product-details {
+    width: 50%;
+    padding-top: 30px;
+}
+
+#productDetails .single-product-details h4 {
+    padding: 40px 0 20px 0;
+}
+
+#productDetails .single-product-details h2 {
+    font-size: 26px;
+}
+
+#productDetails .single-product-details input {
+    width: 45px;
+    height: 40px;
+    padding-left: 10px ;
+    font-size: 17px;
+    margin-right: 10px;
+}
+
+#productDetails .single-product-details input :focus {
+    outline: none;
+}
+
+#productDetails .single-product-image {
+    width: 40%;
+    margin-right: 50px;
+}
