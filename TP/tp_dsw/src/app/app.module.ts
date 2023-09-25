@@ -23,8 +23,12 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { ContactFormComponent } from './contacto/contact-form/contact-form.component';
 import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
+<<<<<<< HEAD
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { FooterComponent } from './footer/footer.component';
+=======
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+>>>>>>> 3a8ad73dcd3205c700b40cf6f89fbd9ff0323b21
 
 
 @NgModule({
@@ -44,8 +48,12 @@ import { FooterComponent } from './footer/footer.component';
     ContactFormComponent,
     DownCompComponent,
     NuevoProductoComponent,
+<<<<<<< HEAD
     SingleProductComponent,
     FooterComponent,
+=======
+    PerfilUsuarioComponent,
+>>>>>>> 3a8ad73dcd3205c700b40cf6f89fbd9ff0323b21
   ],
 
   imports: [

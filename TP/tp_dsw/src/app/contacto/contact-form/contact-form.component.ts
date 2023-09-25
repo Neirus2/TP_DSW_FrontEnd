@@ -28,5 +28,8 @@ export class ContactFormComponent {
         // Aquí puedes manejar cualquier error que ocurra al enviar el formulario.
       }
     );
+      this.formData.name = '';
+      this.formData.email = '';
+      this.formData.message = '';
   }
 }
