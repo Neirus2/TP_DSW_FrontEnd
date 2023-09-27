@@ -10,12 +10,8 @@ import { PrivateTasksComponent } from './private-tasks/private-tasks.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
-<<<<<<< HEAD
 import { SingleProductComponent } from './productos/single-product/single-product.component';
-
-=======
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
->>>>>>> 3a8ad73dcd3205c700b40cf6f89fbd9ff0323b21
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -27,12 +23,8 @@ const routes: Routes = [
   { path: 'private-task', component: PrivateTasksComponent, canActivate: [ AuthGuard ] },
   { path: 'signup', component: SignupComponent },
   { path: 'nuevoProducto', component: NuevoProductoComponent },
-<<<<<<< HEAD
-  { path: 'singleProduct', component: SingleProductComponent },
-
-=======
+  { path: 'product/:id', component: SingleProductComponent },
   { path: 'perfilUsuario', component: PerfilUsuarioComponent}
->>>>>>> 3a8ad73dcd3205c700b40cf6f89fbd9ff0323b21
 ];
 
 @NgModule({

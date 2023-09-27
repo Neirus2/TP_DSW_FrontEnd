@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,15 @@ export class ProductService {
   
     createNewProduct(product: any) {
       return this.http.post<any>(this.URL + '/createNewProduct', product)
+      }
+    
+      getProducts(): Observable<any[]> {
+        return this.http.get<any[]>(this.URL+ '/products');
+      }
+
+      getProductDetailsById(productId: any): Observable<any> {
+        const url = `${this.URL}/product/${productId}`; // Reemplaza con la ruta adecuada en tu servidor
+        return this.http.get(url);
       }
     
 }

@@ -1,0 +1,30 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card .card {
+    flex: 1;
+  }
+  
+  .product-card .card-img-top {
+    height: 200px;
+     /* Establece la altura fija para las imágenes */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+  }
+
+  .truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .btn-custom {
+    background-color: #ff5733; /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto */
+  }
+  
+  .btn-custom:hover {
+    background-color: #ff4500; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+    color: #ffffff; /* Cambia el color del texto al pasar el ratón sobre el botón */
+  }
