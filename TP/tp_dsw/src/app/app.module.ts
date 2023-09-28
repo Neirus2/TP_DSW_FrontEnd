@@ -26,7 +26,7 @@ import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.componen
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { FooterComponent } from './footer/footer.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
-
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,14 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
     NgbModule,
     CarouselComponent,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+      JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'), // Obtén el token almacenado en localStorage
+        allowedDomains: ['http://localhost:3000'], // Dominios permitidos (ajusta esto según tu servidor)
+        disallowedRoutes: [], // Rutas excluidas (ajusta esto según tu servidor)
+      },
+    }),
   ],
   providers: [
     AuthGuard,

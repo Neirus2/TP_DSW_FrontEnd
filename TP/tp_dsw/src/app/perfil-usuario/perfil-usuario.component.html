@@ -1,12 +1,18 @@
 <app-nav-var></app-nav-var>
 <div class="container mt-5">
   <div class="row justify-content-center align-items-center">
-    <div class="col-md-4 row justify-content-center align-items-center">
-          <div class="col-md-4 text-center">
-            <img class="mb-3" src="URL_DE_LA_IMAGEN" alt="Imagen de perfil">
-            <!-- <h2>{{ usuario.nombre }}</h2>
-                <p>{{ usuario.correo }}</p> -->
-          </div>
+  <img [src]="user.profileImage" alt="Imagen de perfil" *ngIf="user.profileImage">
+
+    <form (submit)="uploadProfileImage($event)"enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="profileImage" class="form-label">Imagen de perfil:</label>
+        <input type="file" class="form-control" id="profileImage" name="profileImage" accept="image/*"
+          (change)="handleFileInput($event)">
+      </div>
+      <button type="submit" class="btn btn-primary">Subir Imagen</button>
+    </form>
+
+
       <h3 class="row justify-content-center align-items-center">Información del perfil</h3>
       <form>
         <div class="mb-3">
@@ -28,7 +34,9 @@
 
         <ng-template #loggedIn>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" (click)="authService.logOut()">Salir</a>
+            <button type="submit" class="btn btn-primary" routerLink="">
+            <a class="nav-link active"  (click)="authService.logOut()">Log Out</a>
+            </button>
           </li>
         </ng-template>
 
@@ -39,5 +47,4 @@
       </form>
     </div>
   </div>
-</div>
 
