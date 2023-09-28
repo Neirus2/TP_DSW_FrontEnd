@@ -1,41 +1,56 @@
 <app-nav-var></app-nav-var>
 <div class="container mt-5">
   <div class="row justify-content-center align-items-center">
-  <img [src]="user.profileImage" alt="Imagen de perfil" *ngIf="user.profileImage">
+    
+    
+    <ng-container *ngIf="user.profileImage !== null && user.profileImage !== undefined">
+      <img [src]="user.profileImage" alt="Imagen de perfil" class="rounded-circle profile-image"
+        style="width: 160px; height: 150px;">
+    </ng-container>
+    <ng-container *ngIf="user.profileImage === null || user.profileImage === undefined">
+      <img [src]="defaultImage" alt="Imagen de perfil por defecto" class="rounded-circle profile-image"
+        style="width: 160px; height: 150px;">
+    </ng-container>
+    <h3 class="row justify-content-center align-items-center">Información del perfil</h3>
+    
+    <div *ngIf="userData">
+      <p>Nombre: {{ userData.businessName }}</p>
+      <p>Correo Electrónico: {{ userData.email }}</p>
+      <p>Cuit: {{userData.cuit }}</p>
+      <p>Dirección: {{userData.address}}</p>
+      <!-- Agrega más campos según los datos de tu usuario -->
+    </div>
 
     <form (submit)="uploadProfileImage($event)"enctype="multipart/form-data">
-      <div class="mb-3">
+      <div class="mb-5">
         <label for="profileImage" class="form-label">Imagen de perfil:</label>
         <input type="file" class="form-control" id="profileImage" name="profileImage" accept="image/*"
           (change)="handleFileInput($event)">
+          <button type="submit" class="btn btn-primary">Subir Imagen</button>
       </div>
-      <button type="submit" class="btn btn-primary">Subir Imagen</button>
+
+      
     </form>
+    
 
 
-      <h3 class="row justify-content-center align-items-center">Información del perfil</h3>
       <form>
-        <div class="mb-3">
-          <label for="nombre" class="form-label ">Nombre:</label>
-          <!-- <input type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required> -->
-        </div>
-        <div class="mb-3">
-          <label for="correo" class="form-label">Correo electrónico:</label>
-          <!-- <input type="email" class="form-control" id="correo" [(ngModel)]="usuario.correo" name="correo" required> -->
-        </div>
 
         <ul class="navbar-nav ml-auto">
        
         <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center mb-5">
         <button type="submit" class="btn btn-primary" routerLink="">Log Out</button>
         </div>
         </ng-container>
 
         <ng-template #loggedIn>
+          
           <li class="nav-item">
             <button type="submit" class="btn btn-primary" routerLink="">
+              
             <a class="nav-link active"  (click)="authService.logOut()">Log Out</a>
+       
             </button>
           </li>
         </ng-template>
@@ -47,4 +62,7 @@
       </form>
     </div>
   </div>
-
+<div class="mb-5">
+  
+</div>
+<app-footer></app-footer>

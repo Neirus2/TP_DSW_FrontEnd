@@ -25,8 +25,9 @@ import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { FooterComponent } from './footer/footer.component';
-import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+
 import { JwtModule } from '@auth0/angular-jwt';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
