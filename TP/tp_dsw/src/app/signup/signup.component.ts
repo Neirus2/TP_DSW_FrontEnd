@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+   tuCadenaHtmlNoSegura: string = `
+    <p>Este es un ejemplo de HTML potencialmente no seguro.</p>
+    <script>alert('¡Hola desde un script malicioso!');</script>`;
   user = {
     businessName: '',
     cuit: '',
@@ -23,11 +25,14 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
     ) { }
 
   ngOnInit() {
+    
   }
+  
 
   signUp() {
     this.authService.signUp(this.user)

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +18,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {  }
 
   ngOnInit() {
   }
-
+sanitizeInput(input: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(input);
+  }
   logIn () {
+    //this.user.email = this.sanitizeInput(this.user.email) as string;
+    // this.user.password = this.sanitizeInput(this.user.password) as string;
     this.authService.logIn(this.user) 
       .subscribe(
         res => {
@@ -49,6 +54,7 @@ export class LoginComponent implements OnInit {
           icon: 'error',
           title: 'Inicio de sesión fallido',
           text: err.error,
+          timer: 1000,
         });
         }
       );

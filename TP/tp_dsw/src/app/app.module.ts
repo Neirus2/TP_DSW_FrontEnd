@@ -25,9 +25,9 @@ import { DownCompComponent } from './nav-var/down-comp/down-comp.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { FooterComponent } from './footer/footer.component';
-
 import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
     SingleProductComponent,
     FooterComponent,
     PerfilUsuarioComponent,
+
   ],
 
   imports: [

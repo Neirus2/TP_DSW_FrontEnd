@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contact-form',
@@ -21,11 +21,24 @@ export class ContactFormComponent {
     this.http.post('http://localhost:3000/enviar-correo', this.formData).subscribe(
       (response) => {
         console.log('Formulario enviado:', this.formData);
-        // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje de éxito al usuario.
+          Swal.fire(
+            'Mensaje enviado con éxito!!',
+            '',
+            'success'
+          )
+
       },
       (error) => {
         console.error('Error al enviar el formulario:', error);
-        // Aquí puedes manejar cualquier error que ocurra al enviar el formulario.
+          
+        Swal.fire({
+          icon: 'warning',
+          title: 'Error al enviar el formulario',
+          text: error.error,
+          showClass: {
+            popup: 'swal2-noanimation',
+          },
+        });
       }
     );
       this.formData.name = '';

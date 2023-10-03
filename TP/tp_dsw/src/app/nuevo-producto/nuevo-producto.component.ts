@@ -42,7 +42,7 @@ export class NuevoProductoComponent implements OnInit {
             'Producto creado con éxito!!',
             '',
             'success'
-          )
+          );
         },
         (err) => {
           console.log(err);
@@ -53,12 +53,17 @@ export class NuevoProductoComponent implements OnInit {
             text: err.error,
           });
         }
-        )
+        );
+        this.product.desc= '';
+            this.product.price= '';
+            this.product.stock= '';
   }
 
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
-    }
+    };
   }
+
+
 }
