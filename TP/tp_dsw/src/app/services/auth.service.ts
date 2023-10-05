@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as jwt_decode from 'jwt-decode'; 
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private URL = 'http://localhost:3000/api'
-
+   public userRole: string | null = null;
   constructor( 
     private http: HttpClient,
     private router: Router 
@@ -19,9 +20,10 @@ export class AuthService {
   return this.http.post<any>(this.URL + '/signup', user)
   }
 
-  logIn(user: any) {
+  logIn(user: any): Observable<any> {
     return this.http.post<any>(this.URL + '/login', user);
   }
+
 
   loggedIn() {
     return !!localStorage.getItem('token');
@@ -51,4 +53,5 @@ export class AuthService {
 
     return this.http.get<any>(this.URL + '/user', { headers });
   }
+
 }

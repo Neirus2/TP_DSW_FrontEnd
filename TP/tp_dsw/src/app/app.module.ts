@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavVarComponent } from './nav-var/nav-var.component';
@@ -28,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +73,8 @@ import { CommonModule } from '@angular/common';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    }
+    },
+
   ],
   bootstrap: [AppComponent]
 })

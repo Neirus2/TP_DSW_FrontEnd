@@ -17,7 +17,7 @@ const routes: Routes = [
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
   { path: 'productos', component: ProductosComponent },
   { path: 'quienes-somos', component: QuienesSomosComponent },
-  { path: 'contacto', component: ContactoComponent },
+  { path: 'contacto', component: ContactoComponent},// , canActivate: [AuthGuard], data: { expectedRole: 'Administrador' } },
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TasksComponent },
   { path: 'private-task', component: PrivateTasksComponent, canActivate: [ AuthGuard ] },

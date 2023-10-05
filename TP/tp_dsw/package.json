@@ -28,7 +28,7 @@
     "jwt-decode": "^3.1.2",
     "mongoose": "^7.4.5",
     "ngx-uploader": "^11.0.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "^7.8.1",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
