@@ -12,6 +12,7 @@ import { AuthGuard } from "./auth.guard";
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'nuevoProducto', component: NuevoProductoComponent },
   { path: 'product/:id', component: SingleProductComponent },
-  { path: 'perfilUsuario', component: PerfilUsuarioComponent}
+  { path: 'perfilUsuario', component: PerfilUsuarioComponent},
+  { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }}
 ];
 
 @NgModule({

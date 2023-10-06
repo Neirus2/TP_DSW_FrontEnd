@@ -27,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { CommonModule } from '@angular/common';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { CommonModule } from '@angular/common';
     SingleProductComponent,
     FooterComponent,
     PerfilUsuarioComponent,
+    AdminPanelComponent,
 
   ],
 

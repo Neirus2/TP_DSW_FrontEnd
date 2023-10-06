@@ -41,7 +41,7 @@ export class AuthService {
  getUserData(): Observable<any> {
     const authToken = this.getToken();
     if (!authToken) {
-      // Si no hay un token, el usuario no está autenticado
+
       return new Observable<any>((observer) => {
         observer.error('No hay token de autenticación.');
       });

@@ -12,8 +12,13 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/productos">Productos</a>
+                </li >
+
+                <li class= "nav-item">
+                    <a class="nav-link active" *ngIf="isUserRoleDefined() && userRole === 'Administrador'" aria-current="page"
+                        href="/admin-panel">Admin Panel</a>
                 </li>
-                <li class="nav-item"   > <!--*ngIf="userRole === 'Administrador'"-->
+                <li class="nav-item"> <!--*ngIf="userRole === 'Administrador'"-->
                     <a class="nav-link active" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
@@ -26,27 +31,25 @@
                     <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
                 </button>
             </form>
-            <form class="d-flex" >
+            <form class="d-flex">
                 <button class="btn btn-light">
                     <i class="fa-solid fa-cart-shopping fa-bounce" style="color: #000000;"></i>
                 </button>
             </form>
             <ul class="navbar-nav ml-auto">
-            <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/login">
-                        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-                    </a>
-                </li>
-            </ng-container>
-            </ul>
-            <ul class="navbar-nav ml-auto">
+                <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/login">
+                            <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
+                        </a>
+                    </li>
+                </ng-container>
                 <ng-template #loggedIn>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/perfilUsuario">
-                        <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/perfilUsuario">
+                            <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
+                        </a>
+                    </li>
                 </ng-template>
             </ul>
         </div>
