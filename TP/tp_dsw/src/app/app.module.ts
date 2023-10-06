@@ -28,6 +28,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { CommonModule } from '@angular/common';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    AuthService
 
   ],
   bootstrap: [AppComponent]

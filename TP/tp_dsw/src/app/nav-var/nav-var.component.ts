@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import jwt_decode from 'jwt-decode'; // Importa de esta manera
 
 @Component({
   selector: 'app-nav-var',
@@ -17,14 +18,15 @@ isUserRoleDefined(): boolean {
   return this.userRole !== null && this.userRole !== undefined;
 }
   ngOnInit(): void {
-    this.authService.getUserData().subscribe(
-      (data) => {
-        this.userRole = data.userRole;
-        console.log(data.userRole)
-      },
-      (error) => {
-        console.error('Error al obtener los datos del usuario:', error);
-      }
-    );
+
+    const authToken = this.authService.getToken();
+
+    if (authToken) {
+      const decodedToken: any = jwt_decode(authToken);
+  
+      this.userRole = decodedToken.role;};
+      console.log(this.userRole)
+    
+
   }
 }

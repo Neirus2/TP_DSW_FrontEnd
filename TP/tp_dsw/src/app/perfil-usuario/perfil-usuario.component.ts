@@ -15,7 +15,7 @@ export class PerfilUsuarioComponent implements OnInit {
     profileImage: null as string | null,
   };
   imagePath: string | null = null;
-  userData: any; // Declara la propiedad userData
+  userData: any; 
   constructor(
     public authService: AuthService,
     private http: HttpClient,
