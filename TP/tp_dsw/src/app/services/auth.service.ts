@@ -67,4 +67,9 @@ export class AuthService {
 
     return this.http.get<any>(this.URL + '/user', { headers });
   }
+
+  getUserImage(userId: any){
+    return `${this.URL}/user/${userId}`;
+  }
 }
+
