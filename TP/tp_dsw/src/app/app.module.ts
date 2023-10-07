@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavVarComponent } from './nav-var/nav-var.component';
@@ -28,6 +27,9 @@ import { FooterComponent } from './footer/footer.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { CommonModule } from '@angular/common';
+import { EditProductModalComponent } from './productos/edit-product-modal/edit-product-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { CommonModule } from '@angular/common';
     SingleProductComponent,
     FooterComponent,
     PerfilUsuarioComponent,
+    EditProductModalComponent,
 
   ],
 
@@ -58,6 +61,7 @@ import { CommonModule } from '@angular/common';
     NgbModule,
     CarouselComponent,
     FormsModule,
+    RouterModule,
     HttpClientModule,
       JwtModule.forRoot({
       config: {
@@ -66,6 +70,7 @@ import { CommonModule } from '@angular/common';
         disallowedRoutes: [], // Rutas excluidas (ajusta esto según tu servidor)
       },
     }),
+      BrowserAnimationsModule,
   ],
   providers: [
     AuthGuard,

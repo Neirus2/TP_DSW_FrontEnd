@@ -28,4 +28,12 @@ export class ProductService {
         return this.http.get(url);
       }
     
+      deleteProduct(productId: any) {
+        const url = `${this.URL}/product/${productId}`; // Reemplaza con la ruta adecuada en tu servidor
+        return this.http.delete(url);
+      }
+      updateProduct(updatedProduct: any, productId: any) {
+          const url = `${this.URL}/product/${productId}`; // Reemplaza con la ruta adecuada en tu servidor
+          return this.http.patch(url, updatedProduct);
+}
 }

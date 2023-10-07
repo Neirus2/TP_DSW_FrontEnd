@@ -36,3 +36,11 @@
     width: 40%;
     margin-right: 50px;
 }
+
+.btn-delete {
+    background-color:#E22F08; /* Color verde personalizado */
+    color: white; /* Color del texto */
+    margin-right: 20px;
+  }
+
+

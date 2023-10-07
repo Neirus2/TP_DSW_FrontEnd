@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-single-product',
@@ -14,7 +17,9 @@ export class SingleProductComponent implements  OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private modalService: NgbModal,
+    private router : Router,
   ) {}
 
   ngOnInit() {
@@ -26,9 +31,52 @@ export class SingleProductComponent implements  OnInit {
       this.productService.getProductDetailsById(this.productId)
         .subscribe(data => {
           this.productDetails = data;
-          console.log(this.productDetails);
+          
         });
       }
+  }
+
+  editedProduct: any = {}; // Objeto para almacenar los datos editados
+
+   openEditModal() {
+     
+    const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
+    modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
+    modalRef.result.then((result) => {
+      if (result) {
+        this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
+      }
+    }); 
+  }
+
+  deleteProduct() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Esta acción no se puede deshacer",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        this.productService.deleteProduct(this.productId)
+        .subscribe(
+          res => {
+            Swal.fire(
+              'Confirmado',
+              'La acción ha sido confirmada',
+              'success'
+            );
+            this.router.navigate(['/productos']);
+          },
+          (err) => {
+            console.log(err);
+            });       
+      }
+    });
   }
 }
 
