@@ -15,15 +15,17 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
-
   constructor(
     private authService: AuthService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+   
   ) {  }
 
   ngOnInit() {
-  }
+    const token = localStorage.getItem('token');
+    
+    }
 sanitizeInput(input: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(input);
   }
@@ -34,6 +36,7 @@ sanitizeInput(input: string): SafeHtml {
       .subscribe(
         res => {
           console.log(res);
+
           localStorage.setItem('token', res.token);
           this.router.navigate(['/']);
         },

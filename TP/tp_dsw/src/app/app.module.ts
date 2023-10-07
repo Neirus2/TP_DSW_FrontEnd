@@ -30,6 +30,9 @@ import { CommonModule } from '@angular/common';
 import { EditProductModalComponent } from './productos/edit-product-modal/edit-product-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     PerfilUsuarioComponent,
     EditProductModalComponent,
+    AdminPanelComponent,
 
   ],
 
@@ -78,7 +82,9 @@ import { RouterModule } from '@angular/router';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    }
+    },
+    AuthService
+
   ],
   bootstrap: [AppComponent]
 })

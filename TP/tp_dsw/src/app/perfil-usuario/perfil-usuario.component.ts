@@ -11,11 +11,13 @@ import jwt_decode from 'jwt-decode';
 
 export class PerfilUsuarioComponent implements OnInit {
   selectedImageFile: File | null = null;
+  decodedToken: any;
   user = {
     profileImage: null as string | null,
   };
+  imageUrl: any;
   imagePath: string | null = null;
-  userData: any; // Declara la propiedad userData
+  userData: any; 
   constructor(
     public authService: AuthService,
     private http: HttpClient,
@@ -24,20 +26,16 @@ export class PerfilUsuarioComponent implements OnInit {
   defaultImage = 'assets/prodBase.png';
 
   ngOnInit(): void {
-    const authToken = this.authService.getToken();
-    
-    if (authToken) {
-      const decodedToken: any = jwt_decode(authToken);
 
-      if (decodedToken.profileImage) {
-        this.user.profileImage = decodedToken.profileImage;
-      }
-    }
-
-    // Llama al servicio UserDataService para obtener los datos del usuario
+    // // Llama al servicio UserDataService para obtener los datos del usuario
     this.authService.getUserData().subscribe((data) => {
       this.userData = data;
-    });
+      console.log(this.userData);  
+    });   
+        
+    this.imageUrl = this.authService.getUserImage('651ffabaad801e33f0c0149e');
+    console.log(this.imageUrl);
+      
   }
 
   handleFileInput(event: any) {

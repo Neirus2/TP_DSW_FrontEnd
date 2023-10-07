@@ -3,12 +3,8 @@
   <div class="row justify-content-center align-items-center">
     
     
-    <ng-container *ngIf="user.profileImage !== null && user.profileImage !== undefined">
-      <img [src]="user.profileImage" alt="Imagen de perfil" class="rounded-circle profile-image"
-        style="width: 160px; height: 150px;">
-    </ng-container>
-    <ng-container *ngIf="user.profileImage === null || user.profileImage === undefined">
-      <img [src]="defaultImage" alt="Imagen de perfil por defecto" class="rounded-circle profile-image"
+    <ng-container *ngIf="imageUrl">
+      <img [src]="imageUrl || defaultImage " alt="Imagen de perfil" class="rounded-circle profile-image"
         style="width: 160px; height: 150px;">
     </ng-container>
     <h3 class="row justify-content-center align-items-center">Información del perfil</h3>

@@ -1,71 +1,73 @@
 <!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
-  
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <div class="row gx-lg-5 align-items-center mb-5">
-        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            MPS <br />
-            <span style="color: hsl(218, 81%, 75%)">Tu lugar para comprar</span>
-          </h1>
-          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-            Descubre en MPS los mejores componentes de computación. Desde procesadores veloces hasta tarjetas gráficas de alta gama, tenemos todo para mejorar tu PC. Expertos en tecnología listos para asesorarte."
-          </p>
+
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h2 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+          MPS <br><span style="color: hsl(218, 81%, 75%)">Tu lugar para comprar</span>
+        </h2>
+        <div class="mb-4 opacity-70 d-none d-lg-block" style="color: hsl(218, 81%, 85%)">
+          Descubre en MPS los mejores componentes de computación. Desde procesadores veloces hasta tarjetas gráficas de
+          alta gama, tenemos todo para mejorar tu PC. Expertos en tecnología listos para asesorarte.
         </div>
-  
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-  
-          <div class="card bg-glass">
-            <div class="card-body px-4 py-5 px-md-5">
-              <form (submit)="logIn()">
+      </div>
 
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example3" class="form-control" />
-                  <label class="form-label" for="form3Example3">Email</label>
-                </div>
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong d-none d-lg-block"></div>
+        <div id="radius-shape-2" class="position-absolute shadow-5-strong d-none d-lg-block"></div>
+    <h1 class="text-center mb-4" style="color: hsl(218, 81%, 95%)">Login</h1>
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+        
+            <form (submit)="logIn()">
 
-                <!-- Password input --> 
-                <div class="form-outline mb-4">
-                  <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" id="form3Example4" class="form-control" />
-                  <label class="form-label" for="form3Example4">Contraseña</label>
-                </div>
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example3"
+                  class="form-control" />
+                <label class="form-label" for="form3Example3">Email</label>
+              </div>
 
-  
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block" >
-                  Entrar
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }"
+                  id="form3Example4" class="form-control" />
+                <label class="form-label" for="form3Example4">Contraseña</label>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block">
+                Entrar
+              </button>
+
+              <!-- Register buttons -->
+              <div class="text-center">
+                <p>o entrar con:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
+                  <i class="fab fa-facebook-f"></i>
                 </button>
-  
-                <!-- Register buttons -->
-                <div class="text-center">
-                  <p>o entrar con:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1 r"routerLink="">
-                    <i class="fab fa-google"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1"routerLink="">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1"routerLink="">
-                    <i class="fab fa-github"></i>
-                  </button>
-                  <div class="container text-center"> 
-                    <p>¿No tienes una cuenta?  <a routerLink="/signup">Registrarse</a></p>
-                  </div>
+
+                <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
+                  <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
+                  <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
+                  <i class="fab fa-github"></i>
+                </button>
+                <div class="container text-center">
+                  <p>¿No tienes una cuenta? <a routerLink="/signup">Registrarse</a></p>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- Section: Design Block -->
+  </div>
+</section>
+<!-- Section: Design Block -->

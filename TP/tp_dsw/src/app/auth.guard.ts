@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import jwt_decode from 'jwt-decode'; // Importa de esta manera
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,35 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) { }
 
-  canActivate(): boolean {
-    if (this.authService.loggedIn()) {
-      return true;
-    }
+  canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+    const expectedRole = route.data['expectedRole'];
 
-    this.router.navigate(['/login']);
-    return false;
+    return new Promise<boolean>((resolve, reject) => {
+      const token = this.authService.getToken();
+
+      if (token) {
+        // Decodificar el token para obtener el rol
+        const decodedToken: any = jwt_decode(token);
+    
+        // Obtener el rol del token
+        const userRole = decodedToken.role;
+
+        console.log(userRole);
+
+        if (userRole === expectedRole) {
+          resolve(true);
+        } else {
+          this.router.navigate(['/acceso-denegado']);
+          resolve(false);
+        }
+      } else {
+        console.error('No se encontró un token de autenticación.');
+        this.router.navigate(['/acceso-denegado']);
+        resolve(false);
+      }
+    });
   }
-
 }

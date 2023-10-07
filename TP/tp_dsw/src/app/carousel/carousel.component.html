@@ -1,19 +1,17 @@
-<ngb-carousel *ngIf="images">
+<ngb-carousel *ngIf="images" [interval]="5000" [pauseOnHover]="false">
 	<ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
-			<img src="../../assets/1.jpg" alt="Random first slide" />
-		</div>
-        
-	</ng-template>
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-			<img src="../../assets/2.jpg" alt="Random second slide" />
+			<img src="../../assets/1.jpg" alt="Random first slide" class="d-block w-100" />
 		</div>
 	</ng-template>
 	<ng-template ngbSlide>
 		<div class="picsum-img-wrapper">
-			<img src="../../assets/3.jpg   " alt="Random third slide" />
+			<img src="../../assets/2.jpg" alt="Random second slide" class="d-block w-100" />
 		</div>
-		
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img src="../../assets/3.jpg" alt="Random third slide" class="d-block w-100" />
+		</div>
 	</ng-template>
 </ngb-carousel>

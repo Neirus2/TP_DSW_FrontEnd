@@ -10,13 +10,10 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-upload
   styleUrls: ['./nuevo-producto.component.css']
 })
 export class NuevoProductoComponent implements OnInit {
-  
-  // Variables para gestionar la carga de archivos
   uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();
   humanizeBytes = humanizeBytes;
   files: UploadFile[] = [];
 
-  // Variables para los datos del producto
   product = {
     desc: '',
     stock: '',

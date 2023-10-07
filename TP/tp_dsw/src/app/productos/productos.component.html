@@ -1,34 +1,33 @@
 <app-nav-var></app-nav-var>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-12 d-flex justify-content-end" style="margin-top: 20px">
-      <!-- Utiliza d-flex y justify-content-end para alinear el botón a la derecha -->
+    <div class="col-md-12 d-flex justify-content-end mt-3">
+
       <a class="btn btn-custom" routerLink="/nuevoProducto">Agregar Producto</a>
     </div>
   </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-3 align-items-stretch" *ngFor="let product of products">
-      <!-- Agrega una div contenedora para cada producto -->
-      
-      <div class="product-card" style="margin-top: 20px;" >
-        <a [routerLink]="['/product', product._id]">
-        <div class="card">
-          <img class="card-img-top" src="../../assets/prodBase.png" alt="{{ product.name }}">
-          <div class="card-body">
-            <h5 class="card-title truncate">{{ product.desc }}</h5>
-            <p class="card-text truncate">{{ product.desc }}</p>
-            <p class="card-text">Precio: {{ product.price }}</p>
-            <button class="btn btn-primary">Agregar al carrito</button>
-          </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mt-4" *ngFor="let product of products">
+        <div class="product-card">
+          <a [routerLink]="['/product', product._id]">
+            <div class="card">
+              <img class="card-img-top" src="../../assets/prodBase.png" alt="{{ product.name }}">
+              <div class="card-body">
+                <h5 class="card-title truncate">{{ product.desc }}</h5>
+                <p class="card-text truncate">{{ product.desc }}</p>
+                <p class="card-text">Precio: {{ product.price }}</p>
+                <button class="btn btn-primary">Agregar al carrito</button>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
       </div>
     </div>
   </div>
+
+  <div class="my-4"></div>
+  <app-footer></app-footer>
 </div>
-<div class= "my-4"></div>
-<app-footer></app-footer>  
-  
-  
-  

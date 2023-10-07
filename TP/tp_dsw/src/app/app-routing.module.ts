@@ -12,19 +12,21 @@ import { AuthGuard } from "./auth.guard";
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 import { SingleProductComponent } from './productos/single-product/single-product.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
   { path: 'productos', component: ProductosComponent },
   { path: 'quienes-somos', component: QuienesSomosComponent },
-  { path: 'contacto', component: ContactoComponent },
+  { path: 'contacto', component: ContactoComponent},// , canActivate: [AuthGuard], data: { expectedRole: 'Administrador' } },
   { path: 'login', component: LoginComponent },
   { path: 'task', component: TasksComponent },
   { path: 'private-task', component: PrivateTasksComponent, canActivate: [ AuthGuard ] },
   { path: 'signup', component: SignupComponent },
   { path: 'nuevoProducto', component: NuevoProductoComponent },
   { path: 'product/:id', component: SingleProductComponent },
-  { path: 'perfilUsuario', component: PerfilUsuarioComponent}
+  { path: 'perfilUsuario', component: PerfilUsuarioComponent},
+  { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }}
 ];
 
 @NgModule({
