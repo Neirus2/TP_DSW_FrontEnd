@@ -30,11 +30,12 @@ export class PerfilUsuarioComponent implements OnInit {
     // // Llama al servicio UserDataService para obtener los datos del usuario
     this.authService.getUserData().subscribe((data) => {
       this.userData = data;
-      console.log(this.userData);  
+      console.log(this.userData);
+      this.imageUrl = this.authService.getUserImage(this.userData.id);
+      console.log(this.imageUrl);
     });   
         
-    this.imageUrl = this.authService.getUserImage('651ffabaad801e33f0c0149e');
-    console.log(this.imageUrl);
+    
       
   }
 
