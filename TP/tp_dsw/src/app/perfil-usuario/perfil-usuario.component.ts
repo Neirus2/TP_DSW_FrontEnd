@@ -33,6 +33,7 @@ export class PerfilUsuarioComponent implements OnInit {
       console.log(this.userData);
       this.imageUrl = this.authService.getUserImage(this.userData.id);
       console.log(this.imageUrl);
+      console.log(this.imageUrl);
     });   
         
     
