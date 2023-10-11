@@ -28,3 +28,7 @@
     background-color: #ff4500; /* Cambia el color de fondo al pasar el ratón sobre el botón */
     color: #ffffff; /* Cambia el color del texto al pasar el ratón sobre el botón */
   }
+
+  .no-underline {
+    text-decoration: none;
+  }

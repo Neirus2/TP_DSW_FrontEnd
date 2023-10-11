@@ -44,3 +44,16 @@
   }
 
 
+.single-product-image {
+    text-align: center; /* Centra la imagen horizontalmente */
+}
+
+.single-product-image img { 
+    max-width: 300px; /* Ajusta el ancho máximo de la imagen al contenedor */
+    max-height: 300px; /* Ajusta la altura máxima de la imagen */
+    display: block; /* Elimina cualquier espacio adicional debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente en el contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave a la imagen */
+    border: 1px solid #ccc; /* Agrega un borde alrededor de la imagen */
+    border-radius: 5px; /* Agrega bordes redondeados a la imagen */
+}

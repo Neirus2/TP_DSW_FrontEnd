@@ -3,16 +3,16 @@
     <button class="btn btn-primary mx-2" (click)="openEditModal()">Editar Producto</button>
     <button class="btn btn-delete" (click)="deleteProduct()"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
 </div>
-<section id="productDetails" class="section-p1">
+<section id="productDetails" class="section-p1" *ngIf="productDetails">
     <div class="single-product-image">
-        <img src="../../../assets/prodBase.png" width="100%" id="MainImage" alt="">
+        <img [src]="productDetails.image" alt="Imagen del producto">
 
     </div>
 
-    <div class="single-product-details " *ngIf="productDetails">
+    <div class="single-product-details " >
         <h6>Hardware / Motherboars</h6>
-        <h4>{{ productDetails.data.desc }}</h4>
-        <h2>$ {{ productDetails.data.price }}</h2>
+        <h4>{{ productDetails.desc }}</h4>
+        <h2>$ {{ productDetails.price }}</h2>
         <input type="number" value="1">
         <button type="submit" class="btn btn-primary btn-block " >
             Agregar al carrito

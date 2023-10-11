@@ -23,17 +23,15 @@ export class SingleProductComponent implements  OnInit {
   ) {}
 
   ngOnInit() {
-    // Obtén el productId de la ruta
     this.productId = this.route.snapshot.paramMap.get('id');
-    
+
     if (this.productId !== null) {
-      // Llama al servicio para obtener los detalles del producto
-      this.productService.getProductDetailsById(this.productId)
-        .subscribe(data => {
-          this.productDetails = data;
-          
-        });
-      }
+      this.productService.getProductDetailsById(this.productId).subscribe(data => {
+        this.productDetails = data;
+
+        // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
+      });
+    }
   }
 
   editedProduct: any = {}; // Objeto para almacenar los datos editados
