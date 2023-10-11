@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode'; // Importa de esta manera
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
 
   constructor(
@@ -20,10 +21,7 @@ export class AuthGuard implements CanActivate {
       const token = this.authService.getToken();
 
       if (token) {
-        // Decodificar el token para obtener el rol
         const decodedToken: any = jwt_decode(token);
-    
-        // Obtener el rol del token
         const userRole = decodedToken.role;
 
         console.log(userRole);

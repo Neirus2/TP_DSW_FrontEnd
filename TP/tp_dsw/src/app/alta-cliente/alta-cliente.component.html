@@ -1,0 +1,30 @@
+<app-nav-var></app-nav-var>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+      <div class="card mt-5">
+        <div class="card-header text-center">
+          <h2>Alta de Cliente</h2>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="cuit" class="form-label">CUIT</label>
+            <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT del cliente"
+              [(ngModel)]="cuit">
+
+            </div>
+            <div class="row">
+              <div class="col-md-3 text">
+                <button class="btn btn-primary btn-block"  (click)="onBuscarClick()" >Buscar</button>
+              </div>
+              <div class="col-md-3 text-center">
+                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado">Modificar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

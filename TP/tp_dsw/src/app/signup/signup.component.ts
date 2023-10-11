@@ -10,9 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-   tuCadenaHtmlNoSegura: string = `
-    <p>Este es un ejemplo de HTML potencialmente no seguro.</p>
-    <script>alert('¡Hola desde un script malicioso!');</script>`;
+
   user = {
     businessName: '',
     cuit: '',

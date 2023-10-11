@@ -26,20 +26,12 @@ export class PerfilUsuarioComponent implements OnInit {
   defaultImage = 'assets/prodBase.png';
 
   ngOnInit(): void {
-
-    // // Llama al servicio UserDataService para obtener los datos del usuario
     this.authService.getUserData().subscribe((data) => {
       this.userData = data;
-      console.log(this.userData);
       this.imageUrl = this.authService.getUserImage(this.userData.id);
-      console.log(this.imageUrl);
-      console.log(this.imageUrl);
     });   
-        
-    
-      
+     
   }
-
   handleFileInput(event: any) {
     this.selectedImageFile = event.target.files[0];
     if (this.selectedImageFile) {
@@ -73,3 +65,4 @@ export class PerfilUsuarioComponent implements OnInit {
     }
   }
 }
+

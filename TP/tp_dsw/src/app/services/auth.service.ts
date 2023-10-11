@@ -28,12 +28,8 @@ export class AuthService {
   logIn(user: any): Observable<any> {
     return this.http.post<any>(this.URL + '/login', user).pipe(
       tap((response) => {
-        // Almacena el token en localStorage
         localStorage.setItem('token', response.token);
-        
-        // Almacena el rol del usuario en el servicio AuthService
         this._userRole = response.role;
-        console.log('Rol del usuario:', this._userRole);
         this.userStateService.userRole = response.role;
       })
     );
@@ -43,7 +39,7 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  getToken() {
+  getToken(){
     return localStorage.getItem('token');
   }
 
@@ -71,5 +67,31 @@ export class AuthService {
   getUserImage(userId: any){
     return `${this.URL}/user/${userId}`;
   }
+
+async getClienteCuil(cuit: string, authToken: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+    };
+    console.log('Este es el CUIT ingresado', cuit);
+    
+    this.http.get<any>(this.URL + `/user/${cuit}`, { headers }).subscribe(
+      (response) => {
+        if (response) {
+          console.log('Cliente encontrado:', response);
+          const cliente = response;
+          resolve(cliente); // Resuelve la promesa con el cliente
+        } else {
+          console.log('Cliente no encontrado');
+          reject('Cliente no encontrado'); // Rechaza la promesa en caso de no encontrar el cliente
+        }
+      },
+      (error) => {
+        console.error('Error en la solicitud HTTP', error);
+        reject(error); // Rechaza la promesa en caso de error
+      }
+    );
+  });
 }
 
+}

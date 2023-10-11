@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AuthService } from './services/auth.service';
+import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AuthService } from './services/auth.service';
     PerfilUsuarioComponent,
     EditProductModalComponent,
     AdminPanelComponent,
+    AltaClienteComponent,
 
   ],
 
