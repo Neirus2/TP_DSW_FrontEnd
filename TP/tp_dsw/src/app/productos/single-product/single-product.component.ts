@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
 import Swal from 'sweetalert2';
+import { CartItem } from 'src/app/cart/art-item.model';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-single-product',
@@ -21,6 +23,7 @@ export class SingleProductComponent implements  OnInit {
     private productService: ProductService,
     private modalService: NgbModal,
     private router : Router,
+    private cartService : CartServiceService
   ) {}
 
   ngOnInit() {
@@ -77,6 +80,10 @@ export class SingleProductComponent implements  OnInit {
             });       
       }
     });
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.productDetails.data);
   }
 }
 

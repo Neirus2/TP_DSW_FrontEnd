@@ -1,0 +1,24 @@
+<app-nav-var></app-nav-var>
+
+<h2>Carrito de Compras</h2>
+<table>
+  <tr>
+    <th>Producto</th>
+    <th>Cantidad</th>
+    <th>Precio Unitario</th>
+    <th>Subtotal</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let item of cartItems">
+    <td>{{ item.desc }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.price | currency }}</td>
+    <td>{{ item.price * item.quantity | currency }}</td>
+    <td>
+      <button (click)="updateQuantity(item._id, item.quantity + 1)">+</button>
+      <button (click)="updateQuantity(item._id, item.quantity - 1)">-</button>
+      <button (click)="removeFromCart(item._id)">Eliminar</button>
+    </td>
+  </tr>
+</table>
+<p>Total: {{ total | currency }}</p>
