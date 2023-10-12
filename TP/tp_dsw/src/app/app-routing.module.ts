@@ -13,6 +13,7 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 import { CartComponent } from './cart/cart/cart.component';
+import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'perfilUsuario', component: PerfilUsuarioComponent},
   { path: 'cart', component: CartComponent },
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }},
-  { path: 'alta-cliente', component: AltaClienteComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}}
+  { path: 'alta-cliente', component: AltaClienteComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},
+  {path:'retrieve-pass',component:RetrievePassComponent}
 ];
 
 @NgModule({

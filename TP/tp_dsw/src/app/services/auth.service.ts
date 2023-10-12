@@ -58,6 +58,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('cartItems');
     this.router.navigate(['/login']);
   }
 
@@ -78,7 +79,7 @@ export class AuthService {
   }
 
   getUserImage(userId: any){
-    return `${this.URL}/user/${userId}`;
+    return `${this.URL}/getUserImage/${userId}`;
   }
 
 async getClienteCuil(cuit: string, authToken: string): Promise<any> {
@@ -107,4 +108,29 @@ async getClienteCuil(cuit: string, authToken: string): Promise<any> {
   });
 }
 
+async getClienteEmail(cuit: string, authToken: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+    };
+    console.log('Este es el CUIT ingresado', cuit);
+    
+    this.http.get<any>(this.URL + `/user/${cuit}`, { headers }).subscribe(
+      (response) => {
+        if (response) {
+          console.log('Cliente encontrado:', response);
+          const cliente = response;
+          resolve(cliente); // Resuelve la promesa con el cliente
+        } else {
+          console.log('Cliente no encontrado');
+          reject('Cliente no encontrado'); // Rechaza la promesa en caso de no encontrar el cliente
+        }
+      },
+      (error) => {
+        console.error('Error en la solicitud HTTP', error);
+        reject(error); // Rechaza la promesa en caso de error
+      }
+    );
+  });
+}
 }

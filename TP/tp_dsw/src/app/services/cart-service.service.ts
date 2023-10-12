@@ -20,6 +20,7 @@ export class CartServiceService {
 
   // Obtener los elementos del carrito
   getCartItems(): CartItem[] {
+    this.loadCartItems();
     return this.cartItems;
   }
 
@@ -56,6 +57,8 @@ export class CartServiceService {
     const savedCartItems = localStorage.getItem('cartItems');
     if (savedCartItems) {
       this.cartItems = JSON.parse(savedCartItems);
+    } else {
+      this.cartItems = [];
     }
   }
 }

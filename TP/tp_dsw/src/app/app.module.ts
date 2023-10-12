@@ -34,6 +34,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AuthService } from './services/auth.service';
 import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 import { CartComponent } from './cart/cart/cart.component';
+import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { CartComponent } from './cart/cart/cart.component';
     AdminPanelComponent,
     AltaClienteComponent,
     CartComponent,
+    RetrievePassComponent,
 
   ],
 

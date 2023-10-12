@@ -28,7 +28,9 @@ export class PerfilUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserData().subscribe((data) => {
       this.userData = data;
+      console.log(this.userData)
       this.imageUrl = this.authService.getUserImage(this.userData.id);
+      console.log(this.imageUrl);
     });   
      
   }
@@ -49,6 +51,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   uploadProfileImage(event: Event) {
     event.preventDefault();
+    console.log('SUBIR IMAGEN');
     if (this.selectedImageFile) {
       const authToken = localStorage.getItem('token');
 
