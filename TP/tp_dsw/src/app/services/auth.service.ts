@@ -39,6 +39,19 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
+  deleteCliente(userId:string){ 
+    console.log("este es el id en auth",userId);
+    const url = `${this.URL}/deleteUser/${userId}`;
+    console.log(url);         
+    return this.http.delete(url);
+    console.log("deleteCLient click");
+  }
+
+  asignPrivileges(userId: string) { 
+    const url = `${this.URL}/asignPrivileges/${userId}`;
+    return this.http.patch(url, { role: 'Administrador' });
+  }
+  
   getToken(){
     return localStorage.getItem('token');
   }

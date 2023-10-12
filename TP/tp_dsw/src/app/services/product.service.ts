@@ -37,4 +37,4 @@ export class ProductService {
     const url = `${this.URL}/product/${productId}`;
     return this.http.patch(url, updatedProduct);
   }
-}
+}       

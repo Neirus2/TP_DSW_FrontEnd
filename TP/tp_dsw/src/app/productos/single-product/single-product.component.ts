@@ -76,5 +76,5 @@ export class SingleProductComponent implements  OnInit {
       }
     });
   }
-}
+} 
 

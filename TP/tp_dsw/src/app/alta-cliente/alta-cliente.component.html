@@ -12,14 +12,23 @@
               <label for="cuit" class="form-label">CUIT</label>
             <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT del cliente"
               [(ngModel)]="cuit">
-
+            </div>
+            <div class="card-body" *ngIf="cuilEncontrado && cliente">
+              <p class="card-text">Correo Electrónico: {{ cliente.email }}</p>
+              <p class="card-text">Cuit: {{ cliente.cuit }}</p>
+              <p class="card-text">Dirección: {{ cliente.address }}</p>
+              <p class="card-text">Rol: {{ cliente.role }}</p>
+              <!-- Agrega más campos según los datos de tu usuario -->
             </div>
             <div class="row">
               <div class="col-md-3 text">
                 <button class="btn btn-primary btn-block"  (click)="onBuscarClick()" >Buscar</button>
               </div>
               <div class="col-md-3 text-center">
-                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado">Modificar</button>
+                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado" (click)="asignPrivileges()">Modificar Privilegios</button>
+              </div>
+              <div class="col-md-3 text-center">
+                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado" (click)="deleteClient()" >Eliminar Usuario</button>
               </div>
             </div>
           </form>
