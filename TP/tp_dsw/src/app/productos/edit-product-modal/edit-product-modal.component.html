@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form *ngIf="editedProduct">
             <div class="form-group">
               <label for="productName">Descripcion del Producto</label>
               <input type="text" class="form-control" id="productName" [(ngModel)]="editedProduct.desc" name="name">

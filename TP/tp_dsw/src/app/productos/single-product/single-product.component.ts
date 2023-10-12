@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProductModalComponent } from '../edit-product-modal/edit-product-modal.component';
 import Swal from 'sweetalert2';
+import { CartItem } from 'src/app/cart/art-item.model';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-single-product',
@@ -14,38 +16,41 @@ export class SingleProductComponent implements  OnInit {
   
   productId: string | null = null; // Inicializado en null
   productDetails: any; // Define la variable para almacenar los detalles del producto
+  editedProduct: any = {}; // Objeto para almacenar los datos editados
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private modalService: NgbModal,
     private router : Router,
+    private cartService : CartServiceService
   ) {}
 
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id');
 
+    console.log(this.productId);
+
     if (this.productId !== null) {
       this.productService.getProductDetailsById(this.productId).subscribe(data => {
-        this.productDetails = data;
-
+        this.productDetails = {data: data};
+        console.log(this.productDetails);
         // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
       });
     }
   }
 
-  editedProduct: any = {}; // Objeto para almacenar los datos editados
+  openEditModal() {
 
-   openEditModal() {
-     
-    const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
-    modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
-    modalRef.result.then((result) => {
-      if (result) {
-        this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
-      }
-    }); 
-  }
+   const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
+   modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
+   modalRef.result.then((result) => {
+     if (result) {
+       this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
+     }
+   }); 
+ }
+  
 
   deleteProduct() {
     Swal.fire({
@@ -75,6 +80,10 @@ export class SingleProductComponent implements  OnInit {
             });       
       }
     });
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.productDetails.data);
   }
 } 
 

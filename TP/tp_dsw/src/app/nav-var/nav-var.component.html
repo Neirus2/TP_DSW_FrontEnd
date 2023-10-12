@@ -25,14 +25,14 @@
                     <app-down-comp></app-down-comp>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()" placeholder="Buscar product">
+            <form class="d-flex" role="search">         
                 <button class="btn btn-light" type="submit">
                     <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
                 </button>
             </form>
             <form class="d-flex">
-                <button class="btn btn-light">
+                <button class="btn btn-light" routerLink="/cart">
                     <i class="fa-solid fa-cart-shopping fa-bounce" style="color: #000000;"></i>
                 </button>
             </form>

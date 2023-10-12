@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import jwt_decode from 'jwt-decode'; // Importa de esta manera
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nav-var',
@@ -9,9 +11,11 @@ import jwt_decode from 'jwt-decode'; // Importa de esta manera
 })
 export class NavVarComponent implements OnInit {
   userRole: string | null = '';
+  searchTerm: '' | undefined;
 
   constructor(
     public authService: AuthService,
+    private router: Router,
   ) {}
 
 isUserRoleDefined(): boolean {
@@ -29,4 +33,13 @@ isUserRoleDefined(): boolean {
     
 
   }
+  searchProducts() {
+    console.log(this.searchTerm);
+    if (this.searchTerm) {
+      // Realiza la redirección a la página de productos con el parámetro de búsqueda
+      this.router.navigate(['/productos'], { queryParams: { q: this.searchTerm } });
+    }
+  }
 }
+
+

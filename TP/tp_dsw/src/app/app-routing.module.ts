@@ -12,6 +12,7 @@ import { SingleProductComponent } from './productos/single-product/single-produc
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
+import { CartComponent } from './cart/cart/cart.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'nuevoProducto', component: NuevoProductoComponent },
   { path: 'product/:id', component: SingleProductComponent },
   { path: 'perfilUsuario', component: PerfilUsuarioComponent},
+  { path: 'cart', component: CartComponent },
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }},
   { path: 'alta-cliente', component: AltaClienteComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}}
 ];

@@ -33,6 +33,7 @@ import { RouterModule } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AuthService } from './services/auth.service';
 import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
     EditProductModalComponent,
     AdminPanelComponent,
     AltaClienteComponent,
+    CartComponent,
 
   ],
 
