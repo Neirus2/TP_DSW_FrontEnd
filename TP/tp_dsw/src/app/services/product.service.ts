@@ -37,4 +37,11 @@ export class ProductService {
     const url = `${this.URL}/product/${productId}`;
     return this.http.patch(url, updatedProduct);
   }
+
+  getProductsFiltered(searchTerm: string): Observable<any[]> {
+    console.log(searchTerm, 'service');
+    const url = `${this.URL}/searchProducts/${searchTerm}`;
+    console.log(url);
+    return this.http.get<any[]>(url);
+  }
 }

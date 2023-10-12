@@ -14,6 +14,7 @@ export class SingleProductComponent implements  OnInit {
   
   productId: string | null = null; // Inicializado en null
   productDetails: any; // Define la variable para almacenar los detalles del producto
+  editedProduct: any = {}; // Objeto para almacenar los datos editados
 
   constructor(
     private route: ActivatedRoute,
@@ -25,27 +26,28 @@ export class SingleProductComponent implements  OnInit {
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id');
 
+    console.log(this.productId);
+
     if (this.productId !== null) {
       this.productService.getProductDetailsById(this.productId).subscribe(data => {
-        this.productDetails = data;
-
+        this.productDetails = {data: data};
+        console.log(this.productDetails);
         // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
       });
     }
   }
 
-  editedProduct: any = {}; // Objeto para almacenar los datos editados
+  openEditModal() {
 
-   openEditModal() {
-     
-    const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
-    modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
-    modalRef.result.then((result) => {
-      if (result) {
-        this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
-      }
-    }); 
-  }
+   const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
+   modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
+   modalRef.result.then((result) => {
+     if (result) {
+       this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
+     }
+   }); 
+ }
+  
 
   deleteProduct() {
     Swal.fire({

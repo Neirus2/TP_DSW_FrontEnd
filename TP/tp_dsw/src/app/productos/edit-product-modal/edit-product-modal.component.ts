@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class EditProductModalComponent {
 
   @Input() editedProduct: any;
-  
+
 
   constructor(public activeModal: NgbActiveModal, private productService: ProductService,) {}
 
