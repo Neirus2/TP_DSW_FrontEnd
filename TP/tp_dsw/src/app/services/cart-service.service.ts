@@ -6,17 +6,27 @@ import { CartItem } from '../cart/art-item.model';
 })
 export class CartServiceService {
   private cartItems: CartItem[] = [];
+  
 
   constructor() {
-    // Al iniciar el servicio, intenta cargar los datos del carrito desde el localStorage
-    this.loadCartItems();
+    this.loadCartItems()
   }
 
   // Agregar un producto al carrito
   addToCart(item: CartItem) {
-    this.cartItems.push(item);
-    this.saveCartItems();
+    // Verificar si el item ya está en el carrito
+    const existingItemIndex = this.cartItems.findIndex(cartItem => cartItem._id === item._id);
+  
+    if (existingItemIndex !== -1) {
+      // El item ya está en el carrito, puedes manejarlo de alguna manera, como mostrar un mensaje de error.
+      console.log("El item ya está en el carrito.");
+    } else {
+      // El item no está en el carrito, así que lo agregamos.
+      this.cartItems.push(item);
+      this.saveCartItems();
+    }
   }
+  
 
   // Obtener los elementos del carrito
   getCartItems(): CartItem[] {
@@ -29,8 +39,12 @@ export class CartServiceService {
     const item = this.cartItems.find((cartItem) => cartItem._id === productId);
     if (item) {
       item.quantity = newQuantity;
+      if(item.quantity < 1) {
+        item.quantity = 1
+      }
       this.saveCartItems();
     }
+
   }
 
   // Eliminar un producto del carrito
@@ -61,5 +75,6 @@ export class CartServiceService {
       this.cartItems = [];
     }
   }
+
 }
 
