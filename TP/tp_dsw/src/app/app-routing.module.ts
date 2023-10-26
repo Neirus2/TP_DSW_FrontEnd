@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }},
   { path: 'alta-cliente', component: AltaClienteComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},
-  {path:'retrieve-pass',component:RetrievePassComponent}
+  {path:'retrieve-pass',component:RetrievePassComponent},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

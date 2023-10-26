@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute
 import { ProductService } from '../services/product.service';
-;
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-productos',
@@ -13,11 +13,14 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute, // Agrega ActivatedRoute al constructor
+    private route: ActivatedRoute, // Agrega ActivatedRoute al constructor}
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     // Recupera el valor del parámetro de consulta llamado 'q'
+    this.authService.checkAuthAndRedirect();
+    
     this.route.queryParams.subscribe((queryParams) => {
       const searchTerm = queryParams['q'];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -18,10 +19,12 @@ export class NuevoProductoComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
-
-  ngOnInit() {
+  
+  ngOnInit(): void {
+    this.authService.checkAuthAndRedirect();
   }
 
   // Captura la imagen seleccionada por el usuario

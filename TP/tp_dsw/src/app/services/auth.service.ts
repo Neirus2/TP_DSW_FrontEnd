@@ -133,4 +133,20 @@ async getClienteEmail(cuit: string, authToken: string): Promise<any> {
     );
   });
 }
+
+isAuthenticated(): boolean {
+    const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local
+    if (token) {
+      // Verifica la validez del token (puedes agregar lógica adicional aquí si es necesario)
+      return true;
+    }
+    return false;
+  }
+
+  checkAuthAndRedirect(): void {
+    if (!this.isAuthenticated()) {
+      this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
+    }
+  }
+
 }

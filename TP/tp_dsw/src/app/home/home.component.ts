@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  
+  constructor(
+    public authService: AuthService,
+  ) {}
+  
+  ngOnInit(): void {
+    this.authService.checkAuthAndRedirect();
+  }
   featuredProducts = [
     {
       title: 'Mother ASUS PRIME Z790-P DDR4',

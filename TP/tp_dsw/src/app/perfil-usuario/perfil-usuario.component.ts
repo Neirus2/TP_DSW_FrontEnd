@@ -26,6 +26,7 @@ export class PerfilUsuarioComponent implements OnInit {
   defaultImage = 'assets/prodBase.png';
 
   ngOnInit(): void {
+    this.authService.checkAuthAndRedirect();
     this.authService.getUserData().subscribe((data) => {
       this.userData = data;
       console.log(this.userData)

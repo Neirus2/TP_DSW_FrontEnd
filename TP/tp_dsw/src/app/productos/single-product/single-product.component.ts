@@ -6,6 +6,8 @@ import { EditProductModalComponent } from '../edit-product-modal/edit-product-mo
 import Swal from 'sweetalert2';
 import { CartItem } from 'src/app/cart/art-item.model';
 import { CartServiceService } from 'src/app/services/cart-service.service';
+import { AuthService } from 'src/app/services/auth.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-single-product',
@@ -17,16 +19,29 @@ export class SingleProductComponent implements  OnInit {
   productId: string | null = null; // Inicializado en null
   productDetails: any; // Define la variable para almacenar los detalles del producto
   editedProduct: any = {}; // Objeto para almacenar los datos editados
+  userRole: string | null = '';
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private modalService: NgbModal,
     private router : Router,
-    private cartService : CartServiceService
+    private cartService : CartServiceService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
+
+    const authToken = this.authService.getToken();
+
+    if (authToken) {
+      const decodedToken: any = jwt_decode(authToken);
+  
+      this.userRole = decodedToken.role;};
+      console.log(this.userRole)
+    
+
+
     this.productId = this.route.snapshot.paramMap.get('id');
 
     console.log(this.productId);
@@ -38,7 +53,11 @@ export class SingleProductComponent implements  OnInit {
         // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
       });
     }
-  }
+  };
+
+  isUserRoleDefined(): boolean {
+  return this.userRole !== null && this.userRole !== undefined;
+}
 
   openEditModal() {
 
