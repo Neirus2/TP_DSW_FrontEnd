@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -14,11 +15,17 @@ export class ContactFormComponent {
     message: ''
   };
 
-  constructor(private http: HttpClient) { } // Inyecta HttpClient en el constructor
+  constructor(private http: HttpClient,
+    private authService: AuthService,) { }
 
   submitForm() {
-    // Realiza una solicitud HTTP POST al servidor para enviar el formulario
-    this.http.post('http://localhost:3000/enviar-correo', this.formData).subscribe(
+    const authToken= this.authService.getToken();
+    
+    const headers = {
+      Authorization: 'Bearer ' + authToken,
+    };
+ console.log(headers);
+    this.http.post('http://localhost:3000/enviar-correo', this.formData,{ headers }).subscribe(
       (response) => {
         console.log('Formulario enviado:', this.formData);
           Swal.fire(
