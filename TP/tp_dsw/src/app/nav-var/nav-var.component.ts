@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import jwt_decode from 'jwt-decode'; // Importa de esta manera
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CategorySelectionService } from '../services/category-selection-service.service';
+import jwt_decode from 'jwt-decode';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-nav-var',
   templateUrl: './nav-var.component.html',
@@ -11,35 +11,44 @@ import { CategorySelectionService } from '../services/category-selection-service
 })
 export class NavVarComponent implements OnInit {
   userRole: string | null = '';
-  searchTerm: '' | undefined;
+  searchTerm: string = '';
+  currentRoute: string = '';
 
   constructor(
-    public authService: AuthService,
     private router: Router,
-  ) {}
+    public authService: AuthService
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        if (event instanceof NavigationEnd) {
+          this.currentRoute = event.urlAfterRedirects || event.url;
+        }
+      });
+  }
 
-isUserRoleDefined(): boolean {
-  return this.userRole !== null && this.userRole !== undefined;
-}
+  isProductosRoute(): boolean {
+    return this.currentRoute.includes('/productos');
+  }
+
+  isUserRoleDefined(): boolean {
+    return this.userRole !== null && this.userRole !== undefined;
+  }
+
   ngOnInit(): void {
-
     const authToken = this.authService.getToken();
 
     if (authToken) {
       const decodedToken: any = jwt_decode(authToken);
-  
-      this.userRole = decodedToken.role;};
-      console.log(this.userRole)
-    
-
+      this.userRole = decodedToken.role;
+      console.log(this.userRole);
+    }
   }
+
   searchProducts() {
     console.log(this.searchTerm);
     if (this.searchTerm) {
-      // Realiza la redirección a la página de productos con el parámetro de búsqueda
       this.router.navigate(['/productos'], { queryParams: { q: this.searchTerm } });
     }
   }
 }
-
-

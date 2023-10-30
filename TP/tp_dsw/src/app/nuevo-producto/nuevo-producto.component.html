@@ -26,6 +26,14 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="categoria">Categoría:</label>
+              <select class="form-control" id="categoria" [(ngModel)]="product.cat" name="categoria" required>
+                <option value="Periféricos">Perifericos</option>
+                <option value="Componentes">Componentes</option>
+                <option value="Impresoras">Impresoras</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="image">Imagen del Producto:</label>
               <input type="file" class="form-control-file" id="image" name="image" accept="image/*" (change)="onImageSelected($event)" required>
             </div>
