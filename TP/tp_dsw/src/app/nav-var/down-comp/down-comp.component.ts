@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CategorySelectionService } from 'src/app/services/category-selection-service.service';
 
 @Component({
   selector: 'app-down-comp',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./down-comp.component.css']
 })
 export class DownCompComponent {
+  constructor(private categorySelectionService: CategorySelectionService) {}
 
-
+  selectCategory(category: string) {
+    this.categorySelectionService.selectCategory(category);
+    console.log(category);
+  }
 }

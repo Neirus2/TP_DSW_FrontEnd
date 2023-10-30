@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import jwt_decode from 'jwt-decode'; // Importa de esta manera
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { CategorySelectionService } from '../services/category-selection-service.service';
 @Component({
   selector: 'app-nav-var',
   templateUrl: './nav-var.component.html',

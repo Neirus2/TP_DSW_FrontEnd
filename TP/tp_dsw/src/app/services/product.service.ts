@@ -44,4 +44,11 @@ export class ProductService {
     console.log(url);
     return this.http.get<any[]>(url);
   }
+
+  filterByCategory(category: string): Observable<any[]> {
+    const url = `${this.URL}/category/${category}`;
+      console.log("cat del product sercice", category);
+    return this.http.get<any[]>(url);
+ 
+  }
 }
