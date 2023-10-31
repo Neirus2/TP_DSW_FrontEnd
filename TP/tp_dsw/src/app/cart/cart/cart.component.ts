@@ -25,14 +25,12 @@ export class CartComponent implements OnInit {
     this.total = this.cartService.calculateTotal();
   }
 
-  // Método para actualizar la cantidad de un producto en el carrito
 updateQuantity(productId: string, newQuantity: number) {
   this.cartService.updateQuantity(productId, newQuantity);
   this.cartItems = this.cartService.getCartItems();
   this.total = this.cartService.calculateTotal();
 }
 
-// Método para eliminar un producto del carrito
 removeFromCart(productId: string) {
   this.cartService.removeFromCart(productId);
   this.cartItems = this.cartService.getCartItems();

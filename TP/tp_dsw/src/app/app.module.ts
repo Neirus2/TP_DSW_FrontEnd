@@ -79,9 +79,9 @@ import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
     HttpClientModule,
       JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem('token'), // Obtén el token almacenado en localStorage
-        allowedDomains: ['http://localhost:3000'], // Dominios permitidos (ajusta esto según tu servidor)
-        disallowedRoutes: [], // Rutas excluidas (ajusta esto según tu servidor)
+        tokenGetter: () => localStorage.getItem('token'),
+        allowedDomains: ['http://localhost:3000'], 
+        disallowedRoutes: [], 
       },
     }),
       BrowserAnimationsModule,

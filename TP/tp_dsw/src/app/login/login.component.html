@@ -1,4 +1,3 @@
-<!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
 
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
@@ -22,21 +21,18 @@
         
             <form (submit)="logIn()">
 
-              <!-- Email input -->
               <div class="form-outline mb-4">
                 <input type="email" [(ngModel)]="user.email" [ngModelOptions]="{ standalone: true }" id="form3Example3"
                   class="form-control" />
                 <label class="form-label" for="form3Example3">Email</label>
               </div>
 
-              <!-- Password input -->
               <div class="form-outline mb-4">
                 <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }"
                   id="form3Example4" class="form-control" />
                 <label class="form-label" for="form3Example4">Contraseña</label>
               </div>
 
-              <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block">
                 Entrar
               </button>
@@ -44,7 +40,6 @@
                       <p> <a routerLink="/retrieve-pass">¿Olvidaste tu contraseña?</a></p>
                     </div>
 
-              <!-- Register buttons -->
               <div class="text-center">
                 <p>o entrar con:</p>
                 <button type="button" class="btn btn-link btn-floating mx-1" routerLink="">
@@ -73,4 +68,3 @@
     </div>
   </div>
 </section>
-<!-- Section: Design Block -->

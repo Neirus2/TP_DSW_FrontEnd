@@ -8,11 +8,19 @@ import Swal from 'sweetalert2';
 })
 export class UdProveedorComponent {
   cuit: string = '';
-   public supplier: any = null; 
+  newAddress: string = '';
+  newPhoneNumber: string = '';
+  showModal: boolean = false;
+  public supplier: any = null; 
   constructor(
       private supplierService: SupplierService,
   ){}
-
+openModal() {
+    this.showModal = true;
+  }
+closeModal() {
+    this.showModal = false;
+  }
     ngOnInit(): any {};
 
      async onBuscarClick() {
@@ -39,7 +47,7 @@ export class UdProveedorComponent {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        this.supplierService.deleteSupplier(this.supplier._id)
+        this.supplierService.deleteSupplier(this.supplier.data._id)
         .subscribe(
           res => {
             Swal.fire(
@@ -60,6 +68,26 @@ export class UdProveedorComponent {
       }
     });
   
-  }
+  };
+  updateSupplierDetails(){
+     if (this.supplier.data.address && this.supplier.data.phoneNumber) {
+      this.supplierService.updateDetails(this.supplier.data._id, {
+        address: this.supplier.data.address,
+        phoneNumber: this.supplier.data.phoneNumber
+      }).subscribe(
+        res => {
+          Swal.fire('Proveedor actualizado con éxito', '', 'success');
+          this.closeModal();
+        },
+        err => {
+          Swal.fire('Error al actualizar el proveedor', err.error, 'error');
+        }
+      );
 
+      this.newAddress = '';
+      this.newPhoneNumber = '';
+    } else {
+      Swal.fire('Campos requeridos vacíos', 'Completa los campos requeridos', 'warning');
+    }
+  };
 }

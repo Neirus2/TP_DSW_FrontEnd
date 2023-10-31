@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-  products: any[] = []; // Inicializamos como un array vacío
+  products: any[] = [];
 
   searchTerm: string = '';
 
@@ -36,11 +36,11 @@ export class ProductosComponent implements OnInit {
   async fetchProducts() {
     if (this.searchTerm) {
       const data = await this.productService.getProductsFiltered(this.searchTerm).toPromise();
-      this.products = data || []; // Asignamos un array vacío si 'data' es 'undefined'
+      this.products = data || [];
       console.log(data, 'filtered data');
     } else {
       const data = await this.productService.getProducts().toPromise();
-      this.products = data || []; // Asignamos un array vacío si 'data' es 'undefined'
+      this.products = data || [];
       console.log(data, 'all data');
     }
   }
@@ -48,7 +48,7 @@ export class ProductosComponent implements OnInit {
   async filterByCategory(category: string) {
     try {
       const data = await this.productService.filterByCategory(category).toPromise();
-      this.products = data || []; // Asignamos un array vacío si 'data' es 'undefined'
+      this.products = data || []; 
       console.log(data, 'filtered by category');
     } catch (error) {
       const data = await this.productService.getProducts().toPromise();

@@ -34,12 +34,10 @@ export class AltaProveedorComponent {
             '',
             'success'
           );
-          // Limpia los campos después de enviar los datos
           this.resetForm();
         },
         err => {
           console.log(err);
-          // Muestra la alerta de error con el mensaje personalizado
           Swal.fire({
             icon: 'error',
             title: 'Registro fallido',
@@ -57,4 +55,6 @@ export class AltaProveedorComponent {
       phoneNumber: ''
     };
   }
+
+
 }

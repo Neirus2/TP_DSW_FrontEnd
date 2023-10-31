@@ -13,7 +13,7 @@ export class AltaClienteComponent implements OnInit {
   userData: any; 
   cuit: string = '';
   cuilEncontrado: boolean = false;
-  cliente: any = null; // Propiedad para almacenar el cliente
+  cliente: any = null; 
   clienteEliminado: boolean = false;
   clienteModificado: boolean = false;
 
@@ -32,7 +32,7 @@ export class AltaClienteComponent implements OnInit {
 
       if (cliente) {
         this.cuilEncontrado = true;
-        this.cliente = cliente; // Asigna el cliente a la propiedad
+        this.cliente = cliente; 
         console.log(this.cliente);
         this.clienteModificado = false;
         this.clienteEliminado = false;

@@ -1,8 +1,5 @@
 
 .custom-nav {
   display: flex;
-
   align-items: center;
-  /* Alinea verticalmente al centro */
-  /* Empuja los elementos a la derecha */
-}
+};

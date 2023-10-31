@@ -16,9 +16,9 @@ import jwt_decode from 'jwt-decode';
 })
 export class SingleProductComponent implements  OnInit {
   
-  productId: string | null = null; // Inicializado en null
-  productDetails: any; // Define la variable para almacenar los detalles del producto
-  editedProduct: any = {}; // Objeto para almacenar los datos editados
+  productId: string | null = null; 
+  productDetails: any;
+  editedProduct: any = {}; 
   userRole: string | null = '';
   productQuantity: number = 1;
   productStock: any;
@@ -52,7 +52,6 @@ export class SingleProductComponent implements  OnInit {
         this.productDetails = {data: data};
         console.log(this.productDetails);
         this.productStock = this.productDetails.data.stock;
-        // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
       });
     }
   };
@@ -63,11 +62,11 @@ export class SingleProductComponent implements  OnInit {
 
   openEditModal() {
 
-   const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
-   modalRef.componentInstance.editedProduct = { ...this.productDetails.data, _id: this.productId  }; // Pasa los datos al componente modal
+   const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); 
+   modalRef.componentInstance.editedProduct = { ...this.productDetails.data, _id: this.productId  }; 
    modalRef.result.then((result: any) => {
      if (result) {
-       this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
+       this.productDetails.data = { ...result }; 
      }
    }); 
  }

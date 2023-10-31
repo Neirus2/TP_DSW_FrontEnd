@@ -1,4 +1,3 @@
-<!-- En el archivo HTML del componente edit-product-modal -->
 
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -30,13 +29,20 @@
                 <option value="Impresoras">Impresoras</option>
               </select>
             </div>
-
-            <!-- Otros campos de edición -->
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="close()" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+          <div class="form-group">
+            <label for="supplier">Proveedor:</label>
+            <select class="form-control" id="supplier" [(ngModel)]="editedProduct.supplier" name="supplier">
+              <option disabled selected value="">Seleccione un proveedor</option>
+              <option *ngFor="let supplier of suppliers" >{{ supplier.businessName }}</option>
+            </select>
+          </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+  <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+</div>
+
         </div>
-      </div>
-    </div>
+
+

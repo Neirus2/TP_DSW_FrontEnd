@@ -91,15 +91,15 @@ async getClienteCuil(cuit: string, authToken: string): Promise<any> {
         if (response) {
           console.log('Cliente encontrado:', response);
           const cliente = response;
-          resolve(cliente); // Resuelve la promesa con el cliente
+          resolve(cliente); 
         } else {
           console.log('Cliente no encontrado');
-          reject('Cliente no encontrado'); // Rechaza la promesa en caso de no encontrar el cliente
+          reject('Cliente no encontrado'); 
         }
       },
       (error) => {
         console.error('Error en la solicitud HTTP', error);
-        reject(error); // Rechaza la promesa en caso de error
+        reject(error);
       }
     );
   });
@@ -117,24 +117,23 @@ async getClienteEmail(cuit: string, authToken: string): Promise<any> {
         if (response) {
           console.log('Cliente encontrado:', response);
           const cliente = response;
-          resolve(cliente); // Resuelve la promesa con el cliente
+          resolve(cliente); 
         } else {
           console.log('Cliente no encontrado');
-          reject('Cliente no encontrado'); // Rechaza la promesa en caso de no encontrar el cliente
+          reject('Cliente no encontrado');
         }
       },
       (error) => {
         console.error('Error en la solicitud HTTP', error);
-        reject(error); // Rechaza la promesa en caso de error
+        reject(error); 
       }
     );
   });
 }
 
   isAuthenticated(): boolean {
-      const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local
+      const token = localStorage.getItem('token'); 
       if (token) {
-        // Verifica la validez del token (puedes agregar lógica adicional aquí si es necesario)
         return true;
       }
       return false;
@@ -142,7 +141,7 @@ async getClienteEmail(cuit: string, authToken: string): Promise<any> {
 
     checkAuthAndRedirect(): void {
       if (!this.isAuthenticated()) {
-        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión si no está autenticado
+        this.router.navigate(['/login']); 
       }
     }
 

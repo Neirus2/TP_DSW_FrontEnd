@@ -23,9 +23,38 @@
                 <p class="card-text">Cuit: {{ supplier.data.cuit }}</p>
                 <p class="card-text">Nombre: {{ supplier.data.businessName }}</p>
                 <p class="card-text">Teléfono {{ supplier.data.phoneNumber }}</p>
-                <div class="col-md-3 text-center">
-                  <button class="btn btn-danger  btn-block" 
-                (click)="deleteSupplier()"    >Eliminar Proveedor</button>
+                <div class="d-flex justify-content-between mt-4">
+                  <button class="btn btn-danger  btn-block" (click)="deleteSupplier()"    >Eliminar Proveedor</button>
+                <button type="button" class="btn btn-warning" style="width: 48%;" (click)="openModal()">Actualizar Proveedor</button>
+                </div>
+              </div>
+
+              <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': showModal }" ngIf="">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Actualizar Proveedor</h5>
+                      <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="newAddress">Nueva Dirección</label>
+                          <input type="text" class="form-control" id="newAddress" [(ngModel)]="supplier.data.address" name="newAddress">
+                        </div>
+                        <div class="form-group">
+                          <label for="newPhoneNumber">Nuevo Teléfono</label>
+                          <input type="text" class="form-control" id="newPhoneNumber" [(ngModel)]="supplier.data.phoneNumber" name="newPhoneNumber">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+                      <button type="button" class="btn btn-primary" (click)="updateSupplierDetails()">Guardar Cambios</button>
+                    </div>
+                  </div>
                 </div>
               </div>
           </form>

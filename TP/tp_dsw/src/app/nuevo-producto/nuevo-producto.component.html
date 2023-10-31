@@ -33,6 +33,13 @@
                 <option value="Impresoras">Impresoras</option>
               </select>
             </div>
+          <div class="form-group">
+            <label for="supplier">Proveedor:</label>
+            <select class="form-control" id="supplier" [(ngModel)]="product.supplier" name="supplier">
+              <option disabled selected value="">Seleccione un proveedor</option>
+              <option *ngFor="let supplier of suppliers">{{ supplier.businessName }}</option>
+            </select>
+          </div>
             <div class="form-group">
               <label for="image">Imagen del Producto:</label>
               <input type="file" class="form-control-file" id="image" name="image" accept="image/*" (change)="onImageSelected($event)" required>

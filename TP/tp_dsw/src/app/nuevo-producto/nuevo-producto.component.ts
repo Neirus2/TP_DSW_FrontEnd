@@ -3,7 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
-
+import { SupplierService } from '../services/supplier.service';
 @Component({
   selector: 'app-nuevo-producto',
   templateUrl: './nuevo-producto.component.html',
@@ -15,17 +15,28 @@ export class NuevoProductoComponent implements OnInit {
     stock: '',
     price: '',
     cat: '',
+    supplier: '',
     image: null as File | null 
   }
+   suppliers: any[] = [];
 
   constructor(
     private productService: ProductService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private supplierService: SupplierService,
   ) {}
   
   ngOnInit(): void {
     this.authService.checkAuthAndRedirect();
+    this.obtenerProveedores();
+  }
+
+    obtenerProveedores() {
+    this.supplierService.obtenerSuppliers().subscribe((data: any) => {
+      this.suppliers = data; 
+      console.log(this.suppliers);
+    });
   }
 
   onImageSelected(event: Event) {
@@ -40,6 +51,7 @@ export class NuevoProductoComponent implements OnInit {
     formData.append('stock', this.product.stock);
     formData.append('price', this.product.price);
     formData.append('cat', this.product.cat);
+    formData.append('supplier', this.product.supplier);
     if (this.product.image) {
       formData.append('image', this.product.image);
     }
@@ -70,5 +82,6 @@ export class NuevoProductoComponent implements OnInit {
     this.product.price = '';
     this.product.stock = '';
     this.product.image = null;
+    this.product.supplier= '';
   }
 }
