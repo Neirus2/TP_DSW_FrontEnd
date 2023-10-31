@@ -35,7 +35,7 @@ import { AuthService } from './services/auth.service';
 import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
-
+import { CategorySelectionService } from './services/category-selection-service.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +89,8 @@ import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.compo
       useClass: TokenInterceptorService,
       multi: true,
     },
-    AuthService
+    AuthService,
+    CategorySelectionService
 
   ],
   bootstrap: [AppComponent]

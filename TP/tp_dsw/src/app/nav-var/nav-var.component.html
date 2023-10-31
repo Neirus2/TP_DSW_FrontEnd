@@ -22,7 +22,7 @@
                     <a class="nav-link active" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <app-down-comp></app-down-comp>
+                    <app-down-comp *ngIf="isProductosRoute()"></app-down-comp>
                 </li>
             </ul>
             <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()" placeholder="Buscar product">

@@ -14,6 +14,7 @@ export class NuevoProductoComponent implements OnInit {
     desc: '',
     stock: '',
     price: '',
+    cat: '',
     image: null as File | null // Agregamos un campo para la imagen
   }
 
@@ -41,7 +42,7 @@ export class NuevoProductoComponent implements OnInit {
     formData.append('desc', this.product.desc);
     formData.append('stock', this.product.stock);
     formData.append('price', this.product.price);
-
+    formData.append('cat', this.product.cat);
     if (this.product.image) {
       formData.append('image', this.product.image);
     }

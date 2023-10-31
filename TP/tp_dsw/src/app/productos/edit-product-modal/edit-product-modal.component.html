@@ -22,6 +22,15 @@
               <label for="productStock">Stock</label>
               <input type="number" class="form-control" id="productStock" [(ngModel)]="editedProduct.stock" name="stock">
             </div>
+            <div class="form-group">
+              <label for="categoria">Categoría:</label>
+              <select class="form-control" id="productCat" [(ngModel)]="editedProduct.cat" name="categoria" required name="cat">
+                <option value="Periféricos">Perifericos</option>
+                <option value="Componentes">Componentes</option>
+                <option value="Impresoras">Impresoras</option>
+              </select>
+            </div>
+
             <!-- Otros campos de edición -->
           </form>
         </div>
