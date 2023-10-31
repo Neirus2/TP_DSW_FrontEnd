@@ -38,6 +38,7 @@ import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.compo
 import { CategorySelectionService } from './services/category-selection-service.service';
 import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.component';
 import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
     RetrievePassComponent,
     AltaProveedorComponent,
     UdProveedorComponent,
+    OrdersComponent,
 
   ],
 

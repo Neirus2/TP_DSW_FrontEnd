@@ -16,6 +16,7 @@ import { CartComponent } from './cart/cart/cart.component';
 import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
 import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.component';
 import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
+import { OrdersComponent } from './orders/orders.component';
 const routes: Routes = [
 
  { path: '', component: HomeComponent }, //ruta inicial, si quisiera que me lleve a otra --> redirecTo: '/nombre_pag',pathMatch: 'full'
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'retrieve-pass',component:RetrievePassComponent},
   {path: 'alta-proveedor', component:AltaProveedorComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'} },
   {path: 'ud-proveedor', component:UdProveedorComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},
+  {path: 'myorders', component:OrdersComponent},
   { path: '**', redirectTo: '' }
 ];
 
