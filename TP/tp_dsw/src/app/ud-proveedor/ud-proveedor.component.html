@@ -1,0 +1,39 @@
+<app-nav-var></app-nav-var>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+      <div class="card mt-5">
+        <div class="card-header text-center">
+          <h2>Modificación Proveedor </h2>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="cuit" class="form-label">CUIT</label>
+              <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT del proveedor"
+                [(ngModel)]="cuit">
+          <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-secondary" style="width: 48%;" [routerLink]="'/admin-panel'">Atrás</button>
+                <button class="btn btn-primary btn-block" style="width: 48%;"  (click)="onBuscarClick()">Buscar</button>
+              </div>
+
+            </div>
+              <div class="card-body" *ngIf="supplier">
+                <p class="card-text">Dirección: {{ supplier.data.address }}</p>
+                <p class="card-text">Cuit: {{ supplier.data.cuit }}</p>
+                <p class="card-text">Nombre: {{ supplier.data.businessName }}</p>
+                <p class="card-text">Teléfono {{ supplier.data.phoneNumber }}</p>
+                <div class="col-md-3 text-center">
+                  <button class="btn btn-danger  btn-block" 
+                (click)="deleteSupplier()"    >Eliminar Proveedor</button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

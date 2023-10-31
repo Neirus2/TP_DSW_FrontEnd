@@ -37,8 +37,11 @@
               <label for="image">Imagen del Producto:</label>
               <input type="file" class="form-control-file" id="image" name="image" accept="image/*" (change)="onImageSelected($event)" required>
             </div>
-            <div class="text-center mt-3">
-              <button type="submit" class="btn btn-primary">Guardar Producto</button>
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-secondary" style="width: 48%;" [routerLink]="'/admin-panel'">Atrás</button>
+
+              <button type="submit" class="btn btn-primary" style="width: 48%;">Guardar Producto</button>
+
             </div>
           </form>
         </div>

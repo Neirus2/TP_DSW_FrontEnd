@@ -36,6 +36,8 @@ import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
 import { CategorySelectionService } from './services/category-selection-service.service';
+import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.component';
+import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CategorySelectionService } from './services/category-selection-service.
     AltaClienteComponent,
     CartComponent,
     RetrievePassComponent,
+    AltaProveedorComponent,
+    UdProveedorComponent,
 
   ],
 

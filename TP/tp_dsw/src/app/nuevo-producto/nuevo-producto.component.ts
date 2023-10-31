@@ -15,7 +15,7 @@ export class NuevoProductoComponent implements OnInit {
     stock: '',
     price: '',
     cat: '',
-    image: null as File | null // Agregamos un campo para la imagen
+    image: null as File | null 
   }
 
   constructor(
@@ -28,15 +28,12 @@ export class NuevoProductoComponent implements OnInit {
     this.authService.checkAuthAndRedirect();
   }
 
-  // Captura la imagen seleccionada por el usuario
   onImageSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files[0]) {
       this.product.image = inputElement.files[0];
     }
   }
-
-  // Guardar el producto en la base de datos, incluyendo la imagen
   createNewProduct() {
     const formData = new FormData();
     formData.append('desc', this.product.desc);
@@ -48,7 +45,7 @@ export class NuevoProductoComponent implements OnInit {
     }
 
 
-    this.productService.createNewProduct(formData) // Asegúrate de que el servicio pueda manejar FormData
+    this.productService.createNewProduct(formData)
       .subscribe(
         res => {
           console.log(res);
@@ -60,7 +57,7 @@ export class NuevoProductoComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-          // Muestra la alerta de error con el mensaje personalizado
+
           Swal.fire({
             icon: 'error',
             title: 'Registro fallido',
@@ -72,6 +69,6 @@ export class NuevoProductoComponent implements OnInit {
     this.product.desc = '';
     this.product.price = '';
     this.product.stock = '';
-    this.product.image = null; // Limpiamos el campo de la imagen
+    this.product.image = null;
   }
 }

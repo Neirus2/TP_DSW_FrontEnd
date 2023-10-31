@@ -40,11 +40,8 @@ export class AuthService {
   }
 
   deleteCliente(userId:string){ 
-    console.log("este es el id en auth",userId);
-    const url = `${this.URL}/deleteUser/${userId}`;
-    console.log(url);         
+    const url = `${this.URL}/deleteUser/${userId}`;         
     return this.http.delete(url);
-    console.log("deleteCLient click");
   }
 
   asignPrivileges(userId: string) { 

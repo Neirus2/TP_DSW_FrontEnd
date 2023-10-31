@@ -36,6 +36,7 @@ export class AltaClienteComponent implements OnInit {
         console.log(this.cliente);
         this.clienteModificado = false;
         this.clienteEliminado = false;
+
       }
     } catch (error) {Swal.fire(
       'Denegado',

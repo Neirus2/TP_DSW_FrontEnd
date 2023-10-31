@@ -13,7 +13,7 @@
             <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT del cliente"
               [(ngModel)]="cuit">
             </div>
-            <div class="card-body" *ngIf="cuilEncontrado && cliente">
+            <div class="card-body" *ngIf="cuilEncontrado && cliente && cuit">
               <p class="card-text">Correo Electrónico: {{ cliente.email }}</p>
               <p class="card-text">Cuit: {{ cliente.cuit }}</p>
               <p class="card-text">Dirección: {{ cliente.address }}</p>
@@ -21,14 +21,14 @@
               <!-- Agrega más campos según los datos de tu usuario -->
             </div>
             <div class="row">
-              <div class="col-md-3 text">
-                <button class="btn btn-primary btn-block"  (click)="onBuscarClick()" >Buscar</button>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-secondary" style="width: 48%;" [routerLink]="'/admin-panel'">Atrás</button>
+                <button class="btn btn-primary btn-block" style="width: 48%;" (click)="onBuscarClick()" >Buscar</button>
               </div>
-              <div class="col-md-3 text-center">
-                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado" (click)="asignPrivileges()">Modificar Privilegios</button>
-              </div>
-              <div class="col-md-3 text-center">
-                <button class="btn btn-success btn-block" *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado" (click)="deleteClient()" >Eliminar Usuario</button>
+              <div class="d-flex justify-content-between mt-4" >
+                <button class="btn btn-success btn-warning" style="width: 48%;"  *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado " (click)="asignPrivileges()">Modificar Privilegios</button>
+    
+                <button class="btn btn-danger btn-block"style="width: 48%;"   *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado " (click)="deleteClient()" >Eliminar Usuario</button>
               </div>
             </div>
           </form>
