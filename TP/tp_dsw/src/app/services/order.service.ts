@@ -19,5 +19,9 @@ export class OrderService {
     console.log('intente', orderData)
     return this.http.post<any>(this.URL + '/generateNewOrder', orderData);
   }
+
+  getPedidosUsuario(userId: string) {
+    return this.http.get(`${this.URL}/orders/${userId}`);
+  }
   
 }
