@@ -20,6 +20,8 @@ export class SingleProductComponent implements  OnInit {
   productDetails: any; // Define la variable para almacenar los detalles del producto
   editedProduct: any = {}; // Objeto para almacenar los datos editados
   userRole: string | null = '';
+  productQuantity: number = 1;
+  productStock: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +34,7 @@ export class SingleProductComponent implements  OnInit {
 
   ngOnInit() {
 
+
     const authToken = this.authService.getToken();
 
     if (authToken) {
@@ -39,8 +42,6 @@ export class SingleProductComponent implements  OnInit {
   
       this.userRole = decodedToken.role;};
       console.log(this.userRole)
-    
-
 
     this.productId = this.route.snapshot.paramMap.get('id');
 
@@ -50,6 +51,7 @@ export class SingleProductComponent implements  OnInit {
       this.productService.getProductDetailsById(this.productId).subscribe(data => {
         this.productDetails = {data: data};
         console.log(this.productDetails);
+        this.productStock = this.productDetails.data.stock;
         // Aquí, asumimos que la estructura de 'productDetails' tiene una propiedad 'image' que contiene la URL de la imagen.
       });
     }
@@ -62,8 +64,8 @@ export class SingleProductComponent implements  OnInit {
   openEditModal() {
 
    const modalRef =  this.modalService.open(EditProductModalComponent, { centered: true }); // Abre el modal
-   modalRef.componentInstance.editedProduct = { ...this.productDetails.data }; // Pasa los datos al componente modal
-   modalRef.result.then((result) => {
+   modalRef.componentInstance.editedProduct = { ...this.productDetails.data, _id: this.productId  }; // Pasa los datos al componente modal
+   modalRef.result.then((result: any) => {
      if (result) {
        this.productDetails.data = { ...result }; // Actualiza los datos con los cambios guardados
      }
@@ -101,8 +103,13 @@ export class SingleProductComponent implements  OnInit {
     });
   }
 
-  addToCart() {
-    this.cartService.addToCart(this.productDetails.data);
+  addToCart(quantity: number) {
+    const productToAdd = {
+      ...this.productDetails.data,
+      _id: this.productId,
+      quantity: quantity,
+    }
+    this.cartService.addToCart(productToAdd);
   }
 } 
 

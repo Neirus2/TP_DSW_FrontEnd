@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import { CartItem } from '../art-item.model';
+import { OrderService } from 'src/app/services/order.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +14,11 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total: number = 0;
 
-  constructor(private cartService: CartServiceService) {}
+  constructor(
+    private cartService: CartServiceService,
+    private orderService: OrderService,
+    private authService: AuthService,
+    ) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -32,5 +39,17 @@ removeFromCart(productId: string) {
   this.total = this.cartService.calculateTotal();
 }
 
-  // Implementa métodos para actualizar o eliminar productos del carrito si es necesario.
+confirmarPedido() {
+  this.authService.getUserData().subscribe((userData) => {
+    const orderData = { items: this.cartItems, total: this.total, userId: userData.id };
+    this.orderService.createNewOrder(orderData).subscribe(
+      (response) => {
+        console.log('Pedido guardado con éxito:', response);
+      },
+      (error) => {
+        console.error('Error al guardar el pedido:', error);
+      }
+    );
+  });
+}
 }

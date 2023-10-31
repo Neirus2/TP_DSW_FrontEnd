@@ -1,24 +1,32 @@
 <app-nav-var></app-nav-var>
 
-<h2>Carrito de Compras</h2>
-<table>
-  <tr>
-    <th>Producto</th>
-    <th>Cantidad</th>
-    <th>Precio Unitario</th>
-    <th>Subtotal</th>
-    <th>Acciones</th>
-  </tr>
-  <tr *ngFor="let item of cartItems">
-    <td>{{ item.desc }}</td>
-    <td>{{ item.quantity }}</td>
-    <td>{{ item.price | currency }}</td>
-    <td>{{ item.price * item.quantity | currency }}</td>
-    <td>
-      <button (click)="updateQuantity(item._id, item.quantity + 1)">+</button>
-      <button (click)="updateQuantity(item._id, item.quantity - 1)">-</button>
-      <button (click)="removeFromCart(item._id)">Eliminar</button>
-    </td>
-  </tr>
-</table>
-<p>Total: {{ total | currency }}</p>
+<div class="container">
+  <h2>Carrito de Compras</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.desc }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price | currency }}</td>
+        <td>{{ item.price * item.quantity | currency }}</td>
+        <td>
+          <button class="btn btn-primary mx-1" (click)="updateQuantity(item._id, item.quantity + 1)">+</button>
+          <button class="btn btn-primary mx-1" (click)="updateQuantity(item._id, item.quantity - 1)">-</button>
+          <button class="btn btn-danger mx-1" (click)="removeFromCart(item._id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-right">Total: {{ total | currency }}</p>
+
+  <button class="btn btn-success" (click)="confirmarPedido()">Confirmar Pedido</button>
+</div>

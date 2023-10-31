@@ -15,10 +15,9 @@ export class OrderService {
     private router: Router
   ) {}
 
-  createNewOrder(orderData: any): Observable<any> {
+  createNewOrder (orderData: any): Observable<any> {
     console.log('intente', orderData)
     return this.http.post<any>(this.URL + '/generateNewOrder', orderData);
   }
-
   
 }

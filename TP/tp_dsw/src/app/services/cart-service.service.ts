@@ -12,9 +12,7 @@ export class CartServiceService {
     this.loadCartItems()
   }
 
-  // Agregar un producto al carrito
   addToCart(item: CartItem) {
-    // Verificar si el item ya está en el carrito
     const existingItemIndex = this.cartItems.findIndex(cartItem => cartItem._id === item._id);
   
     if (existingItemIndex !== -1) {
