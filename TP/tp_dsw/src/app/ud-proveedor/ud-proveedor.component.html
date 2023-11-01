@@ -17,19 +17,20 @@
                 <button class="btn btn-primary btn-block" style="width: 48%;"  (click)="onBuscarClick()">Buscar</button>
               </div>
 
-            </div>
-              <div class="card-body" *ngIf="supplier">
-                <p class="card-text">Dirección: {{ supplier.data.address }}</p>
-                <p class="card-text">Cuit: {{ supplier.data.cuit }}</p>
-                <p class="card-text">Nombre: {{ supplier.data.businessName }}</p>
-                <p class="card-text">Teléfono {{ supplier.data.phoneNumber }}</p>
+            </div >
+
+              <div *ngIf="supplier" class="card-body">
+                <p class="card-text">Dirección: {{ supplier?.data?.address }}</p>
+                <p class="card-text">Cuit: {{ supplier?.data?.cuit }}</p>
+                <p class="card-text">Nombre: {{ supplier?.data?.businessName }}</p>
+                <p class="card-text">Teléfono {{ supplier?.data?.phoneNumber }}</p>
                 <div class="d-flex justify-content-between mt-4">
                   <button class="btn btn-danger  btn-block" (click)="deleteSupplier()"    >Eliminar Proveedor</button>
                 <button type="button" class="btn btn-warning" style="width: 48%;" (click)="openModal()">Actualizar Proveedor</button>
                 </div>
               </div>
 
-              <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': showModal }" ngIf="">
+              <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': showModal }" >
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -42,7 +43,7 @@
                       <form>
                         <div class="form-group">
                           <label for="newAddress">Nueva Dirección</label>
-                          <input type="text" class="form-control" id="newAddress" [(ngModel)]="supplier.data.address" name="newAddress">
+                          <input type="text" class="form-control" id="newAddress" [(ngModel)]="supplier?.data.address" name="newAddress">
                         </div>
                         <div class="form-group">
                           <label for="newPhoneNumber">Nuevo Teléfono</label>
