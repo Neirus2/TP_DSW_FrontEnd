@@ -42,8 +42,6 @@ export class SignupComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-  
-          // Muestra la alerta de error con el mensaje personalizado
           Swal.fire({
             icon: 'error',
             title: 'Registro fallido',

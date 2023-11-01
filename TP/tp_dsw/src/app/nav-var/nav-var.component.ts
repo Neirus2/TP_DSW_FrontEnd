@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import jwt_decode from 'jwt-decode';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-
+import { countService } from '../services/count-cart.service';
 @Component({
   selector: 'app-nav-var',
   templateUrl: './nav-var.component.html',
@@ -13,11 +13,14 @@ export class NavVarComponent implements OnInit {
   userRole: string | null = '';
   searchTerm: string = '';
   currentRoute: string = '';
-
+  productsInCart: number = 0;
   constructor(
     private router: Router,
-    public authService: AuthService
-  ) {
+    public authService: AuthService,
+    private countService: countService,
+  )
+  
+  {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -25,6 +28,18 @@ export class NavVarComponent implements OnInit {
           this.currentRoute = event.urlAfterRedirects || event.url;
         }
       });
+  }
+  ngOnInit(): void {
+    this.countService.productsInCart$.subscribe(value => {
+      this.productsInCart = value;
+    });
+    const authToken = this.authService.getToken();
+
+    if (authToken) {
+      const decodedToken: any = jwt_decode(authToken);
+      this.userRole = decodedToken.role;
+      console.log(this.userRole);
+    }
   }
 
   isProductosRoute(): boolean {
@@ -35,15 +50,6 @@ export class NavVarComponent implements OnInit {
     return this.userRole !== null && this.userRole !== undefined;
   }
 
-  ngOnInit(): void {
-    const authToken = this.authService.getToken();
-
-    if (authToken) {
-      const decodedToken: any = jwt_decode(authToken);
-      this.userRole = decodedToken.role;
-      console.log(this.userRole);
-    }
-  }
 
   searchProducts() {
     console.log(this.searchTerm);
