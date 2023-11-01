@@ -43,6 +43,7 @@ confirmarPedido() {
     this.orderService.createNewOrder(orderData).subscribe(
       (response) => {
         console.log('Pedido guardado con éxito:', response);
+        this.setProductsInCartToZero();
       },
       (error) => {
         console.error('Error al guardar el pedido:', error);
@@ -50,4 +51,8 @@ confirmarPedido() {
     );
   });
 }
+
+ setProductsInCartToZero() {
+    localStorage.setItem('productsInCart', '0');
+  }
 }

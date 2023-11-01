@@ -8,7 +8,7 @@ import { CartItem } from 'src/app/cart/art-item.model';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import jwt_decode from 'jwt-decode';
-
+import { countService } from 'src/app/services/count-cart.service';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -22,6 +22,7 @@ export class SingleProductComponent implements  OnInit {
   userRole: string | null = '';
   productQuantity: number = 1;
   productStock: any;
+  productsInCart: number=0;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,9 +31,15 @@ export class SingleProductComponent implements  OnInit {
     private router : Router,
     private cartService : CartServiceService,
     private authService: AuthService,
+    private countService: countService,
+
   ) {}
 
   ngOnInit() {
+    const productsInCart = localStorage.getItem('productsInCart');
+    if (productsInCart) {
+      this.productsInCart = parseInt(productsInCart, 10);
+    }
 
 
     const authToken = this.authService.getToken();
@@ -109,6 +116,9 @@ export class SingleProductComponent implements  OnInit {
       quantity: quantity,
     }
     this.cartService.addToCart(productToAdd);
+    this.productsInCart=this.productsInCart+quantity;
+    localStorage.setItem('productsInCart', this.productsInCart.toString());
+    this.countService.updateProductsInCartValue(this.productsInCart);
   }
 } 
 
