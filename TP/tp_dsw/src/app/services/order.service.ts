@@ -23,5 +23,10 @@ export class OrderService {
   getPedidosUsuario(userId: string) {
     return this.http.get(`${this.URL}/orders/${userId}`);
   }
+
+  cancelOrder(userId: string) {
+    const body = { status: 'cancelado' };
+    return this.http.patch(`${this.URL}/cancelOrder/${userId}`, body);
+  }
   
 }

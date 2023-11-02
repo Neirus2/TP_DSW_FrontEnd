@@ -116,7 +116,7 @@ export class SingleProductComponent implements  OnInit {
       quantity: quantity,
     }
     const respuesta = this.cartService.addToCart(productToAdd);
-    console.log(respuesta);
+    console.log(respuesta)
     if (respuesta) {
       this.productsInCart=this.productsInCart+quantity;
       localStorage.setItem('productsInCart', this.productsInCart.toString());

@@ -1,7 +1,11 @@
 <app-nav-var></app-nav-var>
 
 <div class="container">
-  <h2>Carrito de Compras</h2>
+  <div class="row">
+    <div class="col-12 text-center my-4">
+      <h2 style="color: #333; font-size: 28px;">Mi Carrito</h2>
+    </div>
+</div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -25,8 +29,9 @@
         </td>
       </tr>
     </tbody>
-  </table>
-  <p class="text-right">Total: {{ total | currency }}</p>
-
-  <button class="btn btn-success" (click)="confirmarPedido()">Confirmar Pedido</button>
+  </table>  
+  <div class="col-12 text-right my-4">
+      <p>Total: {{ total | currency }}</p>
+      <button class="btn btn-success" (click)="confirmarPedido()">Confirmar Pedido</button>
+  </div>
 </div>

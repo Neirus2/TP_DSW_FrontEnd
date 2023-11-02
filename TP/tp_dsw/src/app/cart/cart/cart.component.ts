@@ -64,4 +64,6 @@ confirmarPedido() {
  setProductsInCartToZero() {
     localStorage.setItem('productsInCart', '0');
   }
+
+
 }

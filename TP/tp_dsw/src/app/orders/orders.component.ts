@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -37,7 +38,35 @@ export class OrdersComponent implements OnInit{
     return fechaFormateada;
   }
 
- 
+cancelOrder(orderId: string) {
+  Swal.fire({
+    title: '¿Estás seguro de cancelar el pedido?',
+    text: "Esta acción no se puede deshacer",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, confirmar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.orderService.cancelOrder(orderId)
+      .subscribe({
+        next:res => {
+          Swal.fire('Confirmado', 'Pedido Cancelado', 'success').then(() => {
+            location.reload();
+          });
+        },
+        error:err => {
+          console.log(err);
+        }
+      }); 
+    }
+  });
+}
+
+
+
 
 
 }
