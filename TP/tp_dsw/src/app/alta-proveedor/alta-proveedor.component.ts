@@ -29,12 +29,26 @@ async createNewSupplier() {
           text: 'El CUIT ingresado ya existe en la base de datos.',
         });
       } else {
-       const dataSupplier ={ 
+        if (
+    !this.supplier.cuit ||
+    !this.supplier.businessName ||
+    !this.supplier.address ||
+    !this.supplier.phoneNumber
+    ){
+       Swal.fire({
+        icon: 'error',
+        title: 'Error al crear el supplier',
+        text: 'Debes rellenar los campos.',
+      });
+      
+    }else {
+  const dataSupplier ={ 
       cuit: this.supplier.cuit,
     businessName: this.supplier.businessName,
     address: this.supplier.address,
     phoneNumber: this.supplier.phoneNumber,
-}
+                           }
+    
     
     this.supplierService.createNewSupplier(dataSupplier)
       .subscribe(
@@ -58,6 +72,8 @@ async createNewSupplier() {
           }
         }
       );
+    }
+      
       }
     },
     (error) => {

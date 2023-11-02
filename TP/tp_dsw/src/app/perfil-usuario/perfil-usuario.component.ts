@@ -65,6 +65,7 @@ export class PerfilUsuarioComponent implements OnInit {
       this.http.post('http://localhost:3000/api/upload-profile-image', formData, { headers }).subscribe((response: any) => {
         this.imagePath = 'http://localhost:3000/uploadsProfileImages/' + response.imagePath;
         this.selectedImageFile = null;
+        window.location.reload();
       });
     }
   }
