@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { countService } from 'src/app/services/count-cart.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -49,31 +50,46 @@ removeFromCart(productId: string) {
 confirmarPedido() {
   this.authService.getUserData().subscribe((userData) => {
     const orderData = { items: this.cartItems, total: this.total, userId: userData.id };
-    this.orderService.createNewOrder(orderData).subscribe(
-      (response) => {
-        Swal.fire(
-            'Orden creada con éxito!!',
-            '',
-            'success'
-          );
-        this.setProductsInCartToZero();
-      },
-      (error) => {
-        console.error('Error al guardar el pedido:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Orden fallida',
-            text: error,
-          });
+    if ( orderData.items.length > 0)
+    {
+      this.orderService.createNewOrder(orderData).subscribe(
+
+      {
+
+        next:response => {
+          console.log('Pedido guardado con éxito:', response);
+          Swal.fire({
+        icon: 'success',
+        title: '¡Estado actualizado!',
+        text: `El pedido ha sido guardado con éxito`,
+      });
+          this.setProductsInCartToZero();
+          this.setPedToZero();
+        },
+        error:error => {
+          console.error('Error al guardar el pedido:', error);
+        }
       }
+
     );
+    }else
+    {
+      Swal.fire({
+        icon: 'warning',
+        title: 'No es posible realizar esta acción',
+        text: `Debe agregar items al carrito`,});
+    }
+    
   });
 }
 
  setProductsInCartToZero() {
     localStorage.setItem('productsInCart', '0');
-    this.countService.updateProductsInCartValue(this.productsInCart);
   }
 
-
+  setPedToZero(){
+    this.cartItems= [];
+    localStorage.setItem('cartItems','0');
+    this.total=0;
+  }
 }

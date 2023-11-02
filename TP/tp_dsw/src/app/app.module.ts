@@ -39,6 +39,7 @@ import { CategorySelectionService } from './services/category-selection-service.
 import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.component';
 import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
 import { OrdersComponent } from './orders/orders.component';
+import { PedidosAdminComponent } from './pedidos-admin/pedidos-admin.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { OrdersComponent } from './orders/orders.component';
     AltaProveedorComponent,
     UdProveedorComponent,
     OrdersComponent,
+    PedidosAdminComponent,
 
   ],
 

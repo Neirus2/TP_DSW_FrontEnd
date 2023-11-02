@@ -62,14 +62,19 @@ export class CartServiceService {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
-  private loadCartItems() {
+private loadCartItems() {
     const savedCartItems = localStorage.getItem('cartItems');
     if (savedCartItems) {
-      this.cartItems = JSON.parse(savedCartItems);
+      const parsedItems = JSON.parse(savedCartItems);
+
+      if (Array.isArray(parsedItems)) {
+        this.cartItems = parsedItems; // Si los datos guardados son un array, asignarlos directamente
+      } else {
+        this.cartItems = []; // Si no es un array, inicializar como un array vacío
+      }
     } else {
-      this.cartItems = [];
+      this.cartItems = []; // Si no hay datos guardados, inicializar como un array vacío
     }
   }
-
 }
 

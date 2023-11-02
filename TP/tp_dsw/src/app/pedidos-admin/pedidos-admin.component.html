@@ -1,0 +1,49 @@
+<app-nav-var></app-nav-var>
+<div class="container mt-5">
+  <h1>Pedidos</h1>
+
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let pedido of pedidos" class="card mb-3">
+        <div class="card-header">
+          <strong>ID del Pedido:</strong> {{ pedido._id }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Ítems:</h5>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let producto of pedido.items">
+              <strong>Producto</strong> {{ producto.desc }}<br>
+              <!-- <strong>Precio:</strong> ${{ producto.price }}<br>  no se si es necesario mostrarselo a quien arma el pedido-->
+              <strong>Cantidad:</strong> {{ producto.quantity }}<br>
+            </li>
+          </ul>
+          <p><strong>Total:</strong> ${{ pedido.total }}</p>
+          <p><strong>Estado:</strong> {{ pedido.status }}</p>
+          <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
+          <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': showModal }">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cambiar Estado del Pedido</h5>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Seleccione el nuevo estado para el pedido:</p>
+        <div>
+          <button class="btn btn-warning mr-2" (click)="cambiarEstado(selectedPedido,'En curso')">En Curso</button>
+          <button class="btn btn-danger" (click)="cambiarEstado(selectedPedido, 'Cancelado')">Cancelado</button>
+          <button class="btn btn-success" (click)="cambiarEstado(selectedPedido, 'Terminado')">Terminado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,15 +18,26 @@ export class OrderService {
   createNewOrder (orderData: any): Observable<any> {
     console.log('intente', orderData)
     return this.http.post<any>(this.URL + '/generateNewOrder', orderData);
-  }
+  };
 
   getPedidosUsuario(userId: string) {
     return this.http.get(`${this.URL}/orders/${userId}`);
-  }
+  };
 
   cancelOrder(userId: string) {
     const body = { status: 'cancelado' };
     return this.http.patch(`${this.URL}/cancelOrder/${userId}`, body);
+  };
+
+  getPedidos(){
+    return this.http.get(`${this.URL}/pedidos`);
+  };
+
+  cambiarEstado(pedId:string, nuevoEstado:string)
+  {
+    const body = { status: nuevoEstado};
+    console.log(body);
+    return this.http.patch(`${this.URL}/changeStatus/${pedId}`, body);
   }
   
 }
