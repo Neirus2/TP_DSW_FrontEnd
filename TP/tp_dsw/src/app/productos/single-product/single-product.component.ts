@@ -115,10 +115,13 @@ export class SingleProductComponent implements  OnInit {
       _id: this.productId,
       quantity: quantity,
     }
-    this.cartService.addToCart(productToAdd);
-    this.productsInCart=this.productsInCart+quantity;
-    localStorage.setItem('productsInCart', this.productsInCart.toString());
-    this.countService.updateProductsInCartValue(this.productsInCart);
+    const respuesta = this.cartService.addToCart(productToAdd);
+    console.log(respuesta);
+    if (respuesta) {
+      this.productsInCart=this.productsInCart+quantity;
+      localStorage.setItem('productsInCart', this.productsInCart.toString());
+      this.countService.updateProductsInCartValue(this.productsInCart);
+    }
   }
 } 
 

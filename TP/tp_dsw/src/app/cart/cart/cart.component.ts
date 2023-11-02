@@ -3,6 +3,7 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 import { CartItem } from '../art-item.model';
 import { OrderService } from 'src/app/services/order.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { countService } from 'src/app/services/count-cart.service';
 
 
 @Component({
@@ -13,11 +14,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total: number = 0;
+  productsInCart: number = 0;
 
   constructor(
     private cartService: CartServiceService,
     private orderService: OrderService,
     private authService: AuthService,
+    private countService: countService,
     ) {}
 
   ngOnInit(): void {
@@ -29,12 +32,18 @@ updateQuantity(productId: string, newQuantity: number) {
   this.cartService.updateQuantity(productId, newQuantity);
   this.cartItems = this.cartService.getCartItems();
   this.total = this.cartService.calculateTotal();
+  this.productsInCart = this.cartService.calculateProductsInCart();
+  localStorage.setItem('productsInCart', this.productsInCart.toString());
+  this.countService.updateProductsInCartValue(this.productsInCart);
 }
 
 removeFromCart(productId: string) {
   this.cartService.removeFromCart(productId);
   this.cartItems = this.cartService.getCartItems();
   this.total = this.cartService.calculateTotal();
+  this.productsInCart = this.cartService.calculateProductsInCart();
+  localStorage.setItem('productsInCart', this.productsInCart.toString());
+  this.countService.updateProductsInCartValue(this.productsInCart);
 }
 
 confirmarPedido() {

@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { countService } from '../services/count-cart.service';
+
+
 @Component({
   selector: 'app-nav-var',
   templateUrl: './nav-var.component.html',
@@ -14,6 +16,8 @@ export class NavVarComponent implements OnInit {
   searchTerm: string = '';
   currentRoute: string = '';
   productsInCart: number = 0;
+  productsInCartString: string = 'h';
+
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -33,6 +37,10 @@ export class NavVarComponent implements OnInit {
     this.countService.productsInCart$.subscribe(value => {
       this.productsInCart = value;
     });
+    const productsInCartString = localStorage.getItem('productsInCart');
+  if(productsInCartString != null) {
+    this.productsInCart = parseInt(productsInCartString);}
+
     const authToken = this.authService.getToken();
 
     if (authToken) {
