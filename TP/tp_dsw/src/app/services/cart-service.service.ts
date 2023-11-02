@@ -17,9 +17,11 @@ export class CartServiceService {
   
     if (existingItemIndex !== -1) {
       console.log("El item ya está en el carrito.");
+      return false
     } else {
       this.cartItems.push(item);
       this.saveCartItems();
+      return true;
     }
   }
   
@@ -51,6 +53,11 @@ export class CartServiceService {
   calculateTotal(): number {
     return this.cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
   }
+  
+  calculateProductsInCart(): number {
+    return this.cartItems.reduce((total, item) => total + item.quantity , 0);
+  }
+  
   private saveCartItems() {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
