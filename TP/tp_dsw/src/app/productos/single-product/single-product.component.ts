@@ -94,17 +94,32 @@ export class SingleProductComponent implements  OnInit {
         
         this.productService.deleteProduct(this.productId)
         .subscribe(
-          res => {
-            Swal.fire(
-              'Confirmado',
-              'La acción ha sido confirmada',
-              'success'
-            );
-            this.router.navigate(['/productos']);
-          },
-          (err) => {
-            console.log(err);
-            });       
+
+          {
+            next:res => {
+              Swal.fire(
+               'Confirmado',
+               'La acción ha sido confirmada',
+               'success'
+             );
+             this.router.navigate(['/productos']);
+            },
+            error:err => {
+              console.log(err);
+            }
+          }
+          // res => {
+          //   Swal.fire(
+          //     'Confirmado',
+          //     'La acción ha sido confirmada',
+          //     'success'
+          //   );
+          //   this.router.navigate(['/productos']);
+          // },
+          // (err) => {
+          //   console.log(err);
+          //   }
+          );       
       }
     });
   }

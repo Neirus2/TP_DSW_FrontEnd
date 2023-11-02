@@ -87,20 +87,38 @@ async getClienteCuil(cuit: string, authToken: string): Promise<any> {
     console.log('Este es el CUIT ingresado', cuit);
     
     this.http.get<any>(this.URL + `/user/${cuit}`, { headers }).subscribe(
-      (response) => {
-        if (response) {
-          console.log('Cliente encontrado:', response);
-          const cliente = response;
-          resolve(cliente); 
-        } else {
-          console.log('Cliente no encontrado');
-          reject('Cliente no encontrado'); 
-        }
-      },
-      (error) => {
-        console.error('Error en la solicitud HTTP', error);
-        reject(error);
+      {
+        next:response => {
+              if (response) {
+                console.log('Cliente encontrado:', response);
+                const cliente = response;
+                resolve(cliente); 
+            } else {
+                console.log('Cliente no encontrado');
+                reject('Cliente no encontrado'); 
+                   }
+                        },
+        error:error => {
+                  console.error('Error en la solicitud HTTP', error);
+                  reject(error);
+                     }
       }
+     
+     
+      // (response) => {
+      //   if (response) {
+      //     console.log('Cliente encontrado:', response);
+      //     const cliente = response;
+      //     resolve(cliente); 
+      //   } else {
+      //     console.log('Cliente no encontrado');
+      //     reject('Cliente no encontrado'); 
+      //   }
+      // },
+      // (error) => {
+      //   console.error('Error en la solicitud HTTP', error);
+      //   reject(error);
+      // }
     );
   });
 }
@@ -113,20 +131,37 @@ async getClienteEmail(cuit: string, authToken: string): Promise<any> {
     console.log('Este es el CUIT ingresado', cuit);
     
     this.http.get<any>(this.URL + `/user/${cuit}`, { headers }).subscribe(
-      (response) => {
-        if (response) {
+
+      {
+        next:response => {
+          if (response) {
           console.log('Cliente encontrado:', response);
           const cliente = response;
-          resolve(cliente); 
+           resolve(cliente); 
         } else {
-          console.log('Cliente no encontrado');
-          reject('Cliente no encontrado');
+           console.log('Cliente no encontrado');
+           reject('Cliente no encontrado');
+         }
+        },
+        error:error => {
+          console.error('Error en la solicitud HTTP', error);
+          reject(error);
         }
-      },
-      (error) => {
-        console.error('Error en la solicitud HTTP', error);
-        reject(error); 
       }
+      // (response) => {
+      //   if (response) {
+      //     console.log('Cliente encontrado:', response);
+      //     const cliente = response;
+      //     resolve(cliente); 
+      //   } else {
+      //     console.log('Cliente no encontrado');
+      //     reject('Cliente no encontrado');
+      //   }
+      // },
+      // (error) => {
+      //   console.error('Error en la solicitud HTTP', error);
+      //   reject(error); 
+      // }
     );
   });
 }

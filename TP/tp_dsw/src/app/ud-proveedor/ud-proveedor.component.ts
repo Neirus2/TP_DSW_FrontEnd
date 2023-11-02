@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierService } from '../services/supplier.service';
 import Swal from 'sweetalert2';
+import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-ud-proveedor',
   templateUrl: './ud-proveedor.component.html',
@@ -25,7 +26,7 @@ closeModal() {
 
      async onBuscarClick() {
     try {
-      const supplier = await this.supplierService.getSupplierCuit(this.cuit).toPromise();
+      const supplier = await firstValueFrom(this.supplierService.getSupplierCuit(this.cuit)); //aca usabamos el .toPromise pero estaba deprecado
       console.log('sup del component', supplier);
       this.supplier = supplier;
     } catch (error) {
@@ -49,22 +50,44 @@ closeModal() {
       if (result.isConfirmed) {
         this.supplierService.deleteSupplier(this.supplier.data._id)
         .subscribe(
-          res => {
-            Swal.fire(
-              'Confirmado',
-              'La acción ha sido confirmada',
-              'success'
-            );
-            this.supplier= null;
-            this.cuit = '';
-          },
-          (err) => {Swal.fire(
-            'Denegado',
-            'El supplier no ha podido ser eliminado',
-            'warning',
-          );
-            console.log(err);
-            });       
+          { next:response => {
+                      Swal.fire(
+                        'Confirmado',
+                        'La acción ha sido confirmada',
+                        'success'
+                      );
+                      this.supplier= null;
+                      this.cuit = '';
+
+                             },
+            error:error => {
+                      Swal.fire(
+                        'Denegado',
+                        'El supplier no ha podido ser eliminado',
+                        'warning',
+                              );
+                      console.log(error);
+
+                           }
+          }
+         
+          // res => {
+          //   Swal.fire(
+          //     'Confirmado',
+          //     'La acción ha sido confirmada',
+          //     'success'
+          //   );
+          //   this.supplier= null;
+          //   this.cuit = '';
+          // },
+          // (err) => {Swal.fire(
+          //   'Denegado',
+          //   'El supplier no ha podido ser eliminado',
+          //   'warning',
+          // );
+          //   console.log(err);
+          //   }
+          );       
       }
     });
   
@@ -75,13 +98,24 @@ closeModal() {
         address: this.supplier.data.address,
         phoneNumber: this.supplier.data.phoneNumber
       }).subscribe(
-        res => {
-          Swal.fire('Proveedor actualizado con éxito', '', 'success');
-          this.closeModal();
-        },
-        err => {
-          Swal.fire('Error al actualizar el proveedor', err.error, 'error');
+
+        {
+          next:response => { Swal.fire('Proveedor actualizado con éxito', '', 'success');
+                            this.closeModal();
+                           },
+          error:error => {Swal.fire('Error al actualizar el proveedor', error.error, 'error');},
+
         }
+
+        // res => {
+        //   Swal.fire('Proveedor actualizado con éxito', '', 'success');
+        //   this.closeModal();
+        // },
+        // err => {
+        //   Swal.fire('Error al actualizar el proveedor', err.error, 'error');
+        // }
+
+
       );
 
       this.newAddress = '';

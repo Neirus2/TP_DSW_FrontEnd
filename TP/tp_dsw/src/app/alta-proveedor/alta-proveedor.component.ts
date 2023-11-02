@@ -19,6 +19,7 @@ export class AltaProveedorComponent {
 
 async createNewSupplier() {
   this.supplierService.getSupplierCuit(this.supplier.cuit).subscribe(
+    
     (response) => {
       console.log('Respuesta de la verificación de CUIT:', response);
       if (response && response.cuitExists) {
@@ -34,25 +35,27 @@ async createNewSupplier() {
     address: this.supplier.address,
     phoneNumber: this.supplier.phoneNumber,
 }
-    console.log("tjisupllier",this.supplier);
+    
     this.supplierService.createNewSupplier(dataSupplier)
       .subscribe(
-        res => {
-          console.log(res);
-          Swal.fire(
-            'Proveedor creado con éxito!!',
-            '',
-            'success'
-          );
-          this.resetForm();
-        },
-        err => {
-          console.log(err);
-          Swal.fire({
-            icon: 'error',
-            title: 'Registro fallido',
-            text: err.error,
-          });
+        {
+          next:res => {
+            console.log(res);
+           Swal.fire(
+             'Proveedor creado con éxito!!',
+             '',
+             'success'
+           );
+           this.resetForm();
+          },
+          error:err=> {
+            console.log(err);
+           Swal.fire({
+             icon: 'error',
+             title: 'Registro fallido',
+             text: err.error,
+           });
+          }
         }
       );
       }
@@ -67,6 +70,7 @@ async createNewSupplier() {
     }
   );
 }
+
 
   resetForm() {
     this.supplier = {

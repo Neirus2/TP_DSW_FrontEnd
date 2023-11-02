@@ -59,23 +59,42 @@ export class NuevoProductoComponent implements OnInit {
 
     this.productService.createNewProduct(formData)
       .subscribe(
-        res => {
-          console.log(res);
-          Swal.fire(
-            'Producto creado con éxito!!',
-            '',
+        {
+          next:res => {
+            console.log(res);
+           Swal.fire(
+             'Producto creado con éxito!!',
+             '',
             'success'
-          );
-        },
-        (err) => {
-          console.log(err);
+           );
+          },
+          error:err => {
+            console.log(err);
 
-          Swal.fire({
-            icon: 'error',
-            title: 'Registro fallido',
-            text: err.error,
-          });
+           Swal.fire({
+             icon: 'error',
+             title: 'Registro fallido',
+             text: err.error,
+           });
+          }
         }
+        // res => {
+        //   console.log(res);
+        //   Swal.fire(
+        //     'Producto creado con éxito!!',
+        //     '',
+        //     'success'
+        //   );
+        // },
+        // (err) => {
+        //   console.log(err);
+
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Registro fallido',
+        //     text: err.error,
+        //   });
+        // }
       );
 
     this.product.desc = '';
