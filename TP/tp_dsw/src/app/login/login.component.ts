@@ -34,30 +34,56 @@ sanitizeInput(input: string): SafeHtml {
     // this.user.password = this.sanitizeInput(this.user.password) as string;
     this.authService.logIn(this.user) 
       .subscribe(
-        res => {
-          console.log(res);
+        {
+          next:res => {
+            console.log(res);
 
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/']);
-        },
-        (err) => {
-          console.log(err);
+           localStorage.setItem('token', res.token);
+           this.router.navigate(['/']);
+          },
+          error:err => {
+            console.log(err);
 
-        let errorMessage = 'Inicio de sesión fallido. Por favor, inténtelo de nuevo.';
+         let errorMessage = 'Inicio de sesión fallido. Por favor, inténtelo de nuevo.';
 
-        if (err.status === 401) {
-          errorMessage = 'Credenciales incorrectas. Por favor, verifique su nombre de usuario y contraseña.';
-        } else if (err.status === 403) {
+         if (err.status === 401) {
+           errorMessage = 'Credenciales incorrectas. Por favor, verifique su nombre de usuario y contraseña.';
+         } else if (err.status === 403) {
           errorMessage = 'Acceso denegado. No tiene permiso para acceder a esta página.';
-        } 
+         } 
 
         Swal.fire({
-          icon: 'error',
-          title: 'Inicio de sesión fallido',
-          text: err.error,
-          timer: 1000,
-        });
+           icon: 'error',
+           title: 'Inicio de sesión fallido',
+           text: err.error,
+           timer: 1000,
+         });
+          }
         }
+        // res => {
+        //   console.log(res);
+
+        //   localStorage.setItem('token', res.token);
+        //   this.router.navigate(['/']);
+        // },
+        // (err) => {
+        //   console.log(err);
+
+        // let errorMessage = 'Inicio de sesión fallido. Por favor, inténtelo de nuevo.';
+
+        // if (err.status === 401) {
+        //   errorMessage = 'Credenciales incorrectas. Por favor, verifique su nombre de usuario y contraseña.';
+        // } else if (err.status === 403) {
+        //   errorMessage = 'Acceso denegado. No tiene permiso para acceder a esta página.';
+        // } 
+
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Inicio de sesión fallido',
+        //   text: err.error,
+        //   timer: 1000,
+        // });
+        // }
       );
   }
 

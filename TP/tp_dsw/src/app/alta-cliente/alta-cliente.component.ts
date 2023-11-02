@@ -61,24 +61,47 @@ export class AltaClienteComponent implements OnInit {
       if (result.isConfirmed) {
         this.authService.deleteCliente(this.cliente._id)
         .subscribe(
-          res => {
-            Swal.fire(
-              'Confirmado',
-              'La acción ha sido confirmada',
-              'success'
-            );
-            this.cliente= null;
-            this.cuit = '';
-            this.clienteEliminado= true;
-            this.clienteModificado= false;
+
+        {
+          next:res => {
+               Swal.fire(
+               'Confirmado',
+               'La acción ha sido confirmada',
+               'success'
+             );
+             this.cliente= null;
+             this.cuit = '';
+             this.clienteEliminado= true;
+             this.clienteModificado= false;
           },
-          (err) => {Swal.fire(
-            'Denegado',
-            'El usuario no ha podido ser eliminado',
-            'warning',
-          );
-            console.log(err);
-            });       
+          error:err => {
+              Swal.fire(
+             'Denegado',
+             'El usuario no ha podido ser eliminado',
+             'warning',
+           );
+             console.log(err);
+          }
+        }
+          // res => {
+          //   Swal.fire(
+          //     'Confirmado',
+          //     'La acción ha sido confirmada',
+          //     'success'
+          //   );
+          //   this.cliente= null;
+          //   this.cuit = '';
+          //   this.clienteEliminado= true;
+          //   this.clienteModificado= false;
+          // },
+          // (err) => {Swal.fire(
+          //   'Denegado',
+          //   'El usuario no ha podido ser eliminado',
+          //   'warning',
+          // );
+          //   console.log(err);
+          //   }
+          );       
       }
     });
   
@@ -98,24 +121,46 @@ asignPrivileges(){
     if (result.isConfirmed) {
       this.authService.asignPrivileges(this.cliente._id)
       .subscribe(
-        res => {
-          Swal.fire(
-            'Confirmado',
-            'La acción ha sido confirmada',
-            'success'
-          );
-          this.cliente= null;
-          this.cuit = '';
-          this.clienteModificado= true;
-          this.clienteEliminado= false;
-        },
-        (err) => {Swal.fire(
-          'Denegado',
-          'El usuario no ha podido ser eliminado',
-          'warning',
+        {
+          next:res => {
+             Swal.fire(
+             'Confirmado',
+             'La acción ha sido confirmada',
+             'success'
+           );
+         this.cliente= null;
+           this.cuit = '';
+           this.clienteModificado= true;
+           this.clienteEliminado= false;
+          },
+          error:err => {
+              Swal.fire(
+           'Denegado',
+           'El usuario no ha podido ser eliminado',
+           'warning',
         );
-          console.log(err);
-          });       
+           console.log(err);
+          }
+        }
+        // res => {
+        //   Swal.fire(
+        //     'Confirmado',
+        //     'La acción ha sido confirmada',
+        //     'success'
+        //   );
+        //   this.cliente= null;
+        //   this.cuit = '';
+        //   this.clienteModificado= true;
+        //   this.clienteEliminado= false;
+        // },
+        // (err) => {Swal.fire(
+        //   'Denegado',
+        //   'El usuario no ha podido ser eliminado',
+        //   'warning',
+        // );
+        //   console.log(err);
+        //   }
+        );       
     }
   });
 };

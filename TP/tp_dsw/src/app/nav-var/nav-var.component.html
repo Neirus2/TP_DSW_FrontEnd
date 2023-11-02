@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-expand-lg " style="background-color: #FFFFFF;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">MPS S.A</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,16 +25,17 @@
                     <app-down-comp *ngIf="isProductosRoute()"></app-down-comp>
                 </li>
             </ul>
-            <div class="col-auto">
+            <div class="d-flex align-items-center ">
+            <div class="col-auto d-flex">
             <input  class="form-control "  type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()" placeholder="Buscar producto">
             </div>
             <form class="form-inline" role="search">         
-                <button class="btn btn-light" type="submit" (click)="searchProducts()">
+                <button class="btn btn-light d-flex align-items-center" type="submit" (click)="searchProducts()">
                     <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
                 </button>
             </form>
-            <form class="d-flex">
-                <button class="btn btn-light" routerLink="/cart">
+            <form class="d-flex ">
+                <button class="btn btn-light d-flex align-items-center" routerLink="/cart">
                     <i class="fa-solid fa-cart-shopping fa-bounce" style="color: #000000;"></i>
                     <span class="badge rounded-pill bg-primary">{{ productsInCart }}</span>
                 </button>
@@ -42,19 +43,20 @@
             <ul class="navbar-nav ml-auto">
                 <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="/login">
+                        <a class="nav-link active d-flex align-items-center" aria-current="page" routerLink="/login">
                             <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
                         </a>
                     </li>
                 </ng-container>
                 <ng-template #loggedIn>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="/perfilUsuario">
+                        <a class="nav-link active d-flex align-items-center" aria-current="page" routerLink="/perfilUsuario">
                             <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
                         </a>
                     </li>
                 </ng-template>
             </ul>
+            </div>
         </div>
     </div>
 </nav>

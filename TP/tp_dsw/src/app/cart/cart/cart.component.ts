@@ -4,7 +4,7 @@ import { CartItem } from '../art-item.model';
 import { OrderService } from 'src/app/services/order.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { countService } from 'src/app/services/count-cart.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -51,11 +51,20 @@ confirmarPedido() {
     const orderData = { items: this.cartItems, total: this.total, userId: userData.id };
     this.orderService.createNewOrder(orderData).subscribe(
       (response) => {
-        console.log('Pedido guardado con éxito:', response);
+        Swal.fire(
+            'Orden creada con éxito!!',
+            '',
+            'success'
+          );
         this.setProductsInCartToZero();
       },
       (error) => {
         console.error('Error al guardar el pedido:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Orden fallida',
+            text: error,
+          });
       }
     );
   });
@@ -63,5 +72,6 @@ confirmarPedido() {
 
  setProductsInCartToZero() {
     localStorage.setItem('productsInCart', '0');
+    this.countService.updateProductsInCartValue(this.productsInCart);
   }
 }

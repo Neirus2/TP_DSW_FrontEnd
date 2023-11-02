@@ -35,19 +35,39 @@ export class SignupComponent implements OnInit {
   signUp() {
     this.authService.signUp(this.user)
       .subscribe(
-        res => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/login'])
-        },
-        (err) => {
-          console.log(err);
-          Swal.fire({
+        {
+          next:response =>{
+            Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: '',
+           })
+            console.log(response);
+            localStorage.setItem('token', response.token);
+            this.router.navigate(['/login'])
+          },
+          error:err =>{
+            console.log(err);
+            Swal.fire({
             icon: 'error',
             title: 'Registro fallido',
             text: err.error,
-          });
+           });
+          }
         }
+        // res => {
+        //   console.log(res);
+        //   localStorage.setItem('token', res.token);
+        //   this.router.navigate(['/login'])
+        // },
+        // (err) => {
+        //   console.log(err);
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: 'Registro fallido',
+        //     text: err.error,
+        //   });
+        // }
         )
   }
 

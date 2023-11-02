@@ -33,18 +33,34 @@ export class EditProductModalComponent implements OnInit {
 
   saveChanges() {
     this.productService.updateProduct(this.editedProduct, this.editedProduct._id).subscribe(
-      res => {
-        Swal.fire('Producto actualizado con éxito!!', '', 'success');
-        console.log("editedProduct",res);
-      },
-      (err) => {
-        console.log(err);
-        Swal.fire({
-          icon: 'error',
-          title: 'Actualización fallida',
-          text: err.error,
-        });
+      
+      {
+        next:res => {
+          Swal.fire('Producto actualizado con éxito!!', '', 'success');
+          console.log("editedProduct",res);
+        },
+        error:err => {
+          console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Actualización fallida',
+            text: err.error,
+         });
+        }
+
       }
+      // res => {
+      //   Swal.fire('Producto actualizado con éxito!!', '', 'success');
+      //   console.log("editedProduct",res);
+      // },
+      // (err) => {
+      //   console.log(err);
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Actualización fallida',
+      //     text: err.error,
+      //   });
+      // }
     );
 
     this.activeModal.close(this.editedProduct);
