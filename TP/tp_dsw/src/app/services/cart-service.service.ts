@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../cart/art-item.model';
-
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +17,10 @@ export class CartServiceService {
   
     if (existingItemIndex !== -1) {
       console.log("El item ya está en el carrito.");
+      Swal.fire({
+      title: 'Producto repetido',
+      text: "Puedes agregar más de este producto yendo a tu carrito",
+      icon: 'warning'});
       return false
     } else {
       this.cartItems.push(item);
