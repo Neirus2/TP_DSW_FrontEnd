@@ -37,7 +37,9 @@ export class CartServiceService {
   updateQuantity(productId: string, newQuantity: number) {
     const item = this.cartItems.find((cartItem) => cartItem._id === productId);
     if (item) {
-      item.quantity = newQuantity;
+      if(item.stock >= newQuantity) {
+        item.quantity = newQuantity;
+      }     
       if(item.quantity < 1) {
         item.quantity = 1
       }

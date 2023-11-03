@@ -51,4 +51,10 @@ export class ProductService {
     return this.http.get<any[]>(url);
  
   }
+
+  restarStock(orderData: any) {
+    console.log(orderData);
+    const url = `${this.URL}/orderStockProduct`;
+    return this.http.patch(url, {orderData});
+  }
 }

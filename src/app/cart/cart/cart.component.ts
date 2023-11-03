@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { countService } from 'src/app/services/count-cart.service';
 import Swal from 'sweetalert2';
+import { ProductService } from 'src/app/services/product.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class CartComponent implements OnInit {
     private orderService: OrderService,
     private authService: AuthService,
     private countService: countService,
+    private productService: ProductService
     ) {}
 
   ngOnInit(): void {
@@ -55,16 +57,21 @@ confirmarPedido() {
       this.orderService.createNewOrder(orderData).subscribe(
 
       {
-
         next:response => {
           console.log('Pedido guardado con éxito:', response);
           Swal.fire({
-        icon: 'success',
-        title: '¡Estado actualizado!',
-        text: `El pedido ha sido guardado con éxito`,
+            icon: 'success',
+            title: '¡Estado actualizado!',
+            text: `El pedido ha sido guardado con éxito`,
       });
           this.setProductsInCartToZero();
           this.setPedToZero();
+          this.productService.restarStock(orderData).subscribe(
+            {
+              next:res => {console.log('Stock Actualizado')},
+              error:err => {console.log('Error al actualizar el stock')}
+            }
+          )
         },
         error:error => {
           console.error('Error al guardar el pedido:', error);
@@ -92,4 +99,5 @@ confirmarPedido() {
     localStorage.setItem('cartItems','0');
     this.total=0;
   }
+
 }
