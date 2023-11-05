@@ -1,0 +1,41 @@
+@media (max-width: 1200px){ 
+    .botonNormal {
+        flex: 0 0 100%;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px; 
+    } 
+    .botonLargo {
+        flex: 0 0 100%;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;  
+    }
+    .pannelBttn {
+        text-align: center;
+    } 
+    .divPannel {
+        flex-direction: column;
+    }
+}
+
+
+@media (min-width: 1201px){ 
+.botonNormal {
+    width: 250px;
+} 
+.botonLargo {
+    width: 519px;
+}
+.pannelBttn {
+    flex: 0 0 50%; 
+    max-width: 50%;
+    margin-bottom: 1rem;
+    text-align: center;
+} 
+.divPannel {
+    flex-direction: row;
+}
+}

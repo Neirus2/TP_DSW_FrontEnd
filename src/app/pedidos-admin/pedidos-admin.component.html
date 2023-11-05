@@ -1,6 +1,10 @@
 <app-nav-var></app-nav-var>
-<div class="container mt-5">
-  <h1>Pedidos</h1>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12 text-center my-4">
+      <h2 style="color: #333; font-size: 28px;">Pedidos</h2>
+    </div>
+</div>
 
   <div class="row">
     <div class="col">
@@ -17,10 +21,12 @@
               <strong>Cantidad:</strong> {{ producto.quantity }}<br>
             </li>
           </ul>
-          <p><strong>Total:</strong> ${{ pedido.total }}</p>
-          <p><strong>Estado:</strong> {{ pedido.status }}</p>
-          <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
-          <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <p><strong>Total:</strong> ${{ pedido.total }}</p>
+            <p><strong>Estado:</strong> {{ pedido.status }}</p>
+            <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
+            <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
+          </div>
         </div>
       </div>
     </div>
@@ -38,10 +44,10 @@
       </div>
       <div class="modal-body">
         <p>Seleccione el nuevo estado para el pedido:</p>
-        <div>
-          <button class="btn btn-warning mr-2" (click)="cambiarEstado(selectedPedido,'En curso')">En Curso</button>
-          <button class="btn btn-danger" (click)="cambiarEstado(selectedPedido, 'Cancelado')">Cancelado</button>
-          <button class="btn btn-success" (click)="cambiarEstado(selectedPedido, 'Terminado')">Terminado</button>
+        <div class="text-center">
+          <button class="btn btn-warning mx-2" (click)="cambiarEstado(selectedPedido,'En curso')">En Curso</button>
+          <button class="btn btn-danger mx-2" (click)="cambiarEstado(selectedPedido, 'Cancelado')">Cancelado</button>
+          <button class="btn btn-success mx-2" (click)="cambiarEstado(selectedPedido, 'Terminado')">Terminado</button>
         </div>
       </div>
     </div>
