@@ -1,4 +1,5 @@
 .background-radial-gradient {
+  min-height: 950px;
   background-color: hsl(218, 41%, 15%);
   background-image: radial-gradient(650px circle at 0% 0%,
       hsl(218, 41%, 35%) 15%,
@@ -36,4 +37,16 @@
 .bg-glass {
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
+}
+
+.link {
+  color: rgb(0, 102, 255);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

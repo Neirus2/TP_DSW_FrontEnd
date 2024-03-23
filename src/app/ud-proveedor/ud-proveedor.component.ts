@@ -9,31 +9,112 @@ import { firstValueFrom } from 'rxjs';
 })
 export class UdProveedorComponent {
   cuit: string = '';
+  foundCuil: boolean = false;
+  foundSuppliers: any[] = [];
   newAddress: string = '';
   newPhoneNumber: string = '';
   showModal: boolean = false;
-  public supplier: any = null; 
+  supplier: any = null; 
+
   constructor(
       private supplierService: SupplierService,
   ){}
+  
 openModal() {
     this.showModal = true;
   }
 closeModal() {
     this.showModal = false;
   }
+
     ngOnInit(): any {};
 
-     async onBuscarClick() {
+    async onBuscarClick() {
+  try {
+    // Si el término de búsqueda es un número, asumimos que es un CUIT
+   if (!isNaN(Number(this.cuit))) {
+      const supplier = await firstValueFrom(this.supplierService.getSupplierCuit(this.cuit));
+      if (supplier !== null) {
+        this.foundCuil = true;
+        this.supplier = supplier;
+      } else {
+        this.foundCuil = false;
+        this.supplier = null;
+        Swal.fire(
+          'Denegado',
+          'No se encontraron proveedores',
+          'warning'
+        );
+      }
+    } else {
+      // Si no es un número, asumimos que es un nombre y buscamos por nombre
+      console.log('buscamos por nombre')
+      const suppliers = await this.supplierService.searchSuppliers(this.cuit);
+      if (suppliers && suppliers.length > 0) {
+        console.log('es verdadero');
+        console.log(suppliers)
+        this.foundCuil = true;
+        this.foundSuppliers = suppliers;
+        console.log(this.foundSuppliers)
+      } else {
+        console.log('es falso');
+        this.foundCuil = false;
+        this.supplier = null;
+        Swal.fire(
+          'Denegado',
+          'No se encontraron proveedores',
+          'warning',
+    );
+  }
+    }
+  } catch (error) {
+    Swal.fire(
+      'Denegado',
+      'Error al buscar los proveedores',
+      'warning',
+    );
+    console.error('Error al buscar los proveedores', error);
+  }
+}
+
+async onSupplierSelect(supplier: any) {
+  try {
+    const selectedSupplier = supplier;
+    console.log(selectedSupplier);
+    const sup = await firstValueFrom(this.supplierService.getSupplierCuit(selectedSupplier));
+  } catch (error) {
+    console.error('Error al obtener el proveedor', error);
+  }
+}
+
+  /*   async onBuscarClick() {
     try {
+       if (!isNaN(Number(this.cuit))) {
       const supplier = await firstValueFrom(this.supplierService.getSupplierCuit(this.cuit)); //aca usabamos el .toPromise pero estaba deprecado
       console.log('sup del component', supplier);
-      this.supplier = supplier;
+      this.supplier = supplier;}
+      else {
+        const suppliers = await this.supplierService.searchSuppliers(this.cuit);
+        console.log(suppliers)
+        if (suppliers && suppliers.length > 0) {
+        this.foundCuil = true;
+        this.foundSuppliers = suppliers;
+      } }
     } catch (error) {
       Swal.fire('Denegado', 'El proveedor no existe', 'warning');
       console.error('Error al buscar el proveedor', error);
     }
   };
+
+  async onSupplierSelect(supplier: any) {
+  try {
+    const selectedSupplier = supplier;
+    console.log(selectedSupplier)
+    const sup = await firstValueFrom(this.supplierService.getSupplierCuit(this.cuit));
+  } catch (error) {
+    console.error('Error al obtener el cliente', error);
+  }
+}*/
 
   deleteSupplier() {
     Swal.fire({
@@ -48,7 +129,7 @@ closeModal() {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        this.supplierService.deleteSupplier(this.supplier.data._id)
+        this.supplierService.deleteSupplier(this.supplier._id)
         .subscribe(
           { next:response => {
                       Swal.fire(
@@ -92,11 +173,12 @@ closeModal() {
     });
   
   };
+
   updateSupplierDetails(){
-     if (this.supplier.data.address && this.supplier.data.phoneNumber) {
-      this.supplierService.updateDetails(this.supplier.data._id, {
-        address: this.supplier.data.address,
-        phoneNumber: this.supplier.data.phoneNumber
+     if (this.supplier.address && this.supplier.phoneNumber) {
+      this.supplierService.updateDetails(this.supplier._id, {
+        address: this.supplier.address,
+        phoneNumber: this.supplier.phoneNumber
       }).subscribe(
 
         {

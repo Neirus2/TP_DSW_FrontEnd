@@ -1,4 +1,5 @@
 <app-nav-var></app-nav-var>
+
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -13,15 +14,15 @@
               <input type="number" class="form-control" id="cuit" [(ngModel)]="supplier.cuit" name="cuit" required>
             </div>
             <div class="form-group">
-              <label for="nombre">Nombre:</label>
+              <label for="businessName">Nombre:</label>
               <input type="text" class="form-control" id="businessName" [(ngModel)]="supplier.businessName" name="businessName" required>
             </div>
             <div class="form-group">
-              <label for="item">Dirección:</label>
-              <input type="text" class="form-control" id="address" [(ngModel)]="supplier.address" name="address" required>
+              <label for="address">Dirección:</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="supplier.address" name="address" required autocomplete="address">
             </div>
                 <div class="form-group">
-                  <label for="item">Teléfono:</label>
+                  <label for="phoneNumber">Teléfono:</label>
                   <input type="number" class="form-control" id="phoneNumber" [(ngModel)]="supplier.phoneNumber" name="phoneNumber" required>
                 </div>
             <div class="d-flex justify-content-between mt-4">

@@ -33,7 +33,7 @@
     "nodemailer": "^6.9.5",
     "rfs": "^10.0.0",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.6.13",
+    "sweetalert2": "^11.10.5",
     "tslib": "^2.3.0",
     "validator": "^13.11.0",
     "xss-clean": "^0.1.4",

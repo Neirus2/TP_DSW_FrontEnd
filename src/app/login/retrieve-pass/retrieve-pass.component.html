@@ -1,34 +1,61 @@
-<!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
-
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-    <div class="row gx-lg-5 align-items-center mb-5">
-  
-      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+    <div class="todo row gx-lg-5 align-items-center mb-5">
+      <div class="cuadrito col-lg-6 mb-5 mb-lg-0 position-relative">
         <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong d-none d-lg-block"></div>
         <div id="radius-shape-2" class="position-absolute shadow-5-strong d-none d-lg-block"></div>
+        <h1 class="text-center mb-4" style="color: hsl(218, 81%, 95%)">Recuperar Contraseña</h1>
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form >
-                
+            <form *ngIf="!showVerificationForm" (ngSubmit)="getUser(email)">
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
+                <input type="email" id="form3Example3" class="form-control" [(ngModel)]="email" name="email" autocomplete="email"/>
                 <label class="form-label" for="form3Example3">Ingrese su email</label>
               </div>
-
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block">
                 Recuperar Contraseña
               </button>
-              <div class="container text-center">
-                <p> <a routerLink="/login">Volver al login</a></p>
-              </div>
             </form>
+
+            <form *ngIf="showVerificationForm && !setPassword" (ngSubmit)="verifyCode(verificationCode)">
+              <div class="form-outline mb-4">
+                <input type="text" id="verificationCode" class="form-control" [(ngModel)]="verificationCode"
+                  name="verificationCode" />
+                <label class="form-label" for="verificationCode">Ingrese el código de verificación de 6 caracteres enviado a su mail</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block">
+                Verificar Código
+              </button>
+            </form>
+
+            <div *ngIf="showVerificationForm && !setPassword" class="container text-center">
+              <p> <a (click)="reloadPage()" class="link">Volver a ingresar el mail</a></p>
+            </div>
+
+            <form *ngIf="setPassword" (ngSubmit)="getNewPassword()">
+              <!-- Nueva contraseña input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example3" class="form-control" [(ngModel)]="newPassword" name="newPassword" />
+                <label class="form-label" for="form3Example3">Ingrese su nueva contraseña</label>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control" [(ngModel)]="newPassword2" name="newPassword2" />
+                <label class="form-label" for="form3Example3">Confirme su nueva contraseña</label>
+              </div>
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4 mx-auto d-block">
+                Aceptar
+              </button>
+            </form>
+
+            <div class="container text-center">
+              <p> <a routerLink="/login">Volver al login</a></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- Section: Design Block -->

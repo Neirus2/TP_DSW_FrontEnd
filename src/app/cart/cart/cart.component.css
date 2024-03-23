@@ -1,0 +1,36 @@
+.quantities {
+  display: flex;
+  align-items: center;
+}
+
+.quantities button {
+  margin: 0 8px;
+}
+
+.delete-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {  
+  .quantities {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  }

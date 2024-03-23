@@ -19,10 +19,10 @@ export class AltaProveedorComponent {
 
 async createNewSupplier() {
   this.supplierService.getSupplierCuit(this.supplier.cuit).subscribe(
-    
-    (response) => {
+    {
+    next: response => {
       console.log('Respuesta de la verificación de CUIT:', response);
-      if (response && response.cuitExists) {
+      if (response && response.cuit) {
         Swal.fire({
           icon: 'error',
           title: 'Error al crear proveedor',
@@ -76,14 +76,15 @@ async createNewSupplier() {
       
       }
     },
-    (error) => {
-      console.log('Error al verificar el CUIT:', error);
+    error: err => {
+      console.log('Error al verificar el CUIT:', err);
       Swal.fire({
         icon: 'error',
         title: 'Error al verificar el CUIT',
         text: 'Ocurrió un error al verificar el CUIT en la base de datos.',
       });
     }
+  }
   );
 }
 

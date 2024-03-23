@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { countService } from '../services/count-cart.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { countService } from '../services/count-cart.service';
   styleUrls: ['./nav-var.component.css']
 })
 export class NavVarComponent implements OnInit {
+  isNavOpen = false;
   userRole: string | null = '';
   searchTerm: string = '';
   currentRoute: string = '';
@@ -22,6 +24,7 @@ export class NavVarComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     private countService: countService,
+    private route: ActivatedRoute
   )
   
   {
@@ -50,8 +53,25 @@ export class NavVarComponent implements OnInit {
     }
   }
 
+  toggleNav() {
+  this.isNavOpen = !this.isNavOpen;
+  if (this.isNavOpen) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = ''; 
+    }
+}
+
   isProductosRoute(): boolean {
     return this.currentRoute.includes('/productos');
+  }
+
+  isStockRoute(): boolean {
+  return this.currentRoute.includes('/ingreso-stock');
+}
+
+  isOrdersRoute(): boolean {
+    return this.currentRoute.includes('/pedidos');
   }
 
   isUserRoleDefined(): boolean {
@@ -59,10 +79,24 @@ export class NavVarComponent implements OnInit {
   }
 
 
-  searchProducts() {
-    console.log(this.searchTerm);
-    if (this.searchTerm) {
-      this.router.navigate(['/productos'], { queryParams: { q: this.searchTerm } });
-    }
+searchProducts() {
+  console.log(this.searchTerm);
+
+  if (this.searchTerm) {
+    this.router.navigate([], { relativeTo: this.route, queryParams: { q: this.searchTerm } });
   }
+  else {
+    this.router.navigate([], { relativeTo: this.route });
+  }
+}
+
+searchOrders() {
+  if(this.searchTerm) {
+    this.router.navigate([], { relativeTo: this.route, queryParams: { q: this.searchTerm }});
+  }
+  else {
+    this.router.navigate([], { relativeTo: this.route });
+  }
+}
+
 }

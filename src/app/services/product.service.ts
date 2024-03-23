@@ -15,17 +15,27 @@ export class ProductService {
     private router: Router
   ) {}
 
+
   createNewProduct(productData: FormData): Observable<any> {
     return this.http.post<any>(this.URL + '/createNewProduct', productData);
   }
 
   getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.URL + '/products');
+    return this.http.get<any[]>(this.URL + '/product');
   }
+
+  getFeaturedProducts(): Observable<any[]> {
+    return this.http.get<any[]>(this.URL + '/featuredProducts');
+  }
+
+  getNoStockProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.URL}/noProducts`);
+  }
+
 
   getProductDetailsById(productId: any): Observable<any> {
     const url = `${this.URL}/product/${productId}`;
-    return this.http.get(url);
+    return this.http.get<any>(url);
   }
 
   deleteProduct(productId: any) {
@@ -47,12 +57,11 @@ export class ProductService {
 
   filterByCategory(category: string): Observable<any[]> {
     const url = `${this.URL}/category/${category}`;
-      console.log("cat del product sercice", category);
     return this.http.get<any[]>(url);
  
   }
 
-  restarStock(orderData: any) {
+  actualizarStock(orderData: any) {
     console.log(orderData);
     const url = `${this.URL}/orderStockProduct`;
     return this.http.patch(url, {orderData});

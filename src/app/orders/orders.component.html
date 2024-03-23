@@ -12,36 +12,43 @@
         <div class="row justify-content-center">
             <div class="col-md-9 offset-md-1">
                 <div class="accordion" id="accordionExample">
-                    <div *ngFor="let order of orders" class="card mb-3 ">
+                    <div *ngFor="let order of orders" class="card mb-1 ">
                         <div class="card-header" id="heading{{ order._id }}">
                             <h2 class="mb-0">
-                                <button class="btn " type="button" data-toggle="collapse" 
+                                <button class="open btn " type="button" data-toggle="collapse" 
                                         [attr.data-target]="'#collapse' + order._id" aria-expanded="true" 
                                         >
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="orderAndButton">
+                                        <div class="order d-flex justify-content-center align-items-center">
                                         <div>
                                             <p class="text-dark mb-0 ml-3 mx-2">
-                                                <i class="fas fa-receipt"></i> : {{ order._id }}
+                                                <i class="fas fa-receipt"></i>
+                                                <i>{{ order._id }}</i>
                                             </p>
                                         </div>
                                         <div>
                                             <p class="text-dark mb-0 mx-2">
-                                                <i class="far fa-calendar-alt"></i> : {{ hourFormat(order.createdAt) }}
+                                                <i class="far fa-calendar-alt"></i>
+                                                <i>{{ hourFormat(order.createdAt) }}</i>
                                             </p>
                                         </div>
                                         <div>
                                             <p class="text-dark mb-0 mx-2">
-                                                <i class="fas fa-dollar-sign"></i> : {{ order.total | currency }}
+                                                <i class="fas fa-dollar-sign"></i> 
+                                                <i>{{ order.total | currency }}</i>
                                             </p>
                                         </div>
                                         <div>
                                             <p class="text-dark mb-0 mr-3">
-                                                <i class="fas fa-info-circle"></i> : {{ order.status }}
+                                                <i class="fas fa-info-circle"></i> 
+                                                <i>{{ order.status }}</i>
                                             </p>
                                         </div>
-                                        <div class="mx-4">
-                                            <button *ngIf="order.status === 'Pendiente'" class="btn btn-danger" (click)="cancelOrder(order._id)">Cancelar</button>
-                                        </div>  
+                                        </div>
+                                        <div class="mb-0 mx-4">
+                                            <button *ngIf="order.status === 'Pendiente'" class="btn btn-danger"
+                                            (click)="cancelOrder(order._id)">Cancelar</button>
+                                        </div>
                                     </div>
                                 </button>
                             </h2>
@@ -63,7 +70,3 @@
         </div>
     </div>
 </div>
-  
-  
-  
-  

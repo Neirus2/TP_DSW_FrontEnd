@@ -1,5 +1,8 @@
 .styles {
   border: transparent;
   background-color: transparent;
-
 }
+
+.btn {
+  font-size: large;
+} 

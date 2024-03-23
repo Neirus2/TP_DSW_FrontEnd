@@ -1,5 +1,5 @@
 .section-p1 {
-    padding: 40px 80px;
+    padding: 10px 80px;
 }
 
 #productDetails {
@@ -9,11 +9,11 @@
 
 #productDetails .single-product-details {
     width: 50%;
-    padding-top: 30px;
 }
 
 #productDetails .single-product-details h4 {
-    padding: 40px 0 20px 0;
+    padding-bottom: 10px;
+    font-size: x-large;
 }
 
 #productDetails .single-product-details h2 {
@@ -21,7 +21,7 @@
 }
 
 #productDetails .single-product-details input {
-    width: 45px;
+    width: 75px;
     height: 40px;
     padding-left: 10px ;
     font-size: 17px;
@@ -32,8 +32,12 @@
     outline: none;
 }
 
+#productDetails .single-product-details button {
+    width: 150px;
+}
+
 #productDetails .single-product-image {
-    width: 40%;
+    width: 50%;
     margin-right: 50px;
 }
 
@@ -49,7 +53,7 @@
 }
 
 .single-product-image img { 
-    max-width: 300px; /* Ajusta el ancho máximo de la imagen al contenedor */
+    max-width: 130%; /* Ajusta el ancho máximo de la imagen al contenedor */
     max-height: 300px; /* Ajusta la altura máxima de la imagen */
     display: block; /* Elimina cualquier espacio adicional debajo de la imagen */
     margin: 0 auto; /* Centra la imagen horizontalmente en el contenedor */

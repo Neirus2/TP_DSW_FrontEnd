@@ -40,10 +40,12 @@ import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.componen
 import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PedidosAdminComponent } from './pedidos-admin/pedidos-admin.component';
+import { IngresoStockComponent } from './ingreso-stock/ingreso-stock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IngresoStockComponent,
     NavVarComponent,
     ProductosComponent,
     QuienesSomosComponent,

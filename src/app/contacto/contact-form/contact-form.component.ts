@@ -26,7 +26,8 @@ export class ContactFormComponent {
     };
  console.log(headers);
     this.http.post('http://localhost:3000/enviar-correo', this.formData,{ headers }).subscribe(
-      (response) => {
+      {
+      next: response => {
         console.log('Formulario enviado:', this.formData);
           Swal.fire(
             'Mensaje enviado con éxito!!',
@@ -35,18 +36,19 @@ export class ContactFormComponent {
           )
 
       },
-      (error) => {
-        console.error('Error al enviar el formulario:', error);
+      error: err => {
+        console.error('Error al enviar el formulario:', err);
           
         Swal.fire({
           icon: 'warning',
           title: 'Error al enviar el formulario',
-          text: error.error,
+          text: err.error,
           showClass: {
             popup: 'swal2-noanimation',
           },
         });
       }
+    }
     );
       this.formData.name = '';
       this.formData.email = '';

@@ -14,6 +14,7 @@ export class AltaClienteComponent implements OnInit {
   cuit: string = '';
   cuilEncontrado: boolean = false;
   cliente: any = null; 
+  clientesEncontrados: any[] = [];
   clienteEliminado: boolean = false;
   clienteModificado: boolean = false;
 
@@ -25,27 +26,63 @@ export class AltaClienteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async onBuscarClick() {
-    try {
-      const authToken = this.authService.getToken();
-      const cliente = await this.authService.getClienteCuil(this.cuit, authToken as string);
 
+  async onBuscarClick() {
+  try {
+    const authToken = this.authService.getToken();
+    
+    // Si el término de búsqueda es un número, asumimos que es un CUIT
+    if (!isNaN(Number(this.cuit))) {
+      const cliente = await this.authService.getClienteCuil(this.cuit, authToken as string);
+      console.log(cliente);
       if (cliente) {
         this.cuilEncontrado = true;
-        this.cliente = cliente; 
-        console.log(this.cliente);
+        this.cliente = cliente;
         this.clienteModificado = false;
         this.clienteEliminado = false;
-
       }
-    } catch (error) {Swal.fire(
+    } else {
+      // Si no es un número, asumimos que es un nombre y buscamos por nombre
+      console.log('buscamos por nombre')
+      const clientes = await this.authService.searchClientes(this.cuit, authToken as string);
+      if (clientes && clientes.length > 0) {
+        this.cuilEncontrado = true;
+        this.clientesEncontrados = clientes;
+        this.clienteModificado = false;
+        this.clienteEliminado = false;
+  } else {
+    this.cuilEncontrado = false;
+    this.cliente = null;
+    Swal.fire(
       'Denegado',
-      'El usuario no existe',
+      'No se encontraron clientes',
       'warning',
     );
-      console.error('Error al buscar el cliente', error);
-    }
   }
+    }
+  } catch (error) {
+    Swal.fire(
+      'Denegado',
+      'Error al buscar los clientes',
+      'warning',
+    );
+    console.error('Error al buscar los clientes', error);
+  }
+}
+
+async onClienteSelect(cliente: any) {
+  try {
+    const authToken = this.authService.getToken();
+    const clienteSeleccionado = cliente;
+    console.log(clienteSeleccionado)
+    const client = await this.authService.getClienteCuil(clienteSeleccionado, authToken as string);
+  } catch (error) {
+    console.error('Error al obtener el cliente', error);
+  }
+}
+
+
+
 
  deleteClient() {
     Swal.fire({

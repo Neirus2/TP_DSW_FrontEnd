@@ -9,9 +9,14 @@
   <div class="row">
     <div class="col">
       <div *ngFor="let pedido of pedidos" class="card mb-3">
-        <div class="card-header">
+      <div class="card-header d-flex justify-content-between">
+        <div>
           <strong>ID del Pedido:</strong> {{ pedido._id }}
         </div>
+        <div>
+          <strong>Fecha del Pedido:</strong> {{ pedido.createdAt | date:'dd/MM/yyyy - HH:mm' }}
+        </div>
+      </div>
         <div class="card-body">
           <h5 class="card-title">Ítems:</h5>
           <ul class="list-group">
@@ -25,6 +30,7 @@
             <p><strong>Total:</strong> ${{ pedido.total }}</p>
             <p><strong>Estado:</strong> {{ pedido.status }}</p>
             <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
+            <p><strong>Razón Social: </strong>{{ pedido.businessName }}</p>
             <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
           </div>
         </div>

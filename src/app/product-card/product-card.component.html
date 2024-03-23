@@ -1,8 +1,8 @@
 <div class="card">
-    <img [src]="product.image" class="card-img-top" alt="Product Image">
-    <div class="card-body">
-      <h5 class="card-title truncate">{{ product.title }}</h5>
-      <p class=" card-text ">{{ product.description }}</p>
-      <button class="btn btn-primary">Comprar</button>
-    </div>
+  <img class="card-img-top" [src]="'http://localhost:3000/' + product.image" alt="{{ product.name }}">
+  <div class="card-body">
+    <h5 class="card-title truncate">{{ product.desc }}</h5>
+    <p class="card-text truncate">{{ product.desc }}</p>
+    <p class="card-text">Precio: {{ product.price }}</p>
+    <button class="btn btn-primary" (click)="comprar()">Comprar</button>
   </div>

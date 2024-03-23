@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/auth.service';
@@ -11,14 +10,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit{
-
   orders: any[] = [];
   userId: string = ''; // Aquí colocarás el ID del usuario autenticado
 
   constructor(
     private orderService: OrderService,
-    private authService: AuthService
-     ) {}
+    private authService: AuthService,
+    ) {}
 
   ngOnInit(): void {
     this.authService.getUserData().subscribe((data) => {
@@ -26,8 +24,8 @@ export class OrdersComponent implements OnInit{
       console.log(this.userId);
     this.orderService.getPedidosUsuario(this.userId).subscribe((data: any) => {
       this.orders = data.pedidos;
+    this.orders.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       console.log(this.orders);
-       // Almacena los pedidos recuperados en la variable 'pedidos'
     });
   }); 
   }
@@ -43,7 +41,6 @@ cancelOrder(orderId: string) {
     title: '¿Estás seguro de cancelar el pedido?',
     text: "Esta acción no se puede deshacer",
     icon: 'warning',
-    showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Sí, confirmar',
@@ -61,13 +58,7 @@ cancelOrder(orderId: string) {
           console.log(err);
         }
       }); 
-    }
+   }
   });
 }
-
-
-
-
-
 }
-

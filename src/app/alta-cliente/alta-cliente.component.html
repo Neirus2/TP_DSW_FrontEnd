@@ -1,4 +1,5 @@
 <app-nav-var></app-nav-var>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
@@ -9,25 +10,43 @@
         <div class="card-body">
           <form>
             <div class="mb-3">
-              <label for="cuit" class="form-label">CUIT</label>
-            <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT del cliente"
-              [(ngModel)]="cuit">
+              <label for="cuit" class="form-label">CUIT o razón social del cliente</label>
+              <input type="text" class="form-control" id="cuit" name="cuit" placeholder="Ingrese el CUIT o razón social del cliente"
+                [(ngModel)]="cuit">
+
             </div>
-            <div class="card-body" *ngIf="cuilEncontrado && cliente && cuit">
+
+            <!-- Lista de clientes encontrados -->
+            <div *ngIf="cuilEncontrado && clientesEncontrados && clientesEncontrados.length > 0">
+              <label for="selectCliente" class="form-label">Seleccione un cliente</label>
+              <select class="form-select" id="selectCliente" [(ngModel)]="cliente" (change)="onClienteSelect(cliente)"
+                [ngModelOptions]="{ standalone: true }">
+                <option *ngFor="let c of clientesEncontrados" [ngValue]="c">{{ c.businessName }}</option>
+              </select>
+            </div>
+
+            <!-- Detalles del cliente seleccionado -->
+            <div class="card-body" *ngIf="cuilEncontrado && cliente">
               <p class="card-text">Correo Electrónico: {{ cliente.email }}</p>
               <p class="card-text">Cuit: {{ cliente.cuit }}</p>
               <p class="card-text">Dirección: {{ cliente.address }}</p>
               <p class="card-text">Rol: {{ cliente.role }}</p>
             </div>
+
             <div class="row">
-                <div class="d-flex justify-content-between mt-4">
-                  <button type="button" class="btn btn-secondary" style="width: 48%;" [routerLink]="'/admin-panel'">Atrás</button>
-                <button class="btn btn-primary btn-block" style="width: 48%;" (click)="onBuscarClick()" >Buscar</button>
+              <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-secondary" style="width: 48%;"
+                  [routerLink]="'/admin-panel'">Atrás</button>
+                <button class="btn btn-primary btn-block" style="width: 48%;" (click)="onBuscarClick()">Buscar</button>
               </div>
-              <div class="d-flex justify-content-between mt-4" >
-                <button class="btn btn-success btn-warning" style="width: 48%;"  *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado " (click)="asignPrivileges()">Modificar Privilegios</button>
-    
-                <button class="btn btn-danger btn-block"style="width: 48%;"   *ngIf="cuilEncontrado &&  !clienteEliminado && !clienteModificado " (click)="deleteClient()" >Eliminar Usuario</button>
+              
+              <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-success btn-warning" style="width: 48%;"
+                  *ngIf="cuilEncontrado && !clienteEliminado && !clienteModificado"
+                  (click)="asignPrivileges()">Modificar Privilegios</button>
+                <button class="btn btn-danger btn-block" style="width: 48%;"
+                  *ngIf="cuilEncontrado && !clienteEliminado && !clienteModificado" (click)="deleteClient()">Eliminar
+                  Usuario</button>
               </div>
             </div>
           </form>

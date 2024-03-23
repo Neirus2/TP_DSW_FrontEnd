@@ -5,3 +5,13 @@
 .container.infoUser {
     padding-top: 50px;
 }
+
+.btn {
+    margin-bottom: 15px;
+}
+
+body {
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+

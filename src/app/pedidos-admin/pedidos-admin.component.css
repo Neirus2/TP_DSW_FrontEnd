@@ -1,0 +1,29 @@
+@media screen and (max-width: 500px){
+  .card-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+    .d-flex {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .d-flex p {
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+  
+    .d-flex button {
+      align-self: flex-end;
+    }
+
+    .text-center {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .text-center .btn {
+      margin-bottom: 10px;
+    }
+}

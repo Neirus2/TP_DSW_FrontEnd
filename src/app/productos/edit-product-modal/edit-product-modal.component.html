@@ -1,48 +1,53 @@
+<!--<div class="modal-dialog" role="document">-->
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="editedProduct">
+      <div class="form-group">
+        <label for="productName">Descripcion del Producto</label>
+        <input type="text" class="form-control" id="productName" [(ngModel)]="editedProduct.desc" name="name" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Precio del Producto</label>
+        <input type="number" class="form-control" id="productPrice" [(ngModel)]="editedProduct.price" name="price">
+      </div>
+      <div class="form-group">
+        <label for="productStock">Stock</label>
+        <input type="number" class="form-control" id="productStock" [(ngModel)]="editedProduct.stock" name="stock">
+      </div>
+      <div class="form-group">
+        <label for="productMinStock">Stock Mínimo</label>
+        <input type="number" class="form-control" id="productMinStock" [(ngModel)]="editedProduct.stockMin"
+          name="stockMin">
+      </div>
+      <div class="form-group">
+        <label for="productCat">Categoría:</label>
+        <select class="form-control" id="productCat" [(ngModel)]="editedProduct.cat" name="categoria" required>
+          <option value="Perifericos">Perifericos</option>
+          <option value="Componentes">Componentes</option>
+          <option value="Impresoras">Impresoras</option>
+        </select>
+      </div>
 
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form *ngIf="editedProduct">
-            <div class="form-group">
-              <label for="productName">Descripcion del Producto</label>
-              <input type="text" class="form-control" id="productName" [(ngModel)]="editedProduct.desc" name="name">
-            </div>
-            <div class="form-group">
-              <label for="productPrice">Precio del Producto</label>
-              <input type="number" class="form-control" id="productPrice" [(ngModel)]="editedProduct.price" name="price">
-            </div>
-            <div class="form-group">
-              <label for="productStock">Stock</label>
-              <input type="number" class="form-control" id="productStock" [(ngModel)]="editedProduct.stock" name="stock">
-            </div>
-            <div class="form-group">
-              <label for="categoria">Categoría:</label>
-              <select class="form-control" id="productCat" [(ngModel)]="editedProduct.cat" name="categoria" required name="cat">
-                <option value="Perifericos">Perifericos</option>
-                <option value="Componentes">Componentes</option>
-                <option value="Impresoras">Impresoras</option>
-              </select>
-            </div>
-          </form>
-        </div>
-          <div class="form-group">
-            <label for="supplier">Proveedor:</label>
-            <select class="form-control" id="supplier" [(ngModel)]="editedProduct.supplier" name="supplier">
-              <option disabled selected value="">Seleccione un proveedor</option>
-              <option *ngFor="let supplier of suppliers" >{{ supplier.businessName }}</option>
-            </select>
-          </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
-  <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+      <div class="form-group">
+        <label for="supplier">Proveedor:</label>
+        <select class="form-control" id="supplier" [(ngModel)]="editedProduct.supplier" name="supplier">
+          <option disabled selected value="">Seleccione un proveedor</option>
+          <option *ngFor="let supplier of suppliers">{{ supplier.businessName }}</option>
+        </select>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="featured" [(ngModel)]="editedProduct.featured"
+          name="featured">
+        <label class="form-check-label" for="featured" style="font-size: 1.2em; margin-left: 8px;">Destacar
+          producto</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button>
+  </div>
 </div>
-
-        </div>
-
-

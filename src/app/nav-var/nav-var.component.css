@@ -1,5 +1,133 @@
 
-.custom-nav {
+/*.custom-nav {
   display: flex;
   align-items: center;
-};
+};*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: gainsboro;
+}
+
+.logo {
+  max-width: 6rem;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  
+  color: #000000;
+  font-size: large;
+}
+
+.abrir-menu {
+  display: none;
+  border: none;
+}
+
+.hamburguesa {
+  max-width: 2rem;
+}
+
+.close {
+  display: none;
+}
+
+.busqueda {
+  background-color: rgb(238, 238, 238);
+  font-size: large;
+  border-color: black;
+}
+
+.lupa {
+  border: none;
+  margin-top: 8px;
+  margin-left: 10px;
+  background-color: gainsboro;
+}
+
+.lupita {
+  font-size: x-large;
+}
+
+.cart-btn {
+  background-color: gainsboro;
+  margin-left: 20px;
+  border: none;
+  font-size: x-large;
+}
+
+.astronaut {
+  font-size: 27px;
+}
+
+body {
+  overflow: hidden;
+}
+
+@media screen and ( max-width: 550px )  {
+  
+  .abrir-menu {
+    display: block;
+  }  
+
+  .close {
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
+    width: 20px;
+    border-style:solid;
+    border-color: gainsboro;
+    border-radius: 20%;
+    background-color: rgb(206, 206, 206);
+    }
+
+  .nav {
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: gainsboro;
+    padding: 2rem;
+  }
+
+  .nav.visible {
+    visibility: visible;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .nav-list li a {
+    text-decoration: none;
+  }
+
+  .lupita {
+    margin-bottom: 10px;
+  }
+}

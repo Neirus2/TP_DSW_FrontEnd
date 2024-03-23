@@ -84,9 +84,50 @@ async getClienteCuil(cuit: string, authToken: string): Promise<any> {
     const headers = {
       Authorization: `Bearer ${authToken}`,
     };
-    console.log('Este es el CUIT ingresado', cuit);
     
-    this.http.get<any>(this.URL + `/user/${cuit}`, { headers }).subscribe(
+    this.http.get<any>(this.URL + `/searchUser/${cuit}`, { headers }).subscribe(
+      {
+        next:response => {
+              if (response) {
+                const cliente = response;
+                resolve(cliente); 
+            } else {
+                console.log('Cliente no encontrado');
+                reject('Cliente no encontrado'); 
+                   }
+                        },
+        error:error => {
+                  console.error('Error en la solicitud HTTP', error);
+                  reject(error);
+                     }
+      }
+     
+      
+      // (response) => {
+      //   if (response) {
+      //     console.log('Cliente encontrado:', response);
+      //     const cliente = response;
+      //     resolve(cliente); 
+      //   } else {
+      //     console.log('Cliente no encontrado');
+      //     reject('Cliente no encontrado'); 
+      //   }
+      // },
+      // (error) => {
+      //   console.error('Error en la solicitud HTTP', error);
+      //   reject(error);
+      // }
+    );
+  });
+}
+
+async searchClientes(query: string, authToken: string): Promise<any[]> {
+  return new Promise((resolve, reject) => {
+    const headers = {
+      Authorization: `Bearer ${authToken}`,
+    };
+    
+    this.http.get<any>(this.URL + `/searchUser/${query}`, { headers }).subscribe(
       {
         next:response => {
               if (response) {
@@ -103,22 +144,124 @@ async getClienteCuil(cuit: string, authToken: string): Promise<any> {
                   reject(error);
                      }
       }
-     
-     
-      // (response) => {
-      //   if (response) {
-      //     console.log('Cliente encontrado:', response);
-      //     const cliente = response;
-      //     resolve(cliente); 
-      //   } else {
-      //     console.log('Cliente no encontrado');
-      //     reject('Cliente no encontrado'); 
-      //   }
-      // },
-      // (error) => {
-      //   console.error('Error en la solicitud HTTP', error);
-      //   reject(error);
-      // }
+    );
+  });
+}
+
+getOrderUser(userId: any): Promise<any> {
+    return new Promise((resolve, reject) => {    
+    this.http.get<any>(this.URL + `/userById/${userId}`).subscribe(
+      {
+        next:response => {
+              if (response) {
+                console.log('Cliente encontrado:', response);
+                const cliente = response;
+                resolve(cliente); 
+            } else {
+                console.log('Cliente no encontrado');
+                reject('Cliente no encontrado'); 
+                   }
+                        },
+        error:error => {
+                  console.error('Error en la solicitud HTTP', error);
+                  reject(error);
+                     }
+      }
+    );
+  });
+  }
+
+async getClientByEmail(email: string): Promise<any[]> {
+  return new Promise((resolve, reject) => {    
+    this.http.get<any>(this.URL + `/user/${email}`).subscribe(
+      {
+        next:response => {
+              if (response) {
+                console.log('Cliente encontrado:', response);
+                const cliente = response;
+                resolve(cliente); 
+            } else {
+                console.log('Cliente no encontrado');
+                reject('Cliente no encontrado'); 
+                   }
+                        },
+        error:error => {
+                  console.error('Error en la solicitud HTTP', error);
+                  reject(error);
+                     }
+      }
+    );
+  });
+}
+
+sendVerificationCodeByEmail(email: string, code: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const requestBody = { email, code }; // Crear el cuerpo de la solicitud con el email y el código
+
+    this.http.post<any>(this.URL + '/sendCode', requestBody).subscribe(
+      {
+        next: response => {
+          if (response) {
+            console.log('Código enviado correctamente:', response);
+            resolve(response);
+          } else {
+            console.log('No se recibió una respuesta válida del servidor');
+            reject('No se recibió una respuesta válida del servidor');
+          }
+        },
+        error: error => {
+          console.error('Error en la solicitud HTTP', error);
+          reject(error);
+        }
+      }
+    );
+  });
+}
+
+compareCode(email:string, code: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const requestBody = { email, code };
+
+    this.http.post<any>(this.URL + '/compareCode', requestBody).subscribe(
+      {
+        next: response => {
+          if (response) {
+            console.log('Código ingresado correctamente:', response);
+            resolve(response);
+          } else {
+            console.log('No se recibió una respuesta válida del servidor');
+            reject('No se recibió una respuesta válida del servidor');
+          }
+        },
+        error: error => {
+          console.error('Error en la solicitud HTTP', error);
+          reject(error);
+        }
+      }
+    );
+  });
+}
+
+setNewPassword(email:string, password: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const requestBody = { email, password }; 
+
+    this.http.patch<any>(this.URL + '/newPassword', requestBody).subscribe(
+      {
+        next: response => {
+          if (response) {
+            console.log('Contraseña actualizada correctamente:', response);
+            resolve(response);
+          } else {
+            console.log('No se recibió una respuesta válida del servidor');
+            reject('No se recibió una respuesta válida del servidor');
+          }
+        },
+        error: error => {
+          console.error('Error en la solicitud HTTP', error);
+          reject(error);
+        }
+      }
     );
   });
 }

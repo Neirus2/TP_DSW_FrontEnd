@@ -124,7 +124,14 @@ export class SingleProductComponent implements  OnInit {
     });
   }
 
-  addToCart(quantity: number) {
+addToCart(quantity: number) {    
+     if (quantity > this.productStock) {
+      Swal.fire({
+      title: 'Stock insuficiente',
+      text: 'El máximo a ingresar es: ' + this.productStock,
+      icon: 'error'});
+      return;
+    } else { 
     const productToAdd = {
       ...this.productDetails.data,
       _id: this.productId,
@@ -136,7 +143,7 @@ export class SingleProductComponent implements  OnInit {
       this.productsInCart=this.productsInCart+quantity;
       localStorage.setItem('productsInCart', this.productsInCart.toString());
       this.countService.updateProductsInCartValue(this.productsInCart);
+     }
     }
   }
 } 
-

@@ -3,3 +3,13 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}

@@ -15,6 +15,7 @@ import { AltaClienteComponent } from './alta-cliente/alta-cliente.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { RetrievePassComponent } from './login/retrieve-pass/retrieve-pass.component';
 import { AltaProveedorComponent } from './alta-proveedor/alta-proveedor.component';
+import { IngresoStockComponent } from './ingreso-stock/ingreso-stock.component';
 import { UdProveedorComponent } from './ud-proveedor/ud-proveedor.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PedidosAdminComponent } from './pedidos-admin/pedidos-admin.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { expectedRole: 'Administrador' }},
   { path: 'alta-usuario', component: AltaClienteComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},
+  { path: 'ingreso-stock', component: IngresoStockComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},
   {path:'retrieve-pass',component:RetrievePassComponent},
   {path: 'alta-proveedor', component:AltaProveedorComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'} },
   {path: 'ud-proveedor', component:UdProveedorComponent,canActivate: [AuthGuard], data: { expectedRole: 'Administrador'}},

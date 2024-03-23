@@ -16,8 +16,12 @@
               <label for="stock">Stock:</label>
               <input type="number" class="form-control" id="stock" [(ngModel)]="product.stock" name="stock" required>
             </div>
+            <div class="form-group">
+              <label for="stockMin">Stock Mínimo:</label>
+              <input type="number" class="form-control" id="stockMin" [(ngModel)]="product.stockMin" name="stockMin" required>
+            </div>
             <div class="form-group mb-2">
-              <label for="precio">Precio:</label>
+              <label for="price">Precio:</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">$</span>
@@ -28,22 +32,31 @@
             <div class="form-group">
               <label for="categoria">Categoría:</label>
               <select class="form-control" id="categoria" [(ngModel)]="product.cat" name="categoria" required>
+                <!--<option value="Destacados">Destacados</option>-->
                 <option value="Perifericos">Perifericos</option>
                 <option value="Componentes">Componentes</option>
                 <option value="Impresoras">Impresoras</option>
               </select>
             </div>
-          <div class="form-group">
+
+          <div class="form-group mb-3">
             <label for="supplier">Proveedor:</label>
             <select class="form-control" id="supplier" [(ngModel)]="product.supplier" name="supplier">
               <option disabled selected value="">Seleccione un proveedor</option>
               <option *ngFor="let supplier of suppliers">{{ supplier.businessName }}</option>
             </select>
           </div>
-            <div class="form-group">
+
+            <div class="form-group mb-3">
               <label for="image">Imagen del Producto:</label>
               <input type="file" class="form-control-file" id="image" name="image" accept="image/*" (change)="onImageSelected($event)" required>
             </div>
+            
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="featured" [(ngModel)]="product.featured" name="featured">
+              <label class="form-check-label" for="featured" style="font-size: 1.2em; margin-left: 8px;">Producto destacado</label>
+            </div>
+
             <div class="d-flex justify-content-between mt-4">
               <button type="button" class="btn btn-secondary" style="width: 48%;" [routerLink]="'/admin-panel'">Atrás</button>
 

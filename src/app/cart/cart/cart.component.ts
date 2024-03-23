@@ -66,7 +66,7 @@ confirmarPedido() {
       });
           this.setProductsInCartToZero();
           this.setPedToZero();
-          this.productService.restarStock(orderData).subscribe(
+          this.productService.actualizarStock(orderData).subscribe(
             {
               next:res => {console.log('Stock Actualizado')},
               error:err => {console.log('Error al actualizar el stock')}

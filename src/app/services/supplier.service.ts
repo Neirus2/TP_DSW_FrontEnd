@@ -18,21 +18,45 @@ export class SupplierService {
     return this.http.post<any>(this.URL + '/createNewSupplier', supplierData);
                                                           };
 getSupplierCuit(cuit: string): Observable<any> {
-  console.log('Este es el CUIT ingresado', cuit);
-  return this.http.get<any>(this.URL + `/supplier/${cuit}`).pipe(
+    console.log('Este es el CUIT ingresado', cuit);
+    return this.http.get<any>(this.URL + `/supplier/${cuit}`).pipe(
+      map(response => {
+        if (response) {
+          console.log(response);
+          return response; // Devuelve directamente los valores del proveedor
+        }
+        return null; // Devuelve null si no se encuentra el proveedor
+      }),
+      catchError(error => {
+        console.error('Error al verificar el CUIT:', error);
+        return of(null); // Devuelve null en caso de error
+      })
+    );
+  }
+
+async searchSuppliers(query: string): Promise<any[]> {
+  return new Promise((resolve, reject) => {
     
-    map(response => {
-      if (response && response.cuitExists != null) {
-        return response; 
+    this.http.get<any>(this.URL + `/supplier/${query}`).subscribe(
+      {
+        next:response => {
+              if (response) {
+                console.log('Proveedor encontrado:', response);
+                const supplier = response;
+                resolve(supplier); 
+            } else {
+                console.log('Proveedor no encontrado');
+                reject('Proveedor no encontrado'); 
+                   }
+                        },
+        error:error => {
+                  console.error('Error en la solicitud HTTP', error);
+                  reject(error);
+                     }
       }
-      return { cuitExists: false }; 
-    }),
-    catchError(error => {
-      console.error('Error al verificar el CUIT:', error);
-      return of({ cuitExists: false });
-    })
-  );
-};
+    );
+  });
+}
 
   deleteSupplier(supplierId:string){ 
     const url = `${this.URL}/deleteSupplier/${supplierId}`;         

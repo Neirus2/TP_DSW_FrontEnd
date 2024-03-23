@@ -15,6 +15,8 @@ export class NuevoProductoComponent implements OnInit {
     stock: '',
     price: '',
     cat: '',
+    stockMin: '',
+    featured: false,
     supplier: '',
     image: null as File | null 
   }
@@ -45,13 +47,16 @@ export class NuevoProductoComponent implements OnInit {
       this.product.image = inputElement.files[0];
     }
   }
+
   createNewProduct() {
     const formData = new FormData();
     formData.append('desc', this.product.desc);
     formData.append('stock', this.product.stock);
     formData.append('price', this.product.price);
     formData.append('cat', this.product.cat);
+    formData.append('stockMin', this.product.stockMin);
     formData.append('supplier', this.product.supplier);
+    formData.append('featured', this.product.featured ? 'true' : 'false');
     if (this.product.image) {
       formData.append('image', this.product.image);
     }
@@ -100,7 +105,9 @@ export class NuevoProductoComponent implements OnInit {
     this.product.desc = '';
     this.product.price = '';
     this.product.stock = '';
+    this.product.stockMin = '';
     this.product.image = null;
     this.product.supplier= '';
+    this.product.featured=false;
   }
 }
