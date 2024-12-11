@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OrdersComponent } from './orders.component';
+import { NavVarComponent } from '../nav-var/nav-var.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('OrdersComponent', () => {
   let component: OrdersComponent;
@@ -8,7 +11,11 @@ describe('OrdersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OrdersComponent]
+      imports: [HttpClientModule, HttpClientTestingModule],
+      declarations: [OrdersComponent, NavVarComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }
+      ]
     });
     fixture = TestBed.createComponent(OrdersComponent);
     component = fixture.componentInstance;

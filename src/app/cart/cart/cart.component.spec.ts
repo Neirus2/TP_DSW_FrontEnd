@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CartComponent } from './cart.component';
+import { NavVarComponent } from 'src/app/nav-var/nav-var.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -8,7 +11,11 @@ describe('CartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CartComponent]
+      imports: [HttpClientModule, HttpClientTestingModule],
+      declarations: [CartComponent, NavVarComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }
+      ]
     });
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;

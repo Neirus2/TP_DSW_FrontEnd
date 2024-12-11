@@ -14,7 +14,7 @@ export class AuthGuard  {
     private router: Router
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state?: unknown): Promise<boolean> {
     const expectedRole = route.data['expectedRole'];
 
     return new Promise<boolean>((resolve, reject) => {

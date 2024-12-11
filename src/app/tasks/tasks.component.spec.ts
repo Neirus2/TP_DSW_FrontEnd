@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { TasksComponent } from './tasks.component';
+import { NavVarComponent } from '../nav-var/nav-var.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
@@ -8,7 +10,11 @@ describe('TasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TasksComponent ]
+      declarations: [ TasksComponent, NavVarComponent ],
+      imports: [ HttpClientModule ],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }
+      ]
     })
     .compileComponents();
 
