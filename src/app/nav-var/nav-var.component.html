@@ -1,66 +1,4 @@
-<!--<nav class="navbar  navbar-expand-lg " style="background-color: #FFFFFF;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">MPS S.A</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/productos">Productos</a>
-                </li >
 
-                <li class= "nav-item">
-                    <a class="nav-link active" *ngIf="isUserRoleDefined() && userRole === 'Administrador'" aria-current="page"
-                        href="/admin-panel">Admin Panel</a>
-                </li>
-                <li class="nav-item"> *ngIf="userRole === 'Administrador'"comentar esta linea
-                    <a class="nav-link active" href="/contacto">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <app-down-comp *ngIf="isProductosRoute()"></app-down-comp>
-                    <app-down-comp *ngIf="isStockRoute()"></app-down-comp>
-                </li>
-            </ul>
-        <div class="d-flex align-items-center ">
-            <div class="col-auto d-flex">
-            <input  class="form-control "  type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()" placeholder="Buscar producto">
-            </div>
-            <form class="form-inline" role="search">         
-                <button class="btn btn-light d-flex align-items-center" type="submit" (click)="searchProducts()">
-                    <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
-                </button>
-            </form>
-            <form class="d-flex ">
-                <button class="btn btn-light d-flex align-items-center" routerLink="/cart">
-                    <i class="fa-solid fa-cart-shopping fa-bounce" style="color: #000000;"></i>
-                    <span class="badge rounded-pill bg-primary">{{ productsInCart }}</span>
-                </button>
-            </form>
-            <ul class="navbar-nav ml-auto">
-                <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
-                    <li class="nav-item">
-                        <a class="nav-link active d-flex align-items-center" aria-current="page" routerLink="/login">
-                            <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-                        </a>
-                    </li>
-                </ng-container>
-                <ng-template #loggedIn>
-                    <li class="nav-item">
-                        <a class="nav-link active d-flex align-items-center" aria-current="page" routerLink="/perfilUsuario">
-                            <i class="fa-solid fa-user-astronaut" style="color: #000000;"></i>
-                        </a>
-                    </li>
-                </ng-template>
-            </ul>
-            </div>
-        </div>
-    </div>
-</nav> -->
 <header>
 <a href="#">
     <img class="logo" src="\assets\prodBase.jpg" alt="logo">
@@ -90,7 +28,7 @@
             <app-down-comp *ngIf="isProductosRoute()"></app-down-comp>
             <app-down-comp *ngIf="isStockRoute()"></app-down-comp>
         </li>
-        <li class="col-auto d-flex" *ngIf="isProductosRoute()">
+        <li class="col-auto d-flex" >
             <input class="busqueda form-control " type="text" id="searchProduct" [(ngModel)]="searchTerm" (keyup.enter)="searchProducts()"
                 placeholder="Buscar producto">
             <form class="form-inline" role="search">

@@ -4,6 +4,7 @@ import { CategorySelectionService } from '../services/category-selection-service
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { firstValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -11,7 +12,6 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ProductosComponent implements OnInit {
   products: any[] = [];
-
   searchTerm: string = '';
 
   constructor(
@@ -22,37 +22,44 @@ export class ProductosComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    // Verifica la autenticación al cargar la página
     this.authService.checkAuthAndRedirect();
+
     this.route.queryParams.subscribe((queryParams) => {
-      this.searchTerm = queryParams['q'];
+      this.searchTerm = queryParams['q'] || ''; // Obtiene el término de búsqueda de la URL
       this.fetchProducts();
     });
-
     this.categorySelectionService.categorySelected$.subscribe(async (category) => {
       await this.filterByCategory(category);
     });
   }
 
   async fetchProducts() {
-    if (this.searchTerm) {
-      const data = await firstValueFrom(this.productService.getProductsFiltered(this.searchTerm)); //.toPromise();
-      this.products = data || [];
-      console.log(data, 'filtered data');
-    } else {
-      const data = await firstValueFrom(this.productService.getProducts()); //.toPromise();
-      this.products = data || [];
-      console.log(data, 'all data');
+    try {
+      if (this.searchTerm === 'Todos' || !this.searchTerm) {
+        // Si el término de búsqueda es 'Todos' o no hay término, trae todos los productos
+        const data = await firstValueFrom(this.productService.getProducts());
+        this.products = data || [];
+        console.log(data, 'all data');
+      } else {
+        // Si hay un término de búsqueda, filtra los productos
+        const data = await firstValueFrom(this.productService.getProductsFiltered(this.searchTerm));
+        this.products = data || [];
+        console.log(data, 'filtered data');
+      }
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
     }
   }
 
   async filterByCategory(category: string) {
     try {
-      const data = await firstValueFrom(this.productService.filterByCategory(category)); //.toPromise();
-      this.products = data || []; 
+      const data = await firstValueFrom(this.productService.filterByCategory(category));
+      this.products = data || [];
       console.log(data, 'filtered by category');
     } catch (error) {
-      const data = await firstValueFrom(this.productService.getProducts()); //.toPromise();
-      this.products = data || []; 
+      const data = await firstValueFrom(this.productService.getProducts());
+      this.products = data || [];
       console.error('Error fetching products by category', error);
     }
   }
