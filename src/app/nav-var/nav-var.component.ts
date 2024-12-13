@@ -36,6 +36,7 @@ export class NavVarComponent implements OnInit {
         }
       });
   }
+  
   ngOnInit(): void {
     this.countService.productsInCart$.subscribe(value => {
       this.productsInCart = value;

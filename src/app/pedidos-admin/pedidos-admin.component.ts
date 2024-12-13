@@ -15,6 +15,8 @@ export class PedidosAdminComponent {
   pedidos: any[] = [];
   showModal: boolean = false;
   selectedPedido: any | null = null;
+  pedidosFiltrados = this.pedidos;
+  selectedStatus: string = '';
 
   constructor(
     private orderService: OrderService,
@@ -22,14 +24,23 @@ export class PedidosAdminComponent {
     private route: ActivatedRoute
     ) { }
 
-  ngOnInit() {
-    this.getOrders();
-    this.route.queryParams.subscribe((queryParams) => {
-      this.searchTerm = queryParams['q'];
-      this.fetchOrders();
-    });
-  }
-
+    ngOnInit() {
+      this.getOrders();
+      this.route.queryParams.subscribe((queryParams) => {
+        this.searchTerm = queryParams['q'];
+        this.fetchOrders();
+      });
+      this.pedidosFiltrados = this.pedidos;
+    }
+  
+    filterPedidos(status?: string) {
+      this.selectedStatus = status || ''; // Si no se pasa un estado, mostramos todos
+      if (status) {
+        this.pedidosFiltrados = this.pedidos.filter(pedido => pedido.status === status);
+      } else {
+        this.pedidosFiltrados = [...this.pedidos]; // Mostrar todos si no hay filtro
+      }
+    }
   getOrders() {
     this.orderService.getPedidos().subscribe(async(data: any) => {
       for (const pedido of data) {
@@ -41,9 +52,9 @@ export class PedidosAdminComponent {
       }
     }
     this.pedidos = data;
+    this.pedidosFiltrados = data || [];
     });
   }
-
   openModal(pedido: any) {
     this.showModal = true;
     this.selectedPedido = pedido._id;
@@ -56,20 +67,26 @@ export class PedidosAdminComponent {
   }
 
   async fetchOrders() {
-    
     if (this.searchTerm) {
-      const data = await firstValueFrom(this.orderService.getOrdersFiltered(this.searchTerm)); //.toPromise();
+      // Si hay un término de búsqueda, obtén los pedidos filtrados
+      const data = await firstValueFrom(this.orderService.getOrdersFiltered(this.searchTerm));
+      
       for (const pedido of data) {
-          const cliente = await this.authService.getOrderUser(pedido.userId);
-          pedido.businessName = cliente.businessName;
-          this.pedidos = data || [];
-          console.log(data, 'filtered data');
+        const cliente = await this.authService.getOrderUser(pedido.userId);
+        pedido.businessName = cliente.businessName; // Agrega el nombre del cliente al pedido
       }
+      
+      // Asigna los pedidos filtrados
+      this.pedidosFiltrados = data || [];
+      console.log(data, 'filtered data');
     } else {
+      // Si no hay término de búsqueda, obtén todos los pedidos
       this.getOrders();
     }
   }
+  
 
+  
   async cambiarEstado(pedId: string, nuevoEstado: string) {
     try {
       await firstValueFrom(this.orderService.cambiarEstado(pedId, nuevoEstado));

@@ -1,14 +1,42 @@
 <app-nav-var></app-nav-var>
+
+
 <div class="container mt-3">
   <div class="row">
     <div class="col-12 text-center my-4">
       <h2 style="color: #333; font-size: 28px;">Pedidos</h2>
     </div>
+    <div class="col-12 text-center">
+      <!-- Botón Pendientes -->
+      <button 
+        class="mx-2 btn btn-danger" 
+        [ngClass]="{'active': selectedStatus === 'Pendiente'}"
+        (click)="filterPedidos('Pendiente')">
+        Pendientes
+      </button>
+    
+      <!-- Botón En Curso -->
+      <button 
+        class="mx-2 btn btn-warning" 
+        [ngClass]="{'active': selectedStatus === 'En curso'}"
+        (click)="filterPedidos('En curso')">
+        En Curso
+      </button>
+    
+      <!-- Botón Todos -->
+      <button 
+        class="mx-2 btn btn-secondary" 
+        [ngClass]="{'active': selectedStatus === ''}"
+        (click)="filterPedidos()">
+        Todos
+      </button>
+    </div>
+  </div>
 </div>
 
-  <div class="row">
-    <div class="col">
-      <div *ngFor="let pedido of pedidos" class="card mb-3">
+<div class="row">
+  <div class="col">
+    <div *ngFor="let pedido of pedidosFiltrados" class="card mb-3">
       <div class="card-header d-flex justify-content-between">
         <div>
           <strong>ID del Pedido:</strong> {{ pedido._id }}
@@ -17,27 +45,32 @@
           <strong>Fecha del Pedido:</strong> {{ pedido.createdAt | date:'dd/MM/yyyy - HH:mm' }}
         </div>
       </div>
-        <div class="card-body">
-          <h5 class="card-title">Ítems:</h5>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let producto of pedido.items">
-              <strong>Producto</strong> {{ producto.desc }}<br>
-              <!-- <strong>Precio:</strong> ${{ producto.price }}<br>  no se si es necesario mostrarselo a quien arma el pedido-->
-              <strong>Cantidad:</strong> {{ producto.quantity }}<br>
-            </li>
-          </ul>
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <p><strong>Total:</strong> ${{ pedido.total }}</p>
-            <p><strong>Estado:</strong> {{ pedido.status }}</p>
-            <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
-            <p><strong>Razón Social: </strong>{{ pedido.businessName }}</p>
-            <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
-          </div>
+      <div class="card-body">
+        <h5 class="card-title">Ítems:</h5>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let producto of pedido.items">
+            <strong>Producto</strong> {{ producto.desc }}<br>
+            <strong>Cantidad:</strong> {{ producto.quantity }}<br>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <p><strong>Total:</strong> ${{ pedido.total }}</p>
+          <p [ngClass]="{
+            'pendiente': pedido.status === 'Pendiente',
+            'en-curso': pedido.status === 'En curso'
+          }">
+            <strong>Estado:</strong> {{ pedido.status }}
+          </p>
+          
+          <p><strong>Usuario ID:</strong> {{ pedido.userId }}</p>
+          <p><strong>Razón Social: </strong>{{ pedido.businessName }}</p>
+          <button class="btn btn-primary" (click)="openModal(pedido)">Cambiar Estado</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'd-block': showModal }">
   <div class="modal-dialog" role="document">

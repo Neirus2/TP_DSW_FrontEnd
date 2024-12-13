@@ -108,17 +108,6 @@ export class SingleProductComponent implements  OnInit {
               console.log(err);
             }
           }
-          // res => {
-          //   Swal.fire(
-          //     'Confirmado',
-          //     'La acción ha sido confirmada',
-          //     'success'
-          //   );
-          //   this.router.navigate(['/productos']);
-          // },
-          // (err) => {
-          //   console.log(err);
-          //   }
           );       
       }
     });
