@@ -7,6 +7,7 @@ import { NavVarComponent } from '../nav-var/nav-var.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../services/product.service';
 import { CategorySelectionService } from '../services/category-selection-service.service';
+import { FormsModule } from '@angular/forms';
 
 describe('IngresoStockComponent', () => {
   let component: IngresoStockComponent;
@@ -29,7 +30,7 @@ describe('IngresoStockComponent', () => {
 
     // Configuración del test
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, FormsModule],
       declarations: [IngresoStockComponent, NavVarComponent, FooterComponent],
       providers: [
         {

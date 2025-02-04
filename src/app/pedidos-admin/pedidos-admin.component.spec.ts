@@ -5,6 +5,7 @@ import { PedidosAdminComponent } from './pedidos-admin.component';
 import { NavVarComponent } from '../nav-var/nav-var.component';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 describe('PedidosAdminComponent', () => {
   let component: PedidosAdminComponent;
@@ -12,7 +13,7 @@ describe('PedidosAdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule],
+      imports: [HttpClientModule, HttpClientTestingModule, FormsModule],
       declarations: [PedidosAdminComponent, NavVarComponent],
       providers: [
         { 

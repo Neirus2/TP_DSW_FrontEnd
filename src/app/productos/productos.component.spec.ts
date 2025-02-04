@@ -5,6 +5,7 @@ import { ProductosComponent } from './productos.component';
 import { ActivatedRoute } from '@angular/router';
 import { NavVarComponent } from '../nav-var/nav-var.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 describe('ProductosComponent', () => {
   let component: ProductosComponent;
@@ -12,7 +13,7 @@ describe('ProductosComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule],
+      imports: [HttpClientModule, HttpClientTestingModule, FormsModule],
       declarations: [ProductosComponent, NavVarComponent, FooterComponent],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }

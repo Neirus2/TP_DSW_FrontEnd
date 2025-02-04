@@ -6,14 +6,16 @@ import { NavVarComponent } from '../nav-var/nav-var.component';
 import { ActivatedRoute } from '@angular/router';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule
 
+ } from '@angular/forms';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule, CarouselComponent],
+      imports: [HttpClientModule, HttpClientTestingModule, CarouselComponent, FormsModule],
       declarations: [HomeComponent, NavVarComponent, FooterComponent],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }

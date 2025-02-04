@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { OrdersComponent } from './orders.component';
 import { NavVarComponent } from '../nav-var/nav-var.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 describe('OrdersComponent', () => {
   let component: OrdersComponent;
@@ -11,7 +12,7 @@ describe('OrdersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule],
+      imports: [HttpClientModule, HttpClientTestingModule, FormsModule],
       declarations: [OrdersComponent, NavVarComponent],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }

@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AdminPanelComponent } from './admin-panel.component';
 import { NavVarComponent } from '../nav-var/nav-var.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 describe('AdminPanelComponent', () => {
   let component: AdminPanelComponent;
@@ -11,7 +12,7 @@ describe('AdminPanelComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule],
+      imports: [HttpClientModule, HttpClientTestingModule, FormsModule],
       declarations: [AdminPanelComponent, NavVarComponent],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => 'test-id' } } } }
