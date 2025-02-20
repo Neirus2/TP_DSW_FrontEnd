@@ -12,8 +12,11 @@
               <button class="btn btn-primary botonNormal" ><a class="nav-link active" aria-current="page" href="/nuevo-producto">Alta Productos</a></button>
             </div>
             <div class="pannelBttn">
-              <button class="btn btn-secondary botonNormal"><a class="nav-link active" aria-current="page" href="/ingreso-stock">Ingresar Stock</a></button>
-            </div>
+              <button class="btn btn-secondary botonNormal">
+                <a class="nav-link active" aria-current="page" href="/ingreso-stock">Ingresar Stock</a>
+                <span class="botonIngresoStock" *ngIf="productosParaStock > 0">{{ productosParaStock }}</span>
+              </button>
+            </div>                                                 
             <div class="pannelBttn">
               <button class="btn btn-success botonNormal"><a class="nav-link active" aria-current="page" href="/alta-usuario">Alta Usuarios</a></button>
             </div>

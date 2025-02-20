@@ -66,4 +66,8 @@ export class ProductService {
     const url = `${this.URL}/orderStockProduct`;
     return this.http.patch(url, {orderData});
   }
+
+  obtenerCantidadProductosParaStock(): Observable<number> {
+    return this.http.get<number>(`${this.URL}/cantidad-ingreso-stock`);
+  }
 }
