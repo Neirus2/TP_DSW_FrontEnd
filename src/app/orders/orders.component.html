@@ -1,6 +1,10 @@
 <app-nav-var></app-nav-var>
 
 <div class="container">
+    <div *ngIf="!orders.length" class="alert alert-danger text-center mt-5">
+        <strong>No hay pedidos terminados para mostrar.</strong>
+    </div>
+
     <div *ngIf="orders.length">
 
         <div class="row">
